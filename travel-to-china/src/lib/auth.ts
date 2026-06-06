@@ -39,10 +39,15 @@ if (process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET) {
 export const authOptions: NextAuthOptions = {
   providers,
   callbacks: {
+    async redirect({ url, baseUrl }) {
+      // After sign-in, redirect to /admin by default
+      if (url.startsWith(baseUrl)) return url;
+      if (url.startsWith('/')) return `${baseUrl}${url}`;
+      return `${baseUrl}/admin`;
+    },
     async jwt({ token, account, profile }) {
       if (account) {
         token.provider = account.provider;
-        // Persist the email from the profile into the token
         if (profile?.email) {
           token.email = profile.email as string;
         }
@@ -53,7 +58,6 @@ export const authOptions: NextAuthOptions = {
       if (session.user) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (session.user as any).provider = token.provider;
-        // Ensure email from token is in session
         if (token.email) {
           session.user.email = token.email as string;
         }
