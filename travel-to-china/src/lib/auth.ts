@@ -1,35 +1,8 @@
 import { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import GitHubProvider from 'next-auth/providers/github';
-import CredentialsProvider from 'next-auth/providers/credentials';
 
 const providers: NextAuthOptions['providers'] = [];
-
-// Credentials login (always available — uses ADMIN_PASSWORD from .env.local)
-providers.push(
-  CredentialsProvider({
-    id: 'credentials',
-    name: 'Admin Key',
-    credentials: {
-      password: { label: 'Admin Key', type: 'password' },
-    },
-    async authorize(credentials) {
-      const adminPassword = process.env.ADMIN_PASSWORD;
-      if (!adminPassword || adminPassword.length < 4) {
-        return null; // No admin password configured
-      }
-      if (credentials?.password === adminPassword) {
-        return {
-          id: 'admin',
-          name: 'Administrator',
-          email: process.env.ADMIN_EMAILS?.split(',')[0]?.trim() || 'admin@travel-to-china.local',
-          image: '',
-        };
-      }
-      return null;
-    },
-  })
-);
 
 // Google OAuth (only if keys are configured)
 if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
