@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { initializeDatabase } from '@/lib/db';
 import { search } from '@/lib/search';
 import { recordSearchQuery } from '@/lib/stats';
 
@@ -12,11 +13,11 @@ export async function GET(request: NextRequest) {
 
   const results = search(query);
 
-  // Record search query
   if (query.length >= 2) {
     try {
-      recordSearchQuery(query, results.length, visitorId);
-    } catch (e) {
+      await initializeDatabase();
+      await recordSearchQuery(query, results.length, visitorId);
+    } catch {
       // Silently fail
     }
   }

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
+import { initializeDatabase } from '@/lib/db';
 import {
   getDashboardSummary,
   getDailyPageViews,
@@ -28,17 +29,30 @@ export async function GET(request: NextRequest) {
   }
 
   try {
+    await initializeDatabase();
+
     const searchParams = request.nextUrl.searchParams;
     const days = parseInt(searchParams.get('days') || '30');
 
-    const summary = getDashboardSummary();
-    const dailyPV = getDailyPageViews(days);
-    const dailyUV = getDailyUniqueVisitors(days);
-    const popularContent = getPopularContent(20);
-    const popularSearches = getPopularSearches(20);
-    const pageViews = getPageViewsByPath();
-    const comments = getAllComments();
-    const subscribers = getAllSubscribers();
+    const [
+      summary,
+      dailyPV,
+      dailyUV,
+      popularContent,
+      popularSearches,
+      pageViews,
+      comments,
+      subscribers,
+    ] = await Promise.all([
+      getDashboardSummary(),
+      getDailyPageViews(days),
+      getDailyUniqueVisitors(days),
+      getPopularContent(20),
+      getPopularSearches(20),
+      getPageViewsByPath(),
+      getAllComments(),
+      getAllSubscribers(),
+    ]);
 
     return NextResponse.json({
       summary,
@@ -52,9 +66,6 @@ export async function GET(request: NextRequest) {
     });
   } catch (e) {
     console.error('Dashboard error:', e);
-    return NextResponse.json(
-      { error: 'Failed to fetch dashboard data' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch dashboard data' }, { status: 500 });
   }
 }

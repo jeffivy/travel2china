@@ -24,16 +24,14 @@ export interface CreateCommentInput {
   parent_id?: number | null;
 }
 
-// Get comments for an article (top-level + nested)
-export function getCommentsByArticle(articleSlug: string): Comment[] {
-  const comments = getAll<Comment>(
+export async function getCommentsByArticle(articleSlug: string): Promise<Comment[]> {
+  const comments = await getAll<Comment>(
     `SELECT * FROM comments
      WHERE article_slug = ? AND is_approved = 1 AND is_spam = 0
      ORDER BY created_at DESC`,
     [articleSlug]
   );
 
-  // Build nested structure
   const topLevel = comments.filter((c) => !c.parent_id);
   const replies = comments.filter((c) => c.parent_id);
 
@@ -53,80 +51,63 @@ function findReplies(parentId: number, allReplies: Comment[]): Comment[] {
     }));
 }
 
-// Create a comment
-export function createComment(input: CreateCommentInput): Comment | null {
-  const db = getDb();
-  const stmt = db.prepare(
-    `INSERT INTO comments (article_slug, author_name, author_email, author_image, content, parent_id)
-     VALUES (?, ?, ?, ?, ?, ?)`
-  );
-  const result = stmt.run(
-    input.article_slug,
-    input.author_name,
-    input.author_email || '',
-    input.author_image || '',
-    input.content,
-    input.parent_id || null
-  );
+export async function createComment(input: CreateCommentInput): Promise<Comment | null> {
+  const result = await getDb().execute({
+    sql: `INSERT INTO comments (article_slug, author_name, author_email, author_image, content, parent_id)
+     VALUES (?, ?, ?, ?, ?, ?)`,
+    args: [
+      input.article_slug,
+      input.author_name,
+      input.author_email || '',
+      input.author_image || '',
+      input.content,
+      input.parent_id || null,
+    ],
+  });
 
   if (result.lastInsertRowid) {
-    return getOne<Comment>('SELECT * FROM comments WHERE id = ?', [result.lastInsertRowid]) || null;
+    return (await getOne<Comment>('SELECT * FROM comments WHERE id = ?', [Number(result.lastInsertRowid)])) || null;
   }
   return null;
 }
 
-// Like a comment
-export function likeComment(commentId: number, userEmail: string): { liked: boolean; likes: number } {
-  const db = getDb();
-  const existing = getOne<{ id: number }>(
+export async function likeComment(commentId: number, userEmail: string): Promise<{ liked: boolean; likes: number }> {
+  const existing = await getOne<{ id: number }>(
     'SELECT id FROM comment_likes WHERE comment_id = ? AND user_email = ?',
     [commentId, userEmail]
   );
 
   if (existing) {
-    // Unlike
-    db.prepare('DELETE FROM comment_likes WHERE comment_id = ? AND user_email = ?').run(commentId, userEmail);
-    db.prepare('UPDATE comments SET likes = MAX(0, likes - 1) WHERE id = ?').run(commentId);
+    await getDb().execute({ sql: 'DELETE FROM comment_likes WHERE comment_id = ? AND user_email = ?', args: [commentId, userEmail] });
+    await getDb().execute({ sql: 'UPDATE comments SET likes = MAX(0, likes - 1) WHERE id = ?', args: [commentId] });
   } else {
-    // Like
-    db.prepare('INSERT INTO comment_likes (comment_id, user_email) VALUES (?, ?)').run(commentId, userEmail);
-    db.prepare('UPDATE comments SET likes = likes + 1 WHERE id = ?').run(commentId);
+    await getDb().execute({ sql: 'INSERT INTO comment_likes (comment_id, user_email) VALUES (?, ?)', args: [commentId, userEmail] });
+    await getDb().execute({ sql: 'UPDATE comments SET likes = likes + 1 WHERE id = ?', args: [commentId] });
   }
 
-  const updated = getOne<{ likes: number }>('SELECT likes FROM comments WHERE id = ?', [commentId]);
-  return {
-    liked: !existing,
-    likes: updated?.likes || 0,
-  };
+  const updated = await getOne<{ likes: number }>('SELECT likes FROM comments WHERE id = ?', [commentId]);
+  return { liked: !existing, likes: updated?.likes || 0 };
 }
 
-// Get all comments (for admin)
-export function getAllComments(): Comment[] {
-  return getAll<Comment>(
-    `SELECT * FROM comments ORDER BY created_at DESC LIMIT 200`
-  );
+export async function getAllComments(): Promise<Comment[]> {
+  return getAll<Comment>(`SELECT * FROM comments ORDER BY created_at DESC LIMIT 200`);
 }
 
-// Approve a comment
-export function approveComment(id: number): void {
-  getDb().prepare('UPDATE comments SET is_approved = 1 WHERE id = ?').run(id);
+export async function approveComment(id: number): Promise<void> {
+  await getDb().execute({ sql: 'UPDATE comments SET is_approved = 1 WHERE id = ?', args: [id] });
 }
 
-// Mark as spam
-export function markCommentAsSpam(id: number): void {
-  getDb().prepare('UPDATE comments SET is_spam = 1, is_approved = 0 WHERE id = ?').run(id);
+export async function markCommentAsSpam(id: number): Promise<void> {
+  await getDb().execute({ sql: 'UPDATE comments SET is_spam = 1, is_approved = 0 WHERE id = ?', args: [id] });
 }
 
-// Delete a comment
-export function deleteComment(id: number): void {
-  // Delete replies first
-  getDb().prepare('DELETE FROM comments WHERE parent_id = ?').run(id);
-  getDb().prepare('DELETE FROM comment_likes WHERE comment_id = ?').run(id);
-  getDb().prepare('DELETE FROM comments WHERE id = ?').run(id);
+export async function deleteComment(id: number): Promise<void> {
+  await getDb().execute({ sql: 'DELETE FROM comments WHERE parent_id = ?', args: [id] });
+  await getDb().execute({ sql: 'DELETE FROM comment_likes WHERE comment_id = ?', args: [id] });
+  await getDb().execute({ sql: 'DELETE FROM comments WHERE id = ?', args: [id] });
 }
 
-// Get comment count per article
-export function getCommentCounts(): { article_slug: string; count: number }[] {
+export async function getCommentCounts(): Promise<{ article_slug: string; count: number }[]> {
   return getAll(
     `SELECT article_slug, COUNT(*) as count FROM comments WHERE is_approved = 1 AND is_spam = 0 GROUP BY article_slug`
   );

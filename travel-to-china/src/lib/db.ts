@@ -1,34 +1,27 @@
-import Database from 'better-sqlite3';
-import path from 'path';
-import fs from 'fs';
+import { createClient, Client, InValue } from '@libsql/client';
 
-// On Vercel, use /tmp for writable storage; locally use ./data
-const DB_DIR = process.env.VERCEL
-  ? '/tmp'
-  : path.join(process.cwd(), 'data');
-const DB_PATH = path.join(DB_DIR, 'travel-to-china.db');
+let client: Client | null = null;
 
-// Ensure data directory exists
-if (!fs.existsSync(DB_DIR)) {
-  fs.mkdirSync(DB_DIR, { recursive: true });
-}
+export function getDb(): Client {
+  if (!client) {
+    const url = process.env.TURSO_DATABASE_URL;
+    const authToken = process.env.TURSO_AUTH_TOKEN;
 
-// Singleton database instance
-let db: Database.Database | null = null;
-
-export function getDb(): Database.Database {
-  if (!db) {
-    db = new Database(DB_PATH);
-    db.pragma('journal_mode = WAL');
-    db.pragma('foreign_keys = ON');
-    initializeDatabase(db);
+    if (url && authToken) {
+      client = createClient({ url, authToken });
+    } else {
+      throw new Error(
+        'TURSO_DATABASE_URL and TURSO_AUTH_TOKEN environment variables are required.'
+      );
+    }
   }
-  return db;
+  return client;
 }
 
-function initializeDatabase(db: Database.Database): void {
-  db.exec(`
-    -- Comments table
+export async function initializeDatabase(): Promise<void> {
+  const db = getDb();
+
+  await db.executeMultiple(`
     CREATE TABLE IF NOT EXISTS comments (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       article_slug TEXT NOT NULL,
@@ -44,7 +37,6 @@ function initializeDatabase(db: Database.Database): void {
       updated_at TEXT DEFAULT (datetime('now'))
     );
 
-    -- Comment likes tracking (who liked which comment)
     CREATE TABLE IF NOT EXISTS comment_likes (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       comment_id INTEGER NOT NULL REFERENCES comments(id) ON DELETE CASCADE,
@@ -53,7 +45,6 @@ function initializeDatabase(db: Database.Database): void {
       UNIQUE(comment_id, user_email)
     );
 
-    -- Page views
     CREATE TABLE IF NOT EXISTS page_views (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       page_path TEXT NOT NULL,
@@ -63,7 +54,6 @@ function initializeDatabase(db: Database.Database): void {
       created_at TEXT DEFAULT (datetime('now'))
     );
 
-    -- Page view events for duration tracking
     CREATE TABLE IF NOT EXISTS page_events (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       page_path TEXT NOT NULL,
@@ -73,7 +63,6 @@ function initializeDatabase(db: Database.Database): void {
       created_at TEXT DEFAULT (datetime('now'))
     );
 
-    -- Search queries log
     CREATE TABLE IF NOT EXISTS search_logs (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       query TEXT NOT NULL,
@@ -82,7 +71,6 @@ function initializeDatabase(db: Database.Database): void {
       created_at TEXT DEFAULT (datetime('now'))
     );
 
-    -- Email subscribers
     CREATE TABLE IF NOT EXISTS subscribers (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       email TEXT NOT NULL UNIQUE,
@@ -94,7 +82,6 @@ function initializeDatabase(db: Database.Database): void {
       created_at TEXT DEFAULT (datetime('now'))
     );
 
-    -- Favorites/bookmarks
     CREATE TABLE IF NOT EXISTS favorites (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       article_slug TEXT NOT NULL,
@@ -103,7 +90,6 @@ function initializeDatabase(db: Database.Database): void {
       UNIQUE(article_slug, user_email)
     );
 
-    -- Create indexes
     CREATE INDEX IF NOT EXISTS idx_comments_article ON comments(article_slug);
     CREATE INDEX IF NOT EXISTS idx_comments_parent ON comments(parent_id);
     CREATE INDEX IF NOT EXISTS idx_page_views_path ON page_views(page_path);
@@ -113,27 +99,17 @@ function initializeDatabase(db: Database.Database): void {
   `);
 }
 
-// Helper: Get a prepared statement
-export function getStmt(sql: string) {
-  return getDb().prepare(sql);
+export async function getAll<T = Record<string, unknown>>(sql: string, args: InValue[] = []): Promise<T[]> {
+  const result = await getDb().execute({ sql, args });
+  return result.rows as unknown as T[];
 }
 
-// Helper: Run a query
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function runQuery(sql: string, params: any[] = []) {
-  return getDb().prepare(sql).run(...params);
+export async function getOne<T = Record<string, unknown>>(sql: string, args: InValue[] = []): Promise<T | undefined> {
+  const result = await getDb().execute({ sql, args });
+  return result.rows[0] as unknown as T | undefined;
 }
 
-// Helper: Get all rows
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function getAll<T = any>(sql: string, params: any[] = []): T[] {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return getDb().prepare(sql).all(...params) as T[];
-}
-
-// Helper: Get single row
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function getOne<T = any>(sql: string, params: any[] = []): T | undefined {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return getDb().prepare(sql).get(...params) as T | undefined;
+export async function runQuery(sql: string, args: InValue[] = []): Promise<{ lastInsertRowid: bigint | undefined; changes: number }> {
+  const result = await getDb().execute({ sql, args });
+  return { lastInsertRowid: result.lastInsertRowid, changes: result.rowsAffected };
 }

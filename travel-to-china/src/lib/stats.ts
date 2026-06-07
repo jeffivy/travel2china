@@ -1,42 +1,42 @@
 import { getDb, getAll, getOne } from './db';
 
-// Record a page view
-export function recordPageView(pagePath: string, visitorId: string, referrer?: string, userAgent?: string): void {
-  const db = getDb();
-  db.prepare(
-    `INSERT INTO page_views (page_path, visitor_id, referrer, user_agent) VALUES (?, ?, ?, ?)`
-  ).run(pagePath, visitorId, referrer || '', userAgent || '');
+export async function recordPageView(
+  pagePath: string,
+  visitorId: string,
+  referrer?: string,
+  userAgent?: string
+): Promise<void> {
+  await getDb().execute({
+    sql: `INSERT INTO page_views (page_path, visitor_id, referrer, user_agent) VALUES (?, ?, ?, ?)`,
+    args: [pagePath, visitorId, referrer || '', userAgent || ''],
+  });
 }
 
-// Record a page event (for duration tracking)
-export function recordPageEvent(
+export async function recordPageEvent(
   pagePath: string,
   visitorId: string,
   sessionId: string,
   eventType: string
-): void {
-  const db = getDb();
-  db.prepare(
-    `INSERT INTO page_events (page_path, visitor_id, session_id, event_type) VALUES (?, ?, ?, ?)`
-  ).run(pagePath, visitorId, sessionId, eventType);
+): Promise<void> {
+  await getDb().execute({
+    sql: `INSERT INTO page_events (page_path, visitor_id, session_id, event_type) VALUES (?, ?, ?, ?)`,
+    args: [pagePath, visitorId, sessionId, eventType],
+  });
 }
 
-// Record a search query
-export function recordSearchQuery(query: string, resultsCount: number, visitorId?: string): void {
-  const db = getDb();
-  db.prepare(
-    `INSERT INTO search_logs (query, results_count, visitor_id) VALUES (?, ?, ?)`
-  ).run(query, resultsCount, visitorId || '');
+export async function recordSearchQuery(query: string, resultsCount: number, visitorId?: string): Promise<void> {
+  await getDb().execute({
+    sql: `INSERT INTO search_logs (query, results_count, visitor_id) VALUES (?, ?, ?)`,
+    args: [query, resultsCount, visitorId || ''],
+  });
 }
 
-// Get total page views
-export function getTotalPageViews(): number {
-  const result = getOne<{ count: number }>('SELECT COUNT(*) as count FROM page_views');
+export async function getTotalPageViews(): Promise<number> {
+  const result = await getOne<{ count: number }>('SELECT COUNT(*) as count FROM page_views');
   return result?.count || 0;
 }
 
-// Get page views by path
-export function getPageViewsByPath(pagePath?: string): { page_path: string; count: number }[] {
+export async function getPageViewsByPath(pagePath?: string): Promise<{ page_path: string; count: number }[]> {
   if (pagePath) {
     return getAll(
       `SELECT page_path, COUNT(*) as count FROM page_views WHERE page_path = ? GROUP BY page_path`,
@@ -48,8 +48,7 @@ export function getPageViewsByPath(pagePath?: string): { page_path: string; coun
   );
 }
 
-// Get daily page views
-export function getDailyPageViews(days: number = 30): { date: string; count: number }[] {
+export async function getDailyPageViews(days: number = 30): Promise<{ date: string; count: number }[]> {
   return getAll(
     `SELECT date(created_at) as date, COUNT(*) as count
      FROM page_views
@@ -60,16 +59,14 @@ export function getDailyPageViews(days: number = 30): { date: string; count: num
   );
 }
 
-// Get unique visitors
-export function getUniqueVisitors(): number {
-  const result = getOne<{ count: number }>(
+export async function getUniqueVisitors(): Promise<number> {
+  const result = await getOne<{ count: number }>(
     'SELECT COUNT(DISTINCT visitor_id) as count FROM page_views'
   );
   return result?.count || 0;
 }
 
-// Get daily unique visitors
-export function getDailyUniqueVisitors(days: number = 30): { date: string; count: number }[] {
+export async function getDailyUniqueVisitors(days: number = 30): Promise<{ date: string; count: number }[]> {
   return getAll(
     `SELECT date(created_at) as date, COUNT(DISTINCT visitor_id) as count
      FROM page_views
@@ -80,8 +77,7 @@ export function getDailyUniqueVisitors(days: number = 30): { date: string; count
   );
 }
 
-// Get popular content
-export function getPopularContent(limit: number = 10): { page_path: string; views: number }[] {
+export async function getPopularContent(limit: number = 10): Promise<{ page_path: string; views: number }[]> {
   return getAll(
     `SELECT page_path, COUNT(*) as views
      FROM page_views
@@ -92,8 +88,7 @@ export function getPopularContent(limit: number = 10): { page_path: string; view
   );
 }
 
-// Get popular search queries
-export function getPopularSearches(limit: number = 20): { query: string; count: number }[] {
+export async function getPopularSearches(limit: number = 20): Promise<{ query: string; count: number }[]> {
   return getAll(
     `SELECT query, COUNT(*) as count
      FROM search_logs
@@ -104,45 +99,25 @@ export function getPopularSearches(limit: number = 20): { query: string; count: 
   );
 }
 
-// Get average time on page
-export function getAverageTimeOnPage(): { page_path: string; avg_seconds: number }[] {
-  return getAll(`
-    SELECT page_path,
-           AVG(
-             (SELECT julianday(e2.created_at) - julianday(e1.created_at)
-              FROM page_events e2
-              WHERE e2.session_id = e1.session_id
-              AND e2.id > e1.id
-              AND e2.event_type = 'leave'
-              LIMIT 1)
-           ) * 86400 as avg_seconds
-    FROM page_events e1
-    WHERE e1.event_type = 'pageview'
-    GROUP BY page_path
-    ORDER BY avg_seconds DESC
-  `);
-}
-
-// Get dashboard summary
-export function getDashboardSummary() {
-  const totalPV = getTotalPageViews();
-  const totalUV = getUniqueVisitors();
+export async function getDashboardSummary() {
+  const totalPV = await getTotalPageViews();
+  const totalUV = await getUniqueVisitors();
   const today = new Date().toISOString().split('T')[0];
 
-  const todayPV = getOne<{ count: number }>(
+  const todayPV = await getOne<{ count: number }>(
     `SELECT COUNT(*) as count FROM page_views WHERE date(created_at) = ?`,
     [today]
   );
 
-  const totalComments = getOne<{ count: number }>(
+  const totalComments = await getOne<{ count: number }>(
     'SELECT COUNT(*) as count FROM comments'
   );
 
-  const totalSearches = getOne<{ count: number }>(
+  const totalSearches = await getOne<{ count: number }>(
     'SELECT COUNT(*) as count FROM search_logs'
   );
 
-  const totalSubscribers = getOne<{ count: number }>(
+  const totalSubscribers = await getOne<{ count: number }>(
     "SELECT COUNT(*) as count FROM subscribers WHERE status = 'confirmed'"
   );
 

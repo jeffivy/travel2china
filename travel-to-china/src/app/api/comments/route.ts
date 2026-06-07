@@ -1,27 +1,38 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getCommentsByArticle, createComment, likeComment, getAllComments, approveComment, markCommentAsSpam, deleteComment } from '@/lib/comments';
+import { initializeDatabase } from '@/lib/db';
+import {
+  getCommentsByArticle,
+  createComment,
+  likeComment,
+  getAllComments,
+  approveComment,
+  markCommentAsSpam,
+  deleteComment,
+} from '@/lib/comments';
 
-// GET /api/comments?article=slug
 export async function GET(request: NextRequest) {
+  await initializeDatabase();
+
   const articleSlug = request.nextUrl.searchParams.get('article');
   const admin = request.nextUrl.searchParams.get('admin');
 
   if (admin === 'true') {
-    const comments = getAllComments();
+    const comments = await getAllComments();
     return NextResponse.json({ comments });
   }
 
   if (articleSlug) {
-    const comments = getCommentsByArticle(articleSlug);
+    const comments = await getCommentsByArticle(articleSlug);
     return NextResponse.json({ comments });
   }
 
   return NextResponse.json({ error: 'article or admin parameter required' }, { status: 400 });
 }
 
-// POST /api/comments
 export async function POST(request: NextRequest) {
   try {
+    await initializeDatabase();
+
     const body = await request.json();
     const { article_slug, author_name, author_email, author_image, content, parent_id } = body;
 
@@ -33,7 +44,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Comment is too short' }, { status: 400 });
     }
 
-    const comment = createComment({
+    const comment = await createComment({
       article_slug,
       author_name,
       author_email: author_email || '',
@@ -43,14 +54,15 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json({ comment }, { status: 201 });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to create comment' }, { status: 500 });
   }
 }
 
-// PUT /api/comments (like, approve, spam, delete)
 export async function PUT(request: NextRequest) {
   try {
+    await initializeDatabase();
+
     const body = await request.json();
     const { commentId, userEmail, action } = body;
 
@@ -58,27 +70,27 @@ export async function PUT(request: NextRequest) {
       if (!commentId || !userEmail) {
         return NextResponse.json({ error: 'commentId and userEmail required' }, { status: 400 });
       }
-      const result = likeComment(commentId, userEmail);
+      const result = await likeComment(commentId, userEmail);
       return NextResponse.json(result);
     }
 
     if (action === 'approve') {
-      approveComment(commentId);
+      await approveComment(commentId);
       return NextResponse.json({ success: true });
     }
 
     if (action === 'spam') {
-      markCommentAsSpam(commentId);
+      await markCommentAsSpam(commentId);
       return NextResponse.json({ success: true });
     }
 
     if (action === 'delete') {
-      deleteComment(commentId);
+      await deleteComment(commentId);
       return NextResponse.json({ success: true });
     }
 
     return NextResponse.json({ error: 'Invalid action' }, { status: 400 });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to process request' }, { status: 500 });
   }
 }
