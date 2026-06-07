@@ -106,10 +106,25 @@ export default function AdminPage() {
     );
   }
 
-  if (loading || !data) {
+  if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <Loader2 className="w-8 h-8 animate-spin text-[var(--primary)]" />
+      </div>
+    );
+  }
+
+  if (!data) {
+    return (
+      <div className="container-content py-20 text-center">
+        <ShieldAlert className="w-16 h-16 mx-auto mb-4 text-yellow-400" />
+        <h1 className="text-2xl font-bold mb-2">Data Unavailable</h1>
+        <p className="text-[var(--muted)] mb-6">
+          Could not load dashboard data. This may be because the database is initializing.
+        </p>
+        <button onClick={() => { setLoading(true); checkAdmin(); }} className="btn-primary text-sm">
+          Retry
+        </button>
       </div>
     );
   }

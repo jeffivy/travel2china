@@ -2,7 +2,10 @@ import Database from 'better-sqlite3';
 import path from 'path';
 import fs from 'fs';
 
-const DB_DIR = path.join(process.cwd(), 'data');
+// On Vercel, use /tmp for writable storage; locally use ./data
+const DB_DIR = process.env.VERCEL
+  ? '/tmp'
+  : path.join(process.cwd(), 'data');
 const DB_PATH = path.join(DB_DIR, 'travel-to-china.db');
 
 // Ensure data directory exists
