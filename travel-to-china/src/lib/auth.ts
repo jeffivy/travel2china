@@ -45,11 +45,13 @@ export const authOptions: NextAuthOptions = {
       if (url.startsWith('/')) return `${baseUrl}${url}`;
       return `${baseUrl}/admin`;
     },
-    async jwt({ token, account, profile }) {
+    async jwt({ token, account, profile, user }) {
       if (account) {
         token.provider = account.provider;
-        if (profile?.email) {
-          token.email = profile.email as string;
+        // GitHub/Google return email in profile; also available in user
+        const email = (profile as any)?.email || user?.email;
+        if (email) {
+          token.email = email as string;
         }
       }
       return token;
