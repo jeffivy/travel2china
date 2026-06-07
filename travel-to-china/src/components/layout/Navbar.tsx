@@ -173,7 +173,7 @@ export default function Navbar() {
               </div>
             ) : (
               <button
-                onClick={() => signIn()}
+                onClick={() => signIn(undefined, { callbackUrl: '/admin' })}
                 className="ml-2 px-4 py-2 text-sm font-medium bg-[var(--primary)] text-white rounded-lg
                            hover:opacity-90 transition-opacity"
               >
@@ -245,7 +245,7 @@ export default function Navbar() {
                 </button>
               ) : (
                 <button
-                  onClick={() => signIn()}
+                  onClick={() => signIn(undefined, { callbackUrl: '/admin' })}
                   className="w-full text-left px-4 py-2 text-sm font-medium text-[var(--primary)] rounded-lg mx-2 hover:bg-[var(--card-hover)]"
                 >
                   Sign In
