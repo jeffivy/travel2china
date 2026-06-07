@@ -96,11 +96,15 @@ export default function AdminPage() {
       <div className="container-content py-20 text-center">
         <ShieldAlert className="w-16 h-16 mx-auto mb-4 text-red-400" />
         <h1 className="text-2xl font-bold mb-2">Access Denied</h1>
-        <p className="text-[var(--muted)] mb-6">
-          Please sign in with your admin key to access the dashboard.
+        <p className="text-[var(--muted)] mb-2">
+          Your account is not authorized to access the admin dashboard.
         </p>
-        <a href="/auth/signin" className="btn-primary inline-flex text-sm">
-          Sign In
+        <p className="text-sm text-[var(--muted)] mb-6">
+          Signed in as <strong>{session?.user?.email || 'unknown'}</strong>.
+          Only designated admin accounts can view this page.
+        </p>
+        <a href="/" className="btn-primary inline-flex text-sm">
+          Back to Home
         </a>
       </div>
     );
