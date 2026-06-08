@@ -141,6 +141,35 @@ p { margin-bottom: 1rem; }
   margin: 1.5rem 0;
 }
 
+/* Tip & Warning boxes */
+.tip-box {
+  border-left: 4px solid #22c55e;
+  background: #f0fdf4;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.dark .tip-box {
+  background: #052e16;
+}
+
+.warning-box {
+  border-left: 4px solid #f59e0b;
+  background: #fffbeb;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.dark .warning-box {
+  background: #451a03;
+}
+
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--background); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
