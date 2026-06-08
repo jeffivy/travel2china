@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSession, signIn, signOut } from 'next-auth/react';
@@ -18,6 +18,7 @@ const NAV_ITEMS = [
       { label: 'Ethnic Groups', href: '/country/ethnic-groups' },
       { label: 'Food Culture', href: '/country/food-culture' },
       { label: 'Visa Policy', href: '/country/visa-policy' },
+      { label: 'Travel Tips', href: '/country/travel-tips' },
     ],
   },
   {
@@ -32,6 +33,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const closeTimer = useRef<NodeJS.Timeout | null>(null);
   const pathname = usePathname();
   const { data: session } = useSession();
 
@@ -79,8 +81,13 @@ export default function Navbar() {
                 <div
                   key={item.href}
                   className="relative"
-                  onMouseEnter={() => setOpenDropdown(item.label)}
-                  onMouseLeave={() => setOpenDropdown(null)}
+                  onMouseEnter={() => {
+                    if (closeTimer.current) clearTimeout(closeTimer.current);
+                    setOpenDropdown(item.label);
+                  }}
+                  onMouseLeave={() => {
+                    closeTimer.current = setTimeout(() => setOpenDropdown(null), 150);
+                  }}
                 >
                   <Link
                     href={item.href}
@@ -148,7 +155,7 @@ export default function Navbar() {
 
             {/* Auth */}
             {session ? (
-              <div className="relative ml-2" onMouseEnter={() => setOpenDropdown('user')} onMouseLeave={() => setOpenDropdown(null)}>
+              <div className="relative ml-2" onMouseEnter={() => { if (closeTimer.current) clearTimeout(closeTimer.current); setOpenDropdown('user'); }} onMouseLeave={() => { closeTimer.current = setTimeout(() => setOpenDropdown(null), 150); }}>
                 <button className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium
                                    bg-[var(--card)] border border-[var(--border)] hover:bg-[var(--card-hover)]
                                    transition-colors">

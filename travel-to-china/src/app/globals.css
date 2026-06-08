@@ -170,6 +170,30 @@ p { margin-bottom: 1rem; }
   background: #451a03;
 }
 
+/* CTA box */
+.cta-box {
+  background: linear-gradient(135deg, rgba(var(--primary-rgb, 196, 30, 58), 0.08), rgba(var(--gold-rgb, 212, 168, 83), 0.08));
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.cta-box .cta-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--foreground);
+}
+
+.cta-box .cta-text {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.7;
+}
+
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--background); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
