@@ -33,8 +33,14 @@ export default function CitiesPage() {
             {cities.map((city) => (
               <Link key={city.slug} href={`/cities/${city.slug}`} className="card p-6 group hover:border-[var(--primary)]/30">
                 <div className="flex gap-6">
-                  <div className="w-24 h-24 md:w-32 md:h-32 rounded-xl bg-gradient-to-br from-[var(--primary)]/20 to-[var(--gold)]/20 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-10 h-10 text-[var(--primary)]/40 group-hover:scale-125 transition-transform duration-300" />
+                  <div className="w-24 h-24 md:w-32 md:h-32 rounded-xl overflow-hidden flex-shrink-0 bg-gradient-to-br from-[var(--primary)]/20 to-[var(--gold)]/20">
+                    {city.meta.image ? (
+                      <img src={city.meta.image} alt={city.meta.title} className="w-full h-full object-cover" />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <MapPin className="w-10 h-10 text-[var(--primary)]/40 group-hover:scale-125 transition-transform duration-300" />
+                      </div>
+                    )}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 mb-2">

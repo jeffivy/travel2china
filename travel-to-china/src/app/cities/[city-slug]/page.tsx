@@ -45,6 +45,13 @@ export default function CityPage({ params }: { params: { 'city-slug': string } }
           <Link href="/cities" className="inline-flex items-center gap-1 text-sm text-[var(--muted)] hover:text-[var(--primary)] transition-colors mb-6">
             <ArrowLeft className="w-4 h-4" /> All Cities
           </Link>
+          {entry.meta.image && (
+            <img
+              src={entry.meta.image}
+              alt={entry.meta.title}
+              className="w-full h-48 md:h-64 object-cover rounded-xl mb-6 shadow-lg"
+            />
+          )}
           <h1 className="text-4xl md:text-5xl font-extrabold mb-3">{entry.meta.title}</h1>
           <p className="text-lg text-[var(--muted)] max-w-3xl mb-6">{entry.meta.description}</p>
 

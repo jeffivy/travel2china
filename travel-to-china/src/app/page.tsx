@@ -84,9 +84,13 @@ export default function HomePage() {
           {cities.map((city) => (
             <Link key={city.slug} href={`/cities/${city.slug}`} className="card group overflow-hidden">
               <div className="aspect-[16/10] bg-gradient-to-br from-[var(--primary)]/20 to-[var(--gold)]/20 relative overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <MapPin className="w-16 h-16 text-[var(--primary)]/30 group-hover:scale-150 transition-transform duration-500" />
-                </div>
+                {city.meta.image ? (
+                  <img src={city.meta.image} alt={city.meta.title} className="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <MapPin className="w-16 h-16 text-[var(--primary)]/30 group-hover:scale-150 transition-transform duration-500" />
+                  </div>
+                )}
                 {city.meta.highlights && (
                   <div className="absolute bottom-3 left-3 flex flex-wrap gap-1">
                     {city.meta.highlights.slice(0, 2).map((h) => (

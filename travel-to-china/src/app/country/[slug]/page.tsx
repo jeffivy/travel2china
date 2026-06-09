@@ -46,6 +46,13 @@ export default function CountryArticlePage({ params }: { params: { slug: string 
               <ArrowLeft className="w-4 h-4" /> Country Guide
             </Link>
           </div>
+          {entry.meta.image && (
+            <img
+              src={entry.meta.image}
+              alt={entry.meta.title}
+              className="w-full h-48 md:h-64 object-cover rounded-xl mb-6 shadow-lg"
+            />
+          )}
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
             {entry.meta.title}
           </h1>
