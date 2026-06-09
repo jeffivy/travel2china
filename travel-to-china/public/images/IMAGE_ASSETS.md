@@ -1,64 +1,85 @@
-# 图片资源清单
+# 图片资源清单（待提供）
 
-所有图片需存放于 `public/images/` 目录下。  
-推荐格式：**JPG**，封面图 1200×630px，内嵌插图 800–1600px 宽。
+已上传 44 张，尚缺 49 张。所有图片需存放于 `public/images/` 目录下。封面图 1200×630px，内嵌插图 800–1600px 宽，JPG 格式。
 
 ---
 
-## 总表
+## 待上传图片总表
 
 | # | 文件名 | 所属页面 | 类型 | 建议尺寸 | 图片内容描述 |
 |---|--------|----------|------|----------|-------------|
-| 1 | `china-overview.jpg` | `/country/overview` | 封面 | 1200×630 | 中国风景横幅——长城、山水或现代化城市天际线 |
-| 2 | `china-topography.jpg` | `/country/overview` | 内嵌 | 1200×800 | 中国三级阶梯地形示意图：东部平原→中部高原盆地→青藏高原 |
-| 3 | `miao-festival.jpg` | `/country/overview` & `/country/ethnic-groups` | 内嵌 | 1200×800 | 贵州苗族女性身着银饰盛装和刺绣服饰，在节日中跳舞的场景 |
-| 4 | `china-regions.jpg` | `/country/size-and-regions` | 封面 | 1200×630 | 中国行政区划彩色地图，标示各省份和主要区域分布 |
-| 5 | `china-size-comparison.jpg` | `/country/size-and-regions` | 内嵌 | 1200×900 | 中国地图叠加在世界地图上，展示东西、南北跨度及主要城市位置对比 |
-| 6 | `china-seven-regions.jpg` | `/country/size-and-regions` | 内嵌 | 1200×900 | 中国七大地理区域彩色分区示意图（华北、东北、华东、华中、华南、西南、西北） |
-| 7 | `tibet-potala.jpg` | `/country/size-and-regions` | 内嵌 | 1200×800 | 西藏拉萨布达拉宫全景——红白相间的宫殿依山而建，背景为高原蓝天 |
-| 8 | `chongqing-skyline.jpg` | `/country/size-and-regions` | 内嵌 | 1200×800 | 重庆夜景——长江与嘉陵江交汇处的山城霓虹天际线 |
-| 9 | `hong-kong-skyline.jpg` | `/country/size-and-regions` | 内嵌 | 1200×800 | 香港维多利亚港黄昏天际线——从尖沙咀海滨眺望中环摩天大楼群 |
-| 10 | `ethnic-groups.jpg` | `/country/ethnic-groups` | 封面 | 1200×630 | 中国各民族身着色彩鲜艳的传统服饰的群像合影 |
-| 11 | `ethnic-groups-collage.jpg` | `/country/ethnic-groups` | 内嵌 | 1200×800 | 中国六大少数民族代表人物的传统节日盛装拼贴图 |
-| 12 | `zhuang-festival.jpg` | `/country/ethnic-groups` | 内嵌 | 1200×800 | 广西壮族女性身着靛蓝色刺绣服饰，在"三月三"歌节上对唱山歌 |
-| 13 | `hui-mosque.jpg` | `/country/ethnic-groups` | 内嵌 | 1200×800 | 西安大清真寺——伊斯兰建筑与中国传统楼阁式建筑风格融合的典范 |
-| 14 | `tibetan-monks.jpg` | `/country/ethnic-groups` | 内嵌 | 1200×800 | 四川西部藏传佛教寺院中，身穿深红色僧袍的喇嘛在庭院中辩经 |
-| 15 | `uyghur-bazaar.jpg` | `/country/ethnic-groups` | 内嵌 | 1200×800 | 新疆喀什星期日大巴扎——亚洲最古老持续运营的市场，商人、手工艺人和农民聚集交易 |
-| 16 | `mongolian-naadam.jpg` | `/country/ethnic-groups` | 内嵌 | 1200×800 | 内蒙古那达慕大会上，身着传统长靴和刺绣摔跤服的蒙古族摔跤手比赛场景 |
-| 17 | `food-culture.jpg` | `/country/food-culture` | 封面 | 1200×630 | 中国美食俯拍合集——饺子、北京烤鸭、火锅、面条等经典菜肴彩色摆盘 |
-| 18 | `eight-cuisines.jpg` | `/country/food-culture` | 内嵌 | 1200×800 | 中国八大菜系代表性菜肴的彩色组合展示图 |
-| 19 | `sichuan-hotpot.jpg` | `/country/food-culture` | 内嵌 | 1200×800 | 四川火锅特写——红油汤底翻滚着干辣椒和花椒，热气腾腾 |
-| 20 | `cantonese-dimsum.jpg` | `/country/food-culture` | 内嵌 | 1200×800 | 粤式早茶——竹制蒸笼中的虾饺、烧卖、叉烧包，传统茶楼环境 |
-| 21 | `chinese-table-setting.jpg` | `/country/food-culture` | 内嵌 | 1200×800 | 中式餐桌标准摆放——筷子置于筷架上、瓷制汤匙、陶瓷茶杯 |
-| 22 | `visa-guide.jpg` | `/country/visa-policy` | 封面 | 1200×630 | 护照上的中国签证印章，搭配地图、机票、相机等旅行物品摆拍 |
-| 23 | `travel-tips.jpg` | `/country/travel-tips` | 封面 | 1200×630 | 旅行必备物品平铺图——护照、装有中国App的手机、万能转换插头、纸质地图 |
-| 24 | `pre-trip-checklist.jpg` | `/country/travel-tips` | 内嵌 | 1200×800 | 旅行者桌面——护照、签证文件、智能手机、打印的行程单和打包物品 |
-| 25 | `china-apps-phone.jpg` | `/country/travel-tips` | 内嵌 | 800×1200 | 手机屏幕显示中国旅行必备App——微信、支付宝、滴滴出行、百度地图 |
-| 26 | `high-speed-train.jpg` | `/country/travel-tips` | 内嵌 | 1200×800 | 中国现代化高铁站台上停靠的白色复兴号高速列车 |
-| 27 | `translation-app.jpg` | `/country/travel-tips` | 内嵌 | 800×1200 | 手机使用翻译App，摄像头对准中文菜单进行实时AR翻译的界面 |
-| 28 | `beijing.jpg` | `/cities/beijing` | 封面 | 1200×630 | 故宫全景日出，或秋季红叶映衬下的慕田峪长城 |
-| 29 | `shanghai.jpg` | `/cities/shanghai` | 封面 | 1200×630 | 上海外滩夜景——黄浦江对岸浦东陆家嘴摩天大楼群璀璨灯光 |
-| 30 | `chengdu.jpg` | `/cities/chengdu` | 封面 | 1200×630 | 大熊猫在翠绿竹林中吃竹子的特写，或锦里古街夜间红色灯笼 |
-| 31 | `xian.jpg` | `/cities/xian` | 封面 | 1200×630 | 兵马俑一号坑中排列整齐的陶俑士兵，或夕阳下西安古城墙 |
-| 32 | `guilin.jpg` | `/cities/guilin` | 封面 | 1200×630 | 漓江上喀斯特山峰从晨雾中升起，竹筏漂流在碧绿的江面上 |
+| 1 | `china-regions.jpg` | `/country/size-and-regions` | 封面 | 1200×630 | 中国行政区划彩色地图，标示各省份和主要区域分布 |
+| 2 | `china-size-comparison.jpg` | `/country/size-and-regions` | 内嵌 | 1200×900 | 中国地图叠加在世界地图上，展示东西、南北跨度及主要城市位置对比 |
+| 3 | `china-seven-regions.jpg` | `/country/size-and-regions` | 内嵌 | 1200×900 | 中国七大地理区域彩色分区示意图 |
+| 4 | `ethnic-groups-collage.jpg` | `/country/ethnic-groups` | 内嵌 | 1200×800 | 中国六大少数民族代表人物的传统节日盛装拼贴图 |
+| 5 | `food-culture.jpg` | `/country/food-culture` | 封面 | 1200×630 | 中国美食俯拍合集——饺子、北京烤鸭、火锅、面条等经典菜肴彩色摆盘 |
+| 6 | `eight-cuisines.jpg` | `/country/food-culture` | 内嵌 | 1200×800 | 中国八大菜系代表性菜肴的彩色组合展示图 |
+| 7 | `visa-guide.jpg` | `/country/visa-policy` | 封面 | 1200×630 | 护照上的中国签证印章，搭配地图、机票、相机等旅行物品摆拍 |
+| 8 | `travel-tips.jpg` | `/country/travel-tips` | 封面 | 1200×630 | 旅行必备物品平铺图——护照、装有中国App的手机、万能转换插头、纸质地图 |
+| 9 | `pre-trip-checklist.jpg` | `/country/travel-tips` | 内嵌 | 1200×800 | 旅行者桌面——护照、签证文件、智能手机、打印的行程单和打包物品 |
+| 10 | `china-apps-phone.jpg` | `/country/travel-tips` | 内嵌 | 800×1200 | 手机屏幕显示中国旅行必备App——微信、支付宝、滴滴出行、百度地图 |
+| 11 | `guangzhou.jpg` | `/cities/guangzhou` | 封面 | 1200×630 | 广州塔与珠江新城CBD中轴线天际线 |
+| 12 | `guangzhou-chenclan.jpg` | `/cities/guangzhou` | 内嵌 | 1200×800 | 陈家祠屋顶脊饰——陶瓷人物、神话瑞兽与民间故事布满檐角 |
+| 13 | `guangzhou-baiyun.jpg` | `/cities/guangzhou` | 内嵌 | 1200×800 | 晨雾中的白云山森林步道——广州的城市绿肺 |
+| 14 | `guangzhou-dimsum.jpg` | `/cities/guangzhou` | 内嵌 | 1200×800 | 广式早茶——竹制蒸笼、小碟点心与一壶茉莉花茶 |
+| 15 | `shenzhen.jpg` | `/cities/shenzhen` | 封面 | 1200×630 | 深圳CBD天际线——平安金融中心与市民中心中轴线 |
+| 16 | `shenzhen-octloft.jpg` | `/cities/shenzhen` | 内嵌 | 1200×800 | 华侨城创意文化园——旧厂房改造的艺术空间，墙面涂鸦与绿植掩映 |
+| 17 | `shenzhen-dapeng.jpg` | `/cities/shenzhen` | 内嵌 | 1200×800 | 大鹏所城明代古城门——600年海防要塞 |
+| 18 | `shenzhen-huaqiangbei.jpg` | `/cities/shenzhen` | 内嵌 | 1200×800 | 华强北电子市场——全球最大电子元器件集散地 |
+| 19 | `hangzhou.jpg` | `/cities/hangzhou` | 封面 | 1200×630 | 西湖晨雾——雷峰塔剪影、垂柳与碧波 |
+| 20 | `hangzhou-westlake.jpg` | `/cities/hangzhou` | 内嵌 | 1200×800 | 西湖晨曦——薄雾从水面升起，柳枝轻垂，雷峰塔剪影映衬远山 |
+| 21 | `hangzhou-lingyin.jpg` | `/cities/hangzhou` | 内嵌 | 1200×800 | 灵隐寺飞来峰石窟造像——10至14世纪的佛教石刻浮雕群 |
+| 22 | `hangzhou-tea.jpg` | `/cities/hangzhou` | 内嵌 | 1200×800 | 龙井茶园翠绿茶垄沿山坡层叠——十里琅珰古道蜿蜒穿过茶山 |
+| 23 | `kunming.jpg` | `/cities/kunming` | 封面 | 1200×630 | 昆明石林喀斯特峰林或翠湖红嘴鸥飞舞 |
+| 24 | `kunming-stoneforest.jpg` | `/cities/kunming` | 内嵌 | 1200×800 | 石林风景区——石灰岩峰林如石化森林矗立云南蓝天下 |
+| 25 | `kunming-greenlake.jpg` | `/cities/kunming` | 内嵌 | 1200×800 | 翠湖上空盘旋的红嘴鸥——西伯利亚来客，昆明冬季最动人的画面 |
+| 26 | `kunming-flowers.jpg` | `/cities/kunming` | 内嵌 | 1200×800 | 斗南花市晚8点半——荧光灯下数百万枝鲜花交易 |
+| 27 | `qingdao.jpg` | `/cities/qingdao` | 封面 | 1200×630 | 青岛栈桥回澜阁伸入碧海，或八大关梧桐树下的德式别墅 |
+| 28 | `qingdao-zhanqiao.jpg` | `/cities/qingdao` | 内嵌 | 1200×800 | 栈桥伸入青岛湾——回澜阁红瓦飞檐，海鸥盘旋，碧海蓝天 |
+| 29 | `qingdao-badaguan.jpg` | `/cities/qingdao` | 内嵌 | 1200×800 | 八大关梧桐树影下的都铎风格别墅——青岛的欧式建筑时光胶囊 |
+| 30 | `qingdao-redroofs.jpg` | `/cities/qingdao` | 内嵌 | 1200×800 | 青岛老城红瓦绿树俯瞰——德式尖顶掩映绿荫中 |
+| 31 | `harbin.jpg` | `/cities/harbin` | 封面 | 1200×630 | 冰雪大世界夜景或圣索菲亚大教堂洋葱顶雪景 |
+| 32 | `harbin-iceworld.jpg` | `/cities/harbin` | 内嵌 | 1200×800 | 冰雪大世界夜景——松花江冰块砌成的巨型水晶宫殿，霓虹灯光穿透冰墙 |
+| 33 | `harbin-centralstreet.jpg` | `/cities/harbin` | 内嵌 | 1200×800 | 中央大街黄昏——面包石路面泛光，巴洛克建筑与裹着冬衣吃冰棍的人群 |
+| 34 | `harbin-sophia.jpg` | `/cities/harbin` | 内嵌 | 1200×800 | 圣索菲亚大教堂洋葱顶雪中剪影——哈尔滨最标志性的俄式建筑 |
+| 35 | `xiamen.jpg` | `/cities/xiamen` | 封面 | 1200×630 | 鼓浪屿万国别墅或环岛路海岸线与三角梅 |
+| 36 | `xiamen-gulangyu.jpg` | `/cities/xiamen` | 内嵌 | 1200×800 | 鼓浪屿殖民风老别墅——红砖榕树掩映，三角梅越过墙头 |
+| 37 | `xiamen-coastal.jpg` | `/cities/xiamen` | 内嵌 | 1200×800 | 环岛路骑行道——碧海棕榈与三角梅，厦门最美的海岸线 |
+| 38 | `xiamen-shapowei.jpg` | `/cities/xiamen` | 内嵌 | 1200×800 | 沙坡尾避风坞夕阳——老渔船的剪影与新创意街区的灯火 |
+| 39 | `suzhou.jpg` | `/cities/suzhou` | 封面 | 1200×630 | 拙政园荷花池中亭台倒影，或平江路小桥流水人家 |
+| 40 | `suzhou-garden.jpg` | `/cities/suzhou` | 内嵌 | 1200×800 | 拙政园——亭台楼阁倒映荷花池中，明代园林设计的精髓 |
+| 41 | `suzhou-pingjiang.jpg` | `/cities/suzhou` | 内嵌 | 1200×800 | 平江路黄昏——白墙黛瓦、垂柳拂水、红灯笼倒映古运河 |
+| 42 | `suzhou-canal.jpg` | `/cities/suzhou` | 内嵌 | 1200×800 | 苏州古运河上手摇船穿过石拱桥——两岸白墙黑瓦、柳枝轻垂 |
+| 43 | `nanjing.jpg` | `/cities/nanjing` | 封面 | 1200×630 | 中山陵392级白花岗岩台阶，或明孝陵神道秋色石象路 |
+| 44 | `nanjing-sunyatsen.jpg` | `/cities/nanjing` | 内嵌 | 1200×800 | 中山陵——392级台阶穿过蓝瓦牌坊通向祭堂的壮丽中轴 |
+| 45 | `nanjing-mingxiaoling.jpg` | `/cities/nanjing` | 内嵌 | 1200×800 | 明孝陵神道秋色——600年石象伫立在火红枫叶与金黄银杏之间 |
+| 46 | `nanjing-qinhuai.jpg` | `/cities/nanjing` | 内嵌 | 1200×800 | 秦淮河之夜——画舫游船、红灯笼与明清建筑倒映水中 |
+| 47 | `zhuhai.jpg` | `/cities/zhuhai` | 封面 | 1200×630 | 珠海情侣路海岸线及渔女雕像，或港珠澳大桥巨龙出海 |
+| 48 | `zhuhai-chimelong.jpg` | `/cities/zhuhai` | 内嵌 | 1200×800 | 长隆海洋王国鲸鲨馆——全球最大水族箱，鲸鲨与鳐鱼游弋 |
+| 49 | `zhuhai-island.jpg` | `/cities/zhuhai` | 内嵌 | 1200×800 | 外伶仃岛碧蓝海水与花岗岩悬崖 |
 
 ---
 
-## 各页面图片汇总
+## 按页面汇总
 
-| 页面 | 封面图 | 内嵌插图 | 合计 |
-|------|--------|----------|------|
-| `/country/overview` | `china-overview.jpg` | `china-topography.jpg`, `miao-festival.jpg` | 3 |
-| `/country/size-and-regions` | `china-regions.jpg` | `china-size-comparison.jpg`, `china-seven-regions.jpg`, `tibet-potala.jpg`, `chongqing-skyline.jpg`, `hong-kong-skyline.jpg` | 6 |
-| `/country/ethnic-groups` | `ethnic-groups.jpg` | `ethnic-groups-collage.jpg`, `zhuang-festival.jpg`, `hui-mosque.jpg`, `tibetan-monks.jpg`, `uyghur-bazaar.jpg`, `mongolian-naadam.jpg`, `miao-festival.jpg` | 8 |
-| `/country/food-culture` | `food-culture.jpg` | `eight-cuisines.jpg`, `sichuan-hotpot.jpg`, `cantonese-dimsum.jpg`, `chinese-table-setting.jpg` | 5 |
-| `/country/visa-policy` | `visa-guide.jpg` | — | 1 |
-| `/country/travel-tips` | `travel-tips.jpg` | `pre-trip-checklist.jpg`, `china-apps-phone.jpg`, `high-speed-train.jpg`, `translation-app.jpg` | 5 |
-| `/cities/beijing` | `beijing.jpg` | — | 1 |
-| `/cities/shanghai` | `shanghai.jpg` | — | 1 |
-| `/cities/chengdu` | `chengdu.jpg` | — | 1 |
-| `/cities/xian` | `xian.jpg` | — | 1 |
-| `/cities/guilin` | `guilin.jpg` | — | 1 |
-| **合计** | **11 张封面** | **21 张内嵌** | **32** |
+| 页面 | 待提供 |
+|------|--------|
+| `/country/size-and-regions` | `china-regions.jpg` `china-size-comparison.jpg` `china-seven-regions.jpg` |
+| `/country/ethnic-groups` | `ethnic-groups-collage.jpg` |
+| `/country/food-culture` | `food-culture.jpg` `eight-cuisines.jpg` |
+| `/country/visa-policy` | `visa-guide.jpg` |
+| `/country/travel-tips` | `travel-tips.jpg` `pre-trip-checklist.jpg` `china-apps-phone.jpg` |
+| `/cities/guangzhou` | `guangzhou.jpg` `guangzhou-chenclan.jpg` `guangzhou-baiyun.jpg` `guangzhou-dimsum.jpg` |
+| `/cities/shenzhen` | `shenzhen.jpg` `shenzhen-octloft.jpg` `shenzhen-dapeng.jpg` `shenzhen-huaqiangbei.jpg` |
+| `/cities/hangzhou` | `hangzhou.jpg` `hangzhou-westlake.jpg` `hangzhou-lingyin.jpg` `hangzhou-tea.jpg` |
+| `/cities/kunming` | `kunming.jpg` `kunming-stoneforest.jpg` `kunming-greenlake.jpg` `kunming-flowers.jpg` |
+| `/cities/qingdao` | `qingdao.jpg` `qingdao-zhanqiao.jpg` `qingdao-badaguan.jpg` `qingdao-redroofs.jpg` |
+| `/cities/harbin` | `harbin.jpg` `harbin-iceworld.jpg` `harbin-centralstreet.jpg` `harbin-sophia.jpg` |
+| `/cities/xiamen` | `xiamen.jpg` `xiamen-gulangyu.jpg` `xiamen-coastal.jpg` `xiamen-shapowei.jpg` |
+| `/cities/suzhou` | `suzhou.jpg` `suzhou-garden.jpg` `suzhou-pingjiang.jpg` `suzhou-canal.jpg` |
+| `/cities/nanjing` | `nanjing.jpg` `nanjing-sunyatsen.jpg` `nanjing-mingxiaoling.jpg` `nanjing-qinhuai.jpg` |
+| `/cities/zhuhai` | `zhuhai.jpg` `zhuhai-chimelong.jpg` `zhuhai-island.jpg` |
 
-> **备注：** `miao-festival.jpg` 被 `/country/overview` 和 `/country/ethnic-groups` 两个页面共用，实际只需 1 张图片文件。
+---
+
+> **统计：** 已上传 44 张 ✅ | 待提供 49 张 ❌

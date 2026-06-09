@@ -52,6 +52,17 @@ export default function Footer() {
               <li><Link href="/cities/chengdu" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Chengdu</Link></li>
               <li><Link href="/cities/xian" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Xi&apos;an</Link></li>
               <li><Link href="/cities/guilin" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Guilin</Link></li>
+              <li><Link href="/cities/chongqing" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Chongqing</Link></li>
+              <li><Link href="/cities/guangzhou" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Guangzhou</Link></li>
+              <li><Link href="/cities/shenzhen" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Shenzhen</Link></li>
+              <li><Link href="/cities/hangzhou" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Hangzhou</Link></li>
+              <li><Link href="/cities/kunming" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Kunming</Link></li>
+              <li><Link href="/cities/qingdao" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Qingdao</Link></li>
+              <li><Link href="/cities/harbin" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Harbin</Link></li>
+              <li><Link href="/cities/xiamen" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Xiamen</Link></li>
+              <li><Link href="/cities/suzhou" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Suzhou</Link></li>
+              <li><Link href="/cities/nanjing" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Nanjing</Link></li>
+              <li><Link href="/cities/zhuhai" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Zhuhai</Link></li>
             </ul>
           </div>
 
