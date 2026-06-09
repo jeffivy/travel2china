@@ -21,10 +21,9 @@
 | 11 | `guangzhou-chenclan.jpg` | `/cities/guangzhou` | 内嵌 | 1200×800 | 陈家祠屋顶脊饰——陶瓷人物、神话瑞兽与民间故事布满檐角 |
 | 12 | `guangzhou-baiyun.jpg` | `/cities/guangzhou` | 内嵌 | 1200×800 | 晨雾中的白云山森林步道——广州的城市绿肺 |
 | 13 | `guangzhou-dimsum.jpg` | `/cities/guangzhou` | 内嵌 | 1200×800 | 广式早茶——竹制蒸笼、小碟点心与一壶茉莉花茶 |
-| 14 | `shenzhen.jpg` | `/cities/shenzhen` | 封面 | 1200×630 | 深圳CBD天际线——平安金融中心与市民中心中轴线 |
-| 15 | `shenzhen-octloft.jpg` | `/cities/shenzhen` | 内嵌 | 1200×800 | 华侨城创意文化园——旧厂房改造的艺术空间，墙面涂鸦与绿植掩映 |
-| 16 | `shenzhen-dapeng.jpg` | `/cities/shenzhen` | 内嵌 | 1200×800 | 大鹏所城明代古城门——600年海防要塞 |
-| 17 | `shenzhen-huaqiangbei.jpg` | `/cities/shenzhen` | 内嵌 | 1200×800 | 华强北电子市场——全球最大电子元器件集散地 |
+| 14 | `shenzhen-octloft.jpg` | `/cities/shenzhen` | 内嵌 | 1200×800 | 华侨城创意文化园——旧厂房改造的艺术空间，墙面涂鸦与绿植掩映 |
+| 15 | `shenzhen-dapeng.jpg` | `/cities/shenzhen` | 内嵌 | 1200×800 | 大鹏所城明代古城门——600年海防要塞 |
+| 16 | `shenzhen-huaqiangbei.jpg` | `/cities/shenzhen` | 内嵌 | 1200×800 | 华强北电子市场——全球最大电子元器件集散地 |
 | 18 | `hangzhou-westlake.jpg` | `/cities/hangzhou` | 内嵌 | 1200×800 | 西湖晨曦——薄雾从水面升起，柳枝轻垂，雷峰塔剪影映衬远山 |
 | 19 | `hangzhou-lingyin.jpg` | `/cities/hangzhou` | 内嵌 | 1200×800 | 灵隐寺飞来峰石窟造像——10至14世纪的佛教石刻浮雕群 |
 | 20 | `hangzhou-tea.jpg` | `/cities/hangzhou` | 内嵌 | 1200×800 | 龙井茶园翠绿茶垄沿山坡层叠——十里琅珰古道蜿蜒穿过茶山 |
@@ -34,8 +33,7 @@
 | 24 | `qingdao-zhanqiao.jpg` | `/cities/qingdao` | 内嵌 | 1200×800 | 栈桥伸入青岛湾——回澜阁红瓦飞檐，海鸥盘旋，碧海蓝天 |
 | 25 | `qingdao-badaguan.jpg` | `/cities/qingdao` | 内嵌 | 1200×800 | 八大关梧桐树影下的都铎风格别墅——青岛的欧式建筑时光胶囊 |
 | 26 | `qingdao-redroofs.jpg` | `/cities/qingdao` | 内嵌 | 1200×800 | 青岛老城红瓦绿树俯瞰——德式尖顶掩映绿荫中 |
-| 27 | `harbin.jpg` | `/cities/harbin` | 封面 | 1200×630 | 冰雪大世界夜景或圣索菲亚大教堂洋葱顶雪景 |
-| 28 | `harbin-iceworld.jpg` | `/cities/harbin` | 内嵌 | 1200×800 | 冰雪大世界夜景——松花江冰块砌成的巨型水晶宫殿，霓虹灯光穿透冰墙 |
+| 26 | `harbin-iceworld.jpg` | `/cities/harbin` | 内嵌 | 1200×800 | 冰雪大世界夜景——松花江冰块砌成的巨型水晶宫殿，霓虹灯光穿透冰墙 |
 | 29 | `harbin-centralstreet.jpg` | `/cities/harbin` | 内嵌 | 1200×800 | 中央大街黄昏——面包石路面泛光，巴洛克建筑与裹着冬衣吃冰棍的人群 |
 | 30 | `harbin-sophia.jpg` | `/cities/harbin` | 内嵌 | 1200×800 | 圣索菲亚大教堂洋葱顶雪中剪影——哈尔滨最标志性的俄式建筑 |
 | 31 | `xiamen-gulangyu.jpg` | `/cities/xiamen` | 内嵌 | 1200×800 | 鼓浪屿殖民风老别墅——红砖榕树掩映，三角梅越过墙头 |
@@ -61,11 +59,11 @@
 | `/country/visa-policy` | `visa-guide.jpg` |
 | `/country/travel-tips` | `travel-tips.jpg` `pre-trip-checklist.jpg` `china-apps-phone.jpg` |
 | `/cities/guangzhou` | `guangzhou-chenclan.jpg` `guangzhou-baiyun.jpg` `guangzhou-dimsum.jpg` |
-| `/cities/shenzhen` | `shenzhen.jpg` `shenzhen-octloft.jpg` `shenzhen-dapeng.jpg` `shenzhen-huaqiangbei.jpg` |
+| `/cities/shenzhen` | `shenzhen-octloft.jpg` `shenzhen-dapeng.jpg` `shenzhen-huaqiangbei.jpg` |
 | `/cities/hangzhou` | `hangzhou-westlake.jpg` `hangzhou-lingyin.jpg` `hangzhou-tea.jpg` |
 | `/cities/kunming` | `kunming-stoneforest.jpg` `kunming-greenlake.jpg` `kunming-flowers.jpg` |
 | `/cities/qingdao` | `qingdao-zhanqiao.jpg` `qingdao-badaguan.jpg` `qingdao-redroofs.jpg` |
-| `/cities/harbin` | `harbin.jpg` `harbin-iceworld.jpg` `harbin-centralstreet.jpg` `harbin-sophia.jpg` |
+| `/cities/harbin` | `harbin-iceworld.jpg` `harbin-centralstreet.jpg` `harbin-sophia.jpg` |
 | `/cities/xiamen` | `xiamen-gulangyu.jpg` `xiamen-coastal.jpg` `xiamen-shapowei.jpg` |
 | `/cities/suzhou` | `suzhou-garden.jpg` `suzhou-pingjiang.jpg` `suzhou-canal.jpg` |
 | `/cities/nanjing` | `nanjing-sunyatsen.jpg` `nanjing-qinhuai.jpg` |
@@ -73,4 +71,4 @@
 
 ---
 
-> **统计：** 已上传 53 张 ✅ | 待提供 40 张 ❌
+> **统计：** 已上传 55 张 ✅ | 待提供 38 张 ❌
