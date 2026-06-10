@@ -1,6 +1,6 @@
 # 图片资源清单（待提供）
 
-已上传 80 张，尚缺 13 张。所有图片需存放于 `public/images/` 目录下。封面图 1200×630px，内嵌插图 800–1600px 宽，JPG 格式。
+已上传 82 张，尚缺 10 张。所有图片需存放于 `public/images/` 目录下。封面图 1200×630px，内嵌插图 800–1600px 宽，JPG 格式。
 
 ---
 
@@ -18,8 +18,6 @@
 | 8 | `travel-tips.jpg` | `/country/travel-tips` | 封面 | 1200×630 | 旅行必备物品平铺图——护照、装有中国App的手机、万能转换插头、纸质地图 |
 | 9 | `pre-trip-checklist.jpg` | `/country/travel-tips` | 内嵌 | 1200×800 | 旅行者桌面——护照、签证文件、智能手机、打印的行程单和打包物品 |
 | 10 | `china-apps-phone.jpg` | `/country/travel-tips` | 内嵌 | 800×1200 | 手机屏幕显示中国旅行必备App——微信、支付宝、滴滴出行、百度地图 |
-| 11 | `nanjing-sunyatsen.jpg` | `/cities/nanjing` | 内嵌 | 1200×800 | 中山陵——392级台阶穿过蓝瓦牌坊通向祭堂的壮丽中轴 |
-| 12 | `nanjing-qinhuai.jpg` | `/cities/nanjing` | 内嵌 | 1200×800 | 秦淮河之夜——画舫游船、红灯笼与明清建筑倒映水中 |
 
 ---
 
@@ -32,8 +30,7 @@
 | `/country/food-culture` | `food-culture.jpg` `eight-cuisines.jpg` |
 | `/country/visa-policy` | `visa-guide.jpg` |
 | `/country/travel-tips` | `travel-tips.jpg` `pre-trip-checklist.jpg` `china-apps-phone.jpg` |
-| `/cities/nanjing` | `nanjing-sunyatsen.jpg` `nanjing-qinhuai.jpg` |
 
 ---
 
-> **统计：** 已上传 80 张 ✅ | 待提供 12 张 ❌
+> **统计：** 已上传 82 张 ✅ | 待提供 10 张 ❌ — 全是 country 页面插图
