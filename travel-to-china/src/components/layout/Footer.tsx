@@ -38,6 +38,7 @@ export default function Footer() {
               <li><Link href="/country/food-culture" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Food Culture</Link></li>
               <li><Link href="/country/visa-policy" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Visa Policy</Link></li>
               <li><Link href="/country/travel-tips" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Travel Tips</Link></li>
+              <li><Link href="/country/payment-guide" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Payment Guide</Link></li>
             </ul>
           </div>
 
