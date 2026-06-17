@@ -5,6 +5,7 @@ import { SessionProvider } from '@/components/layout/SessionProvider';
 import { AnalyticsProvider } from '@/components/layout/AnalyticsProvider';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import { OrganizationSchema, WebsiteSchema } from '@/components/layout/StructuredData';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -56,6 +57,8 @@ export default function RootLayout({
           }}
         />
         <meta name="msvalidate.01" content="1DBB4B6F0741A036542E7D1699709C0B" />
+        <OrganizationSchema />
+        <WebsiteSchema />
       </head>
       <body className={`${inter.variable} antialiased min-h-screen flex flex-col font-sans`}>
         <SessionProvider>

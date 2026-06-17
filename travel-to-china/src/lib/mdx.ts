@@ -95,11 +95,45 @@ export function getContentByTag(tag: string): ContentEntry[] {
   return getAllArticles().filter((entry) => entry.meta.tags?.includes(tag));
 }
 
-// Get related articles (same category, excluding current)
+// Get related articles by matching tags (and region for cities)
 export function getRelatedArticles(currentSlug: string, category: string, limit = 3): ContentEntry[] {
-  return getAllContent(category as 'country' | 'cities')
-    .filter((entry) => entry.slug !== currentSlug)
-    .slice(0, limit);
+  const current = getContentBySlug(category, currentSlug);
+  if (!current) return [];
+
+  const allOthers = getAllContent(category as 'country' | 'cities').filter(
+    (entry) => entry.slug !== currentSlug
+  );
+
+  // Score each article by shared tags + shared region
+  const currentTags = current.meta.tags || [];
+  const currentRegion = (current.meta as any).region || '';
+
+  const scored = allOthers.map((entry) => {
+    let score = 0;
+    const entryTags = entry.meta.tags || [];
+    // Shared tags
+    currentTags.forEach((t) => {
+      if (entryTags.includes(t)) score += 3;
+    });
+    // Shared region (for cities)
+    const entryRegion = (entry.meta as any).region || '';
+    if (currentRegion && entryRegion && currentRegion === entryRegion) score += 5;
+    // Bonus for same order range
+    const orderDiff = Math.abs((current.meta.order || 999) - (entry.meta.order || 999));
+    if (orderDiff <= 2) score += 1;
+
+    return { entry, score };
+  });
+
+  // Sort by score descending, then take top results
+  scored.sort((a, b) => b.score - a.score);
+
+  // If no good matches (all score 0), return first N
+  if (scored.length === 0 || scored[0].score === 0) {
+    return allOthers.slice(0, limit);
+  }
+
+  return scored.slice(0, limit).map((s) => s.entry);
 }
 
 // Search articles by title and description
