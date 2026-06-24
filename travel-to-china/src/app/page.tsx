@@ -25,6 +25,9 @@ export default function HomePage() {
               Your complete travel guide to China — from ancient imperial capitals to futuristic skylines,
               from fiery Sichuan cuisine to misty karst mountains.
             </p>
+            <Link href="/tools" className="inline-flex items-center gap-2 text-white/90 hover:text-white bg-white/10 hover:bg-white/20 px-5 py-2.5 rounded-full text-sm font-medium transition-all mb-8">
+              🧰 Plan Your Trip: Start with our free tools →
+            </Link>
             <form action="/search" className="max-w-xl mx-auto relative">
               <input
                 type="text"

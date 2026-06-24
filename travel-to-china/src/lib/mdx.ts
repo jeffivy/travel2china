@@ -8,7 +8,13 @@ export interface ContentMeta {
   slug: string;
   title: string;
   description: string;
-  category: 'country' | 'cities';
+  category: 'country' | 'cities' | 'routes' | 'routes/themed';
+  // Route-specific fields
+  route?: string;
+  duration?: string;
+  difficulty?: string;
+  bestTime?: string;
+  estimatedBudget?: string;
   tags?: string[];
   image?: string;
   author?: string;

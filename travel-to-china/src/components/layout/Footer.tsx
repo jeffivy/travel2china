@@ -39,6 +39,10 @@ export default function Footer() {
               <li><Link href="/country/visa-policy" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Visa Policy</Link></li>
               <li><Link href="/country/travel-tips" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Travel Tips</Link></li>
               <li><Link href="/country/payment-guide" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Payment Guide</Link></li>
+              <li><Link href="/country/visa-tourist-guide" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Tourist Visa Guide</Link></li>
+              <li><Link href="/country/payment-guide-v2" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Payment Guide V2</Link></li>
+              <li><Link href="/country/internet-guide" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Internet Guide</Link></li>
+              <li><Link href="/country/language-guide" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Language Guide</Link></li>
             </ul>
           </div>
 
@@ -73,6 +77,9 @@ export default function Footer() {
               More
             </h4>
             <ul className="space-y-2">
+              <li><Link href="/routes" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Routes</Link></li>
+              <li><Link href="/by-travel-style" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Travel Styles</Link></li>
+              <li><Link href="/comparison" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Compare Cities</Link></li>
               <li><Link href="/about" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">About</Link></li>
               <li><Link href="/search" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Search</Link></li>
               <li><Link href="/subscribe" className="text-sm text-[var(--foreground)]/70 hover:text-[var(--primary)] transition-colors">Subscribe</Link></li>
