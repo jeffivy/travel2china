@@ -25,7 +25,7 @@ export default function TravelStyleSlugPage({ params }: { params: { slug: string
           <Link href="/by-travel-style" className="inline-flex items-center gap-1 text-sm text-[var(--muted)] hover:text-[var(--primary)] transition-colors mb-6">
             <ArrowLeft className="w-4 h-4" /> All Travel Styles
           </Link>
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-3">{entry.meta.title}</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-3">{entry.meta.title}</h1>
           <p className="text-lg text-[var(--muted)] max-w-3xl">{entry.meta.description}</p>
         </div>
       </section>

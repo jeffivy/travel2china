@@ -2,28 +2,128 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===== Design Tokens: Modern Orient ===== */
 :root {
-  --background: #ffffff;
-  --foreground: #1a1a2e;
-  --primary: #C41E3A;
-  --gold: #D4A853;
-  --muted: #6b7280;
-  --border: #e5e7eb;
+  /* Brand core */
+  --primary: #B3423A;
+  --primary-rgb: 179, 66, 58;
+  --primary-hover: #9A362E;
+  --primary-light: #FDF5F4;
+  --gold: #B8944E;
+  --gold-rgb: 184, 148, 78;
+  --gold-light: #FCF8F1;
+
+  /* Surfaces */
+  --background: #faf8f6;
+  --foreground: #1c1917;
+  --surface: #f5f0eb;
+  --muted: #78716c;
+  --border: #e7e0d8;
   --card: #ffffff;
-  --card-hover: #f9fafb;
+  --card-hover: #faf7f4;
+
+  /* Semantic */
+  --success: #5B8C5A;
+  --success-bg: #f0f7f0;
+  --warning: #C4794A;
+  --warning-bg: #fef9f4;
+  --info: #4A7C9B;
+  --info-bg: #f4f8fb;
+
+  /* Spacing scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+  --space-3xl: 48px;
+  --space-4xl: 64px;
+  --space-5xl: 96px;
 }
 
 .dark {
-  --background: #0f172a;
-  --foreground: #e2e8f0;
-  --primary: #f87171;
-  --gold: #fbbf24;
-  --muted: #94a3b8;
-  --border: #1e293b;
-  --card: #1e293b;
-  --card-hover: #334155;
+  --primary: #d48478;
+  --primary-rgb: 212, 132, 120;
+  --primary-hover: #e09e94;
+  --primary-light: #2a1a18;
+  --gold: #d4b46a;
+  --gold-rgb: 212, 180, 106;
+  --gold-light: #2a2418;
+
+  --background: #1a1614;
+  --foreground: #e8e0d8;
+  --surface: #221d1a;
+  --muted: #a89f98;
+  --border: #2d2520;
+  --card: #221d1a;
+  --card-hover: #2d2520;
+
+  --success: #7aad78;
+  --success-bg: #1a2a18;
+  --warning: #d4946a;
+  --warning-bg: #2a2018;
+  --info: #6a9cb8;
+  --info-bg: #181a2a;
 }
 
+/* ===== Regional Palettes ===== */
+[data-region="north"] {
+  --region-primary: #B3423A;
+  --region-accent: #D4A843;
+  --region-surface: #faf6f4;
+}
+.dark [data-region="north"] {
+  --region-primary: #d48478;
+  --region-accent: #e0c478;
+  --region-surface: #1e1a18;
+}
+
+[data-region="south"] {
+  --region-primary: #5B7B6A;
+  --region-accent: #8BA89A;
+  --region-surface: #f4f8f5;
+}
+.dark [data-region="south"] {
+  --region-primary: #8bb89a;
+  --region-accent: #a8c8b4;
+  --region-surface: #181e1a;
+}
+
+[data-region="west"] {
+  --region-primary: #3D7B8C;
+  --region-accent: #5BA89A;
+  --region-surface: #f4f7f8;
+}
+.dark [data-region="west"] {
+  --region-primary: #6ab8c8;
+  --region-accent: #78c8b8;
+  --region-surface: #181e20;
+}
+
+[data-region="northwest"] {
+  --region-primary: #C4794A;
+  --region-accent: #D4A070;
+  --region-surface: #faf7f4;
+}
+.dark [data-region="northwest"] {
+  --region-primary: #d4a070;
+  --region-accent: #e0b88a;
+  --region-surface: #1e1a18;
+}
+
+[data-region="east"] {
+  --region-primary: #3A6B8C;
+  --region-accent: #6BA4C4;
+  --region-surface: #f4f7fa;
+}
+.dark [data-region="east"] {
+  --region-primary: #78b4d4;
+  --region-accent: #a0d0e4;
+  --region-surface: #181c20;
+}
+
+/* ===== Base ===== */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
@@ -32,33 +132,44 @@ html {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-body), var(--font-display), Georgia, 'Times New Roman', serif;
   line-height: 1.75;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* ===== Typography ===== */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
-  line-height: 1.3;
+  font-family: var(--font-body), Georgia, 'Times New Roman', serif;
+  line-height: 1.25;
   scroll-margin-top: 5rem;
+  color: var(--foreground);
 }
 
-h1 { font-size: 2.5rem; letter-spacing: -0.02em; }
-h2 { font-size: 1.875rem; letter-spacing: -0.01em; }
-h3 { font-size: 1.5rem; }
-h4 { font-size: 1.25rem; }
+h1 { font-size: clamp(2.25rem, 4vw, 3.25rem); letter-spacing: -0.01em; font-weight: 600; }
+h2 { font-size: clamp(1.75rem, 3vw, 2.25rem); letter-spacing: -0.005em; font-weight: 600; }
+h3 { font-size: 1.5rem; font-weight: 500; }
+h4 { font-size: 1.25rem; font-weight: 500; }
 p { margin-bottom: 1rem; }
 
+/* Display font — use explicitly for decorative/large headings */
+.font-display {
+  font-family: var(--font-display), Georgia, serif !important;
+  font-weight: 400;
+}
+
+/* ===== Prose / Article Content ===== */
 .prose { max-width: none !important; }
 
 .prose img {
   border-radius: 0.75rem;
   margin: 2rem auto;
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
 }
 
 .dark .prose img {
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.4);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2);
 }
 
 .prose table {
@@ -88,23 +199,34 @@ p { margin-bottom: 1rem; }
   background: var(--card-hover);
 }
 
+/* Blockquote — ban-compliant (no side border stripe) */
 .prose blockquote {
-  border-left: 4px solid var(--gold);
-  background: #fef9ef;
-  padding: 1rem 1.5rem;
+  background: var(--gold-light);
+  border: 1px solid rgba(var(--gold-rgb), 0.15);
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
   margin: 1.5rem 0;
-  border-radius: 0 0.5rem 0.5rem 0;
   font-style: italic;
+  color: var(--foreground);
+  position: relative;
 }
-
-.dark .prose blockquote {
-  background: #1e1b0f;
+.prose blockquote::before {
+  content: '"';
+  position: absolute;
+  top: -0.5rem;
+  left: 1rem;
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.3;
+  font-family: var(--font-display), serif;
 }
 
 .prose a {
   color: var(--primary);
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
 }
 
 .prose ul, .prose ol {
@@ -116,58 +238,63 @@ p { margin-bottom: 1rem; }
 
 .prose hr {
   margin: 2rem 0;
-  border-color: var(--border);
+  border: none;
+  border-top: 1px solid var(--border);
 }
 
 .prose code {
-  background: #f3f4f6;
+  background: var(--surface);
   padding: 0.2em 0.4em;
   border-radius: 0.25rem;
   font-size: 0.9em;
-  color: #C41E3A;
+  color: var(--primary);
 }
 
 .dark .prose code {
-  background: #1e293b;
-  color: #f87171;
+  background: var(--card-hover);
 }
 
 .prose pre {
-  background: #1e293b;
-  color: #e2e8f0;
+  background: var(--card);
+  color: var(--foreground);
   padding: 1.25rem;
   border-radius: 0.75rem;
   overflow-x: auto;
   margin: 1.5rem 0;
+  border: 1px solid var(--border);
 }
 
-/* Tip & Warning boxes */
+/* ===== Content Boxes — ban-compliant: no side border stripes ===== */
 .tip-box {
-  border-left: 4px solid #22c55e;
-  background: #f0fdf4;
+  background: var(--success-bg);
+  border: 1px solid rgba(91, 140, 90, 0.2);
+  border-radius: 0.75rem;
   padding: 1rem 1.25rem;
   margin: 1.5rem 0;
-  border-radius: 0 0.5rem 0.5rem 0;
   font-size: 0.95rem;
   line-height: 1.7;
+  position: relative;
 }
-
-.dark .tip-box {
-  background: #052e16;
+.tip-box::before {
+  content: '💡';
+  font-size: 1rem;
+  margin-right: 0.5rem;
 }
 
 .warning-box {
-  border-left: 4px solid #f59e0b;
-  background: #fffbeb;
+  background: var(--warning-bg);
+  border: 1px solid rgba(196, 121, 74, 0.25);
+  border-radius: 0.75rem;
   padding: 1rem 1.25rem;
   margin: 1.5rem 0;
-  border-radius: 0 0.5rem 0.5rem 0;
   font-size: 0.95rem;
   line-height: 1.7;
+  position: relative;
 }
-
-.dark .warning-box {
-  background: #451a03;
+.warning-box::before {
+  content: '⚠️';
+  font-size: 1rem;
+  margin-right: 0.5rem;
 }
 
 /* Related Routes */
@@ -181,7 +308,7 @@ p { margin-bottom: 1rem; }
 
 .related-routes h3 {
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 0.75rem;
   color: var(--foreground);
 }
@@ -211,7 +338,7 @@ p { margin-bottom: 1rem; }
 
 /* CTA box */
 .cta-box {
-  background: linear-gradient(135deg, rgba(var(--primary-rgb, 196, 30, 58), 0.08), rgba(var(--gold-rgb, 212, 168, 83), 0.08));
+  background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.06), rgba(var(--gold-rgb), 0.06));
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 2rem;
@@ -221,7 +348,7 @@ p { margin-bottom: 1rem; }
 
 .cta-box .cta-title {
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 0.5rem;
   color: var(--foreground);
 }
@@ -233,26 +360,29 @@ p { margin-bottom: 1rem; }
   line-height: 1.7;
 }
 
+/* ===== Scrollbar ===== */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--background); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
-/* Component classes */
+/* ===== Component Classes ===== */
 @layer components {
   .btn-primary {
-    @apply bg-[var(--primary)] text-white px-6 py-2.5 rounded-lg font-semibold
-           hover:opacity-90 transition-all duration-200
+    @apply bg-[var(--primary)] text-white px-6 py-2.5 rounded-lg font-medium
+           hover:bg-[var(--primary-hover)] transition-all duration-200
            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary)];
+    font-family: var(--font-body), system-ui, sans-serif;
   }
 
   .btn-outline {
-    @apply border-2 border-[var(--primary)] text-[var(--primary)] px-6 py-2.5 rounded-lg font-semibold
+    @apply border border-[var(--primary)] text-[var(--primary)] px-6 py-2.5 rounded-lg font-medium
            hover:bg-[var(--primary)] hover:text-white transition-all duration-200;
+    font-family: var(--font-body), system-ui, sans-serif;
   }
 
   .card {
-    @apply bg-[var(--card)] border border-[var(--border)] rounded-xl shadow-sm
-           hover:shadow-md transition-all duration-300;
+    @apply bg-[var(--card)] border border-[var(--border)] rounded-xl
+           hover:shadow-lg transition-all duration-300;
   }
 
   .container-wide {
@@ -267,5 +397,119 @@ p { margin-bottom: 1rem; }
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+/* ===== Scroll-Triggered Animations ===== */
+/* Each style maps to a region's character */
+
+/* Default: elegant fade-in */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* North (Beijing, Xi'an): steady, dignified — slow fade with no movement */
+@keyframes steadyReveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* South / Jiangnan: gentle, fluid — smooth slide-up with soft easing */
+@keyframes gentleReveal {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Southwest (Sichuan): lively, spirited — energetic pop-in */
+@keyframes livelyReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.94) translateY(16px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.01) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Standard variants */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Animation classes */
+.animate-fade-in {
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-right {
+  animation: slideRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Region-specific animations */
+.animate-steady {
+  animation: steadyReveal 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-gentle {
+  animation: gentleReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-lively {
+  animation: livelyReveal 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Reduced motion: respect user preference */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-slide-right,
+  .animate-scale-in,
+  .animate-steady,
+  .animate-gentle,
+  .animate-lively {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }

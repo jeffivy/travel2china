@@ -17,7 +17,7 @@ export default function ToolsPage() {
       <section className="relative overflow-hidden bg-gradient-to-br from-[var(--primary)] via-red-800 to-red-950 text-white py-20">
         <div className="container-wide text-center relative z-10">
           <span className="text-5xl mb-4 block">🧰</span>
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4">{entry.meta.title}</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">{entry.meta.title}</h1>
           <p className="text-lg text-white/80 max-w-2xl mx-auto">{entry.meta.description}</p>
         </div>
       </section>

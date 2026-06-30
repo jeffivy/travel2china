@@ -40,7 +40,7 @@ export default function RoutePage({ params }: { params: { slug: string } }) {
           <Link href="/routes" className="inline-flex items-center gap-1 text-sm text-[var(--muted)] hover:text-[var(--primary)] transition-colors mb-6">
             <ArrowLeft className="w-4 h-4" /> All Routes
           </Link>
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-3">{entry.meta.title}</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-3">{entry.meta.title}</h1>
           <p className="text-lg text-[var(--muted)] max-w-3xl mb-6">{entry.meta.description}</p>
 
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">

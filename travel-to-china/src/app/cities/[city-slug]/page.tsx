@@ -52,7 +52,7 @@ export default function CityPage({ params }: { params: { 'city-slug': string } }
               className="w-full h-48 md:h-64 object-cover rounded-xl mb-6 shadow-lg"
             />
           )}
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-3">{entry.meta.title}</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-3">{entry.meta.title}</h1>
           <p className="text-lg text-[var(--muted)] max-w-3xl mb-6">{entry.meta.description}</p>
 
           {/* City Stats */}

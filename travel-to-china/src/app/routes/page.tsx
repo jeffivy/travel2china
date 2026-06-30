@@ -111,7 +111,7 @@ export default function RoutesPage() {
       <section className="relative overflow-hidden bg-gradient-to-br from-[var(--primary)] via-red-800 to-red-950 text-white py-20">
         <div className="container-wide text-center relative z-10">
           <Compass className="w-14 h-14 mx-auto mb-5 opacity-90" />
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-4">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">
             China Travel Routes & Itineraries
           </h1>
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">

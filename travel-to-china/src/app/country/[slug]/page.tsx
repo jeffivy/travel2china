@@ -53,7 +53,7 @@ export default function CountryArticlePage({ params }: { params: { slug: string 
               className="w-full h-48 md:h-64 object-cover rounded-xl mb-6 shadow-lg"
             />
           )}
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
             {entry.meta.title}
           </h1>
           <p className="text-xl text-[var(--muted)] mb-6">{entry.meta.description}</p>

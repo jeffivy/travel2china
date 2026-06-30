@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Marcellus, Source_Serif_4 } from 'next/font/google';
 import './globals.css';
 import { SessionProvider } from '@/components/layout/SessionProvider';
 import { AnalyticsProvider } from '@/components/layout/AnalyticsProvider';
@@ -7,9 +7,17 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { OrganizationSchema, WebsiteSchema } from '@/components/layout/StructuredData';
 
-const inter = Inter({
+const displayFont = Marcellus({
   subsets: ['latin'],
-  variable: '--font-inter',
+  weight: '400',
+  variable: '--font-display',
+  display: 'swap',
+});
+
+const bodyFont = Source_Serif_4({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-body',
   display: 'swap',
 });
 
@@ -60,7 +68,7 @@ export default function RootLayout({
         <OrganizationSchema />
         <WebsiteSchema />
       </head>
-      <body className={`${inter.variable} antialiased min-h-screen flex flex-col font-sans`}>
+      <body className={`${displayFont.variable} ${bodyFont.variable} antialiased min-h-screen flex flex-col font-body`}>
         <SessionProvider>
           <AnalyticsProvider>
             <Navbar />
