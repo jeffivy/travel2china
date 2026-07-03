@@ -8,7 +8,7 @@ export interface ContentMeta {
   slug: string;
   title: string;
   description: string;
-  category: 'country' | 'cities' | 'routes' | 'routes/themed';
+  category: 'country' | 'cities' | 'routes' | 'routes/themed' | 'blog';
   // Route-specific fields
   route?: string;
   duration?: string;
@@ -81,7 +81,7 @@ export function getContentBySlug(category: string, slug: string): ContentEntry |
 }
 
 // Get all content of a specific category
-export function getAllContent(category: 'country' | 'cities'): ContentEntry[] {
+export function getAllContent(category: 'country' | 'cities' | 'blog'): ContentEntry[] {
   const files = getContentFiles(category);
   return files
     .map((file) => {

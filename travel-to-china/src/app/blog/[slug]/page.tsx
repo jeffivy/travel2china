@@ -9,7 +9,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const entry = getContentBySlug('blog', params.slug);
   if (!entry) return {};
   return {
-    alternates: { canonical: `/blog/$(p.slug)${params.slug}` },
+    alternates: { canonical: `/blog/${params.slug}` },
     title: entry.meta.seoTitle || entry.meta.title,
     description: entry.meta.seoDescription || entry.meta.description,
     keywords: entry.meta.keywords?.join(', '),
