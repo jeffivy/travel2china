@@ -1,0 +1,113 @@
+version: '3.8'
+
+services:
+  # ===== Nginx 前端 + 反代 =====
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.frontend
+    image: demo-platform-frontend:1.0.0
+    container_name: demo-nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - mgmt
+
+  # ===== FastAPI 后端 =====
+  backend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.backend
+    image: demo-platform-backend:1.0.0
+    container_name: demo-backend
+    expose:
+      - "8000"
+    volumes:
+      - ./data:/app/data
+      - ./pcap:/app/pcap
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./config:/app/config:ro
+    environment:
+      - DB_PATH=/app/data/data.db
+      - JWT_SECRET=${JWT_SECRET:-demo-platform-secret-change-in-production}
+      - JWT_EXPIRY_HOURS=2
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - LLM_API_KEY=${LLM_API_KEY:-}
+      - LLM_BASE_URL=${LLM_BASE_URL:-}
+      - REDIS_URL=redis://redis:6379/0
+    cap_add:
+      - NET_ADMIN
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - mgmt
+      - simnet
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ===== Redis =====
+  redis:
+    image: redis:7-alpine
+    container_name: demo-redis
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    networks:
+      - mgmt
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # ===== Worker (Celery) =====
+  worker:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.backend
+    image: demo-platform-backend:1.0.0
+    container_name: demo-worker
+    command: celery -A app.tasks.celery_app worker --loglevel=info --concurrency=2
+    volumes:
+      - ./data:/app/data
+      - ./pcap:/app/pcap
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./config:/app/config:ro
+    environment:
+      - DB_PATH=/app/data/data.db
+      - JWT_SECRET=${JWT_SECRET:-demo-platform-secret-change-in-production}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - REDIS_URL=redis://redis:6379/0
+    cap_add:
+      - NET_ADMIN
+    depends_on:
+      redis:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - mgmt
+      - simnet
+
+networks:
+  simnet:
+    driver: bridge
+    internal: true
+    ipam:
+      config:
+        - subnet: "172.20.0.0/24"
+  mgmt:
+    driver: bridge
+
+volumes:
+  redis_data:

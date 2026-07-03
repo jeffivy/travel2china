@@ -1,0 +1,131 @@
+{
+  "id": "T-04",
+  "name": "高校校园网",
+  "background": "campus",
+  "nodes": [
+    {
+      "id": "n-attacker",
+      "type": "attacker",
+      "label": "攻击者",
+      "position": {
+        "x": 50,
+        "y": 250
+      }
+    },
+    {
+      "id": "n-fw",
+      "type": "firewall-brain",
+      "label": "安全大脑",
+      "position": {
+        "x": 250,
+        "y": 250
+      }
+    },
+    {
+      "id": "n-sw",
+      "type": "switch",
+      "label": "核心交换机",
+      "position": {
+        "x": 450,
+        "y": 250
+      }
+    },
+    {
+      "id": "n-edu",
+      "type": "web-server",
+      "label": "教务系统",
+      "position": {
+        "x": 650,
+        "y": 50
+      }
+    },
+    {
+      "id": "n-lib",
+      "type": "web-server",
+      "label": "图书馆系统",
+      "position": {
+        "x": 650,
+        "y": 200
+      }
+    },
+    {
+      "id": "n-db",
+      "type": "db-server",
+      "label": "学生数据库",
+      "position": {
+        "x": 650,
+        "y": 350
+      }
+    },
+    {
+      "id": "n-wifi",
+      "type": "wifi-ap",
+      "label": "校园WiFi",
+      "position": {
+        "x": 450,
+        "y": 450
+      }
+    },
+    {
+      "id": "n-pc",
+      "type": "pc",
+      "label": "学生终端",
+      "position": {
+        "x": 850,
+        "y": 250
+      }
+    },
+    {
+      "id": "n-audit",
+      "type": "audit-brain",
+      "label": "审计版",
+      "position": {
+        "x": 250,
+        "y": 450
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source_node_id": "n-attacker",
+      "target_node_id": "n-fw"
+    },
+    {
+      "id": "e2",
+      "source_node_id": "n-fw",
+      "target_node_id": "n-sw"
+    },
+    {
+      "id": "e3",
+      "source_node_id": "n-sw",
+      "target_node_id": "n-edu"
+    },
+    {
+      "id": "e4",
+      "source_node_id": "n-sw",
+      "target_node_id": "n-lib"
+    },
+    {
+      "id": "e5",
+      "source_node_id": "n-edu",
+      "target_node_id": "n-db"
+    },
+    {
+      "id": "e6",
+      "source_node_id": "n-sw",
+      "target_node_id": "n-wifi"
+    },
+    {
+      "id": "e7",
+      "source_node_id": "n-wifi",
+      "target_node_id": "n-pc"
+    },
+    {
+      "id": "e8",
+      "source_node_id": "n-audit",
+      "target_node_id": "n-fw"
+    }
+  ],
+  "defense_config": {}
+}

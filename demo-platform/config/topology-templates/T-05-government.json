@@ -1,0 +1,117 @@
+{
+  "id": "T-05",
+  "name": "政府办公网",
+  "background": "office",
+  "nodes": [
+    {
+      "id": "n-attacker",
+      "type": "attacker",
+      "label": "攻击者",
+      "position": {
+        "x": 50,
+        "y": 250
+      }
+    },
+    {
+      "id": "n-fw",
+      "type": "firewall-brain",
+      "label": "安全大脑",
+      "position": {
+        "x": 250,
+        "y": 100
+      }
+    },
+    {
+      "id": "n-audit",
+      "type": "audit-brain",
+      "label": "审计版",
+      "position": {
+        "x": 250,
+        "y": 400
+      }
+    },
+    {
+      "id": "n-oa",
+      "type": "app-server",
+      "label": "OA系统",
+      "position": {
+        "x": 450,
+        "y": 100
+      }
+    },
+    {
+      "id": "n-mail",
+      "type": "app-server",
+      "label": "邮件系统",
+      "position": {
+        "x": 450,
+        "y": 300
+      }
+    },
+    {
+      "id": "n-meet",
+      "type": "app-server",
+      "label": "视频会议",
+      "position": {
+        "x": 450,
+        "y": 500
+      }
+    },
+    {
+      "id": "n-pc",
+      "type": "pc",
+      "label": "办公终端",
+      "position": {
+        "x": 650,
+        "y": 250
+      }
+    },
+    {
+      "id": "n-edr",
+      "type": "edr-pc",
+      "label": "云脉(终端)",
+      "position": {
+        "x": 850,
+        "y": 250
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source_node_id": "n-attacker",
+      "target_node_id": "n-fw"
+    },
+    {
+      "id": "e2",
+      "source_node_id": "n-fw",
+      "target_node_id": "n-oa"
+    },
+    {
+      "id": "e3",
+      "source_node_id": "n-fw",
+      "target_node_id": "n-mail"
+    },
+    {
+      "id": "e4",
+      "source_node_id": "n-fw",
+      "target_node_id": "n-meet"
+    },
+    {
+      "id": "e5",
+      "source_node_id": "n-fw",
+      "target_node_id": "n-pc"
+    },
+    {
+      "id": "e6",
+      "source_node_id": "n-edr",
+      "target_node_id": "n-pc"
+    },
+    {
+      "id": "e7",
+      "source_node_id": "n-audit",
+      "target_node_id": "n-fw"
+    }
+  ],
+  "defense_config": {}
+}

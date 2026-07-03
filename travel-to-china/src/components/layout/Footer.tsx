@@ -61,7 +61,13 @@ export default function Footer() {
               <li><Link href="/cities/kunming" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Kunming</Link></li>
               <li><Link href="/cities/xiamen" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Xiamen</Link></li>
               <li><Link href="/cities/nanjing" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Nanjing</Link></li>
-              <li><Link href="/cities/suzhou" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Suzhou</Link></li>
+             <li><Link href="/cities/suzhou" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Suzhou</Link></li>
+              <li><Link href="/cities/lijiang" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Lijiang</Link></li>
+              <li><Link href="/cities/zhangjiajie" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Zhangjiajie</Link></li>
+              <li><Link href="/cities/luoyang" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Luoyang</Link></li>
+             <li><Link href="/cities/wuhan" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Wuhan</Link></li>
+              <li><Link href="/cities/hongkong" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Hong Kong</Link></li>
+              <li><Link href="/cities/sanya" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Sanya</Link></li>
             </ul>
           </div>
 
@@ -73,8 +79,10 @@ export default function Footer() {
             <ul className="space-y-2.5">
               <li><Link href="/routes" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Routes</Link></li>
               <li><Link href="/by-travel-style" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Travel Styles</Link></li>
-              <li><Link href="/comparison" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Compare Cities</Link></li>
-              <li><Link href="/about" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">About</Link></li>
+             <li><Link href="/comparison" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Compare Cities</Link></li>
+              <li><Link href="/blog" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Blog</Link></li>
+              <li><Link href="/cities" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">All Cities →</Link></li>
+             <li><Link href="/about" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">About</Link></li>
               <li><Link href="/search" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Search</Link></li>
             </ul>
 

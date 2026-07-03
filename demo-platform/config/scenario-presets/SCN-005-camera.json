@@ -1,0 +1,39 @@
+{
+  "name": "摄像头入侵演示",
+  "difficulty": "easy",
+  "expected_duration_sec": 180,
+  "description": "演示摄像头弱口令和固件后门入侵",
+  "tags": [
+    "摄像头",
+    "IoT",
+    "弱口令"
+  ],
+  "attack_sequence": [
+    {
+      "step_id": "s1",
+      "order": 1,
+      "script_id": "ATT-027",
+      "target_node_id": "n-cam",
+      "params": {},
+      "wait_after_sec": 2
+    },
+    {
+      "step_id": "s2",
+      "order": 2,
+      "script_id": "ATT-028",
+      "target_node_id": "n-cam",
+      "params": {},
+      "wait_after_sec": 2
+    }
+  ],
+  "defense_snapshot": {
+    "firewall-brain": {
+      "enabled": false,
+      "rules": {
+        "DEF-007": {
+          "enabled": false
+        }
+      }
+    }
+  }
+}

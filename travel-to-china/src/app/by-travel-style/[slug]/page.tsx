@@ -9,11 +9,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const entry = getContentBySlug('by-travel-style', params.slug);
   if (!entry) return {};
   return {
+    alternates: { canonical: `/by-travel-style/$(p.slug)${params.slug}` },
     title: entry.meta.seoTitle || entry.meta.title,
     description: entry.meta.seoDescription || entry.meta.description,
+    keywords: entry.meta.keywords?.join(', '),
   };
 }
-
 export default function TravelStyleSlugPage({ params }: { params: { slug: string } }) {
   const entry = getContentBySlug('by-travel-style', params.slug);
   if (!entry) notFound();

@@ -1,0 +1,55 @@
+{
+  "name": "数据泄露演示",
+  "difficulty": "high",
+  "expected_duration_sec": 300,
+  "description": "演示SQL注入拖库 -> 数据库外发 -> 文件外泄全流程",
+  "tags": [
+    "数据泄露",
+    "SQL注入",
+    "DLP"
+  ],
+  "attack_sequence": [
+    {
+      "step_id": "s1",
+      "order": 1,
+      "script_id": "ATT-002",
+      "target_node_id": "n-web",
+      "params": {},
+      "wait_after_sec": 3
+    },
+    {
+      "step_id": "s2",
+      "order": 2,
+      "script_id": "ATT-015",
+      "target_node_id": "n-db",
+      "params": {},
+      "wait_after_sec": 2
+    },
+    {
+      "step_id": "s3",
+      "order": 3,
+      "script_id": "ATT-016",
+      "target_node_id": "n-pc",
+      "params": {},
+      "wait_after_sec": 2
+    }
+  ],
+  "defense_snapshot": {
+    "waf": {
+      "enabled": false,
+      "rules": {
+        "DEF-020": {
+          "enabled": false
+        }
+      }
+    },
+    "edr-pc": {
+      "enabled": false,
+      "rules": {
+        "DEF-013": {
+          "enabled": false
+        }
+      }
+    }
+  }
+}

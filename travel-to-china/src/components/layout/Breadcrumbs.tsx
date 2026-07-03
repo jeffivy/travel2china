@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ChevronRight, Home } from 'lucide-react';
+import { BreadcrumbSchema } from './StructuredData';
 
 export interface Crumb {
   label: string;
@@ -11,8 +12,16 @@ interface BreadcrumbsProps {
 }
 
 export default function Breadcrumbs({ crumbs }: BreadcrumbsProps) {
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://travels2china.com';
+  const schemaItems = crumbs.map(crumb => ({
+    name: crumb.label,
+    url: `${baseUrl}${crumb.href}`,
+  }));
+ 
   return (
-    <nav aria-label="Breadcrumb" className="container-wide py-3">
+    <>
+      <BreadcrumbSchema items={schemaItems} />
+      <nav aria-label="Breadcrumb" className="container-wide py-3">
       <ol className="flex items-center gap-1.5 text-sm flex-wrap" itemScope itemType="https://schema.org/BreadcrumbList">
         {crumbs.map((crumb, index) => {
           const isLast = index === crumbs.length - 1;
@@ -41,6 +50,7 @@ export default function Breadcrumbs({ crumbs }: BreadcrumbsProps) {
           );
         })}
       </ol>
-    </nav>
+      </nav>
+    </>
   );
 }

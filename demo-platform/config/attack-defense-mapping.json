@@ -1,0 +1,266 @@
+{
+  "$schema": "https://demo-platform/schema/mapping/v1",
+  "version": "1.0.0",
+  "updated_at": "2026-07-01",
+  "description": "攻击-设备-防护严格映射表,平台所有预制脚本必须遵循",
+  "mappings": [
+    {
+      "attack_id": "ATT-001",
+      "attack_name": "SQL注入-登录绕过",
+      "target_node_types": ["web-server", "app-server"],
+      "primary_defender": {
+        "product_id": "waf",
+        "product_name": "网站安全专家",
+        "rule_ids": ["DEF-020"],
+        "defense_principle": "WAF SQL特征识别+拦截"
+      },
+      "secondary_defenders": [
+        {
+          "product_id": "edr-server",
+          "product_name": "云镜",
+          "rule_ids": ["DEF-017"],
+          "defense_principle": "RASP 拦截应用层异常"
+        }
+      ]
+    },
+    {
+      "attack_id": "ATT-002",
+      "attack_name": "SQL注入-拖库",
+      "target_node_types": ["web-server", "db-server"],
+      "primary_defender": {
+        "product_id": "waf",
+        "product_name": "网站安全专家",
+        "rule_ids": ["DEF-020"],
+        "defense_principle": "WAF SQL特征拦截"
+      },
+      "secondary_defenders": [
+        {
+          "product_id": "soc",
+          "product_name": "璇玑",
+          "rule_ids": ["DEF-023"],
+          "defense_principle": "数据库审计异常查询"
+        },
+        {
+          "product_id": "edr-pc",
+          "product_name": "云脉",
+          "rule_ids": ["DEF-013"],
+          "defense_principle": "DLP 敏感数据识别"
+        }
+      ]
+    },
+    {
+      "attack_id": "ATT-003",
+      "attack_name": "XSS-反射型",
+      "target_node_types": ["web-server"],
+      "primary_defender": {
+        "product_id": "waf",
+        "product_name": "网站安全专家",
+        "rule_ids": ["DEF-020"],
+        "defense_principle": "WAF XSS特征拦截"
+      },
+      "secondary_defenders": []
+    },
+    {
+      "attack_id": "ATT-004",
+      "attack_name": "XSS-存储型",
+      "target_node_types": ["web-server", "pc"],
+      "primary_defender": {
+        "product_id": "waf",
+        "product_name": "网站安全专家",
+        "rule_ids": ["DEF-020"],
+        "defense_principle": "WAF XSS特征拦截"
+      },
+      "secondary_defenders": [
+        {
+          "product_id": "edr-pc",
+          "product_name": "云脉",
+          "rule_ids": ["DEF-013"],
+          "defense_principle": "DLP外发数据监控"
+        }
+      ]
+    },
+    {
+      "attack_id": "ATT-005",
+      "attack_name": "文件上传-WebShell",
+      "target_node_types": ["web-server"],
+      "primary_defender": {
+        "product_id": "waf",
+        "product_name": "网站安全专家",
+        "rule_ids": ["DEF-020"],
+        "defense_principle": "WAF 文件上传类型/内容检测"
+      },
+      "secondary_defenders": [
+        {
+          "product_id": "edr-server",
+          "product_name": "云镜",
+          "rule_ids": ["DEF-017", "DEF-015"],
+          "defense_principle": "RASP运行时拦截 + 主机进程行为检测"
+        }
+      ]
+    },
+    {
+      "attack_id": "ATT-006",
+      "attack_name": "弱口令-SSH爆破",
+      "target_node_types": ["app-server", "db-server", "server"],
+      "primary_defender": {
+        "product_id": "edr-pc",
+        "product_name": "云脉",
+        "rule_ids": ["DEF-011"],
+        "defense_principle": "零信任动态认证"
+      },
+      "secondary_defenders": [
+        {
+          "product_id": "edr-server",
+          "product_name": "云镜",
+          "rule_ids": ["DEF-015"],
+          "defense_principle": "EDR 异常登录检测"
+        }
+      ]
+    },
+    {
+      "attack_id": "ATT-009",
+      "attack_name": "攻击面扫描-Nmap",
+      "target_node_types": ["any"],
+      "primary_defender": {
+        "product_id": "firewall-brain",
+        "product_name": "天翼安全大脑防护版",
+        "rule_ids": ["DEF-006"],
+        "defense_principle": "IPS扫描特征识别"
+      },
+      "secondary_defenders": [
+        {
+          "product_id": "soc",
+          "product_name": "璇玑",
+          "rule_ids": ["DEF-023"],
+          "defense_principle": "资产暴露面监测"
+        }
+      ]
+    },
+    {
+      "attack_id": "ATT-011",
+      "attack_name": "反弹Shell-Bash",
+      "target_node_types": ["web-server", "app-server", "server"],
+      "primary_defender": {
+        "product_id": "firewall-brain",
+        "product_name": "天翼安全大脑防护版",
+        "rule_ids": ["DEF-005"],
+        "defense_principle": "IPS反弹Shell命令特征"
+      },
+      "secondary_defenders": [
+        {
+          "product_id": "edr-server",
+          "product_name": "云镜",
+          "rule_ids": ["DEF-015"],
+          "defense_principle": "EDR 进程行为异常"
+        }
+      ]
+    },
+    {
+      "attack_id": "ATT-013",
+      "attack_name": "横向移动-SMB",
+      "target_node_types": ["pc", "server"],
+      "primary_defender": {
+        "product_id": "edr-server",
+        "product_name": "云镜",
+        "rule_ids": ["DEF-016"],
+        "defense_principle": "微隔离 横向流量默认拒绝"
+      },
+      "secondary_defenders": [
+        {
+          "product_id": "firewall-brain",
+          "product_name": "天翼安全大脑防护版",
+          "rule_ids": ["DEF-006"],
+          "defense_principle": "IPS 横向移动命令特征"
+        }
+      ]
+    },
+    {
+      "attack_id": "ATT-017",
+      "attack_name": "大模型违规-提示注入",
+      "target_node_types": ["llm-app"],
+      "primary_defender": {
+        "product_id": "llm-guardrail",
+        "product_name": "见微大模型安全护栏",
+        "rule_ids": ["DEF-026"],
+        "defense_principle": "输入过滤+提示注入攻击模式识别"
+      },
+      "secondary_defenders": []
+    },
+    {
+      "attack_id": "ATT-021",
+      "attack_name": "勒索软件-文件加密",
+      "target_node_types": ["server", "pc"],
+      "primary_defender": {
+        "product_id": "edr-server",
+        "product_name": "云镜",
+        "rule_ids": ["DEF-015", "DEF-016"],
+        "defense_principle": "EDR异常加密行为 + 微隔离扩散阻断"
+      },
+      "secondary_defenders": [
+        {
+          "product_id": "firewall-brain",
+          "product_name": "天翼安全大脑防护版",
+          "rule_ids": ["DEF-008"],
+          "defense_principle": "病毒库查杀"
+        }
+      ]
+    },
+    {
+      "attack_id": "ATT-022",
+      "attack_name": "DDoS-HTTP CC",
+      "target_node_types": ["web-server"],
+      "primary_defender": {
+        "product_id": "anti-ddos",
+        "product_name": "云堤(抗D)",
+        "rule_ids": ["DEF-025"],
+        "defense_principle": "运营商级近源流量清洗"
+      },
+      "secondary_defenders": [
+        {
+          "product_id": "waf",
+          "product_name": "网站安全专家",
+          "rule_ids": ["DEF-021"],
+          "defense_principle": "WAF CC防护"
+        }
+      ]
+    },
+    {
+      "attack_id": "ATT-025",
+      "attack_name": "钓鱼邮件-凭证窃取",
+      "target_node_types": ["pc", "user"],
+      "primary_defender": {
+        "product_id": "firewall-brain",
+        "product_name": "天翼安全大脑防护版",
+        "rule_ids": ["DEF-008"],
+        "defense_principle": "邮件病毒/恶意链接过滤"
+      },
+      "secondary_defenders": [
+        {
+          "product_id": "edr-pc",
+          "product_name": "云脉",
+          "rule_ids": ["DEF-012"],
+          "defense_principle": "终端EDR进程行为"
+        }
+      ]
+    },
+    {
+      "attack_id": "ATT-027",
+      "attack_name": "摄像头入侵-弱口令",
+      "target_node_types": ["camera"],
+      "primary_defender": {
+        "product_id": "firewall-brain",
+        "product_name": "天翼安全大脑防护版",
+        "rule_ids": ["DEF-007"],
+        "defense_principle": "ACL封禁外联可疑IP"
+      },
+      "secondary_defenders": [
+        {
+          "product_id": "soc",
+          "product_name": "璇玑",
+          "rule_ids": ["DEF-023"],
+          "defense_principle": "资产暴露面监测"
+        }
+      ]
+    }
+  ]
+}

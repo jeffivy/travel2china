@@ -16,8 +16,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const entry = getContentBySlug('country', params.slug);
   if (!entry) return {};
   return {
+    alternates: { canonical: `/country/$(p.slug)${params.slug}` },
     title: entry.meta.seoTitle || entry.meta.title,
-    description: entry.meta.seoDescription || entry.meta.description,
+    description: entry.meta.seoDescription || entry.meta.description,,
+    keywords: entry.meta.keywords?.join(', '),
     openGraph: {
       title: entry.meta.seoTitle || entry.meta.title,
       description: entry.meta.seoDescription || entry.meta.description,
@@ -25,7 +27,6 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     },
   };
 }
-
 export default function CountryArticlePage({ params }: { params: { slug: string } }) {
   const entry = getContentBySlug('country', params.slug);
   if (!entry) notFound();

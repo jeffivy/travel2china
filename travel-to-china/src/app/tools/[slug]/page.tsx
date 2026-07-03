@@ -9,9 +9,13 @@ import { readingTime } from '@/lib/utils';
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const entry = getContentBySlug('tools', params.slug);
   if (!entry) return {};
-  return { title: entry.meta.seoTitle || entry.meta.title, description: entry.meta.seoDescription || entry.meta.description };
+  return {
+    alternates: { canonical: `/tools/$(p.slug)${params.slug}` },
+    title: entry.meta.seoTitle || entry.meta.title,
+    description: entry.meta.seoDescription || entry.meta.description,
+    keywords: entry.meta.keywords?.join(', '),
+  };
 }
-
 export default function ToolsSlugPage({ params }: { params: { slug: string } }) {
   const entry = getContentBySlug('tools', params.slug);
   if (!entry) notFound();

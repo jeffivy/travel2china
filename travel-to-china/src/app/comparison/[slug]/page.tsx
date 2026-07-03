@@ -10,11 +10,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const entry = getContentBySlug('comparison', params.slug);
   if (!entry) return {};
   return {
+    alternates: { canonical: `/comparison/$(p.slug)${params.slug}` },
     title: entry.meta.seoTitle || entry.meta.title,
     description: entry.meta.seoDescription || entry.meta.description,
+    keywords: entry.meta.keywords?.join(', '),
   };
 }
-
 export default function ComparisonSlugPage({ params }: { params: { slug: string } }) {
   const entry = getContentBySlug('comparison', params.slug);
   if (!entry) notFound();

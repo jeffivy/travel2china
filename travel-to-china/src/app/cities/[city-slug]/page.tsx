@@ -5,6 +5,8 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs';
 import MDXContent from '@/components/content/MDXContent';
 import Comments from '@/components/comments/Comments';
 import { ArrowLeft, Clock, Calendar, User, MapPin, Sun, Thermometer } from 'lucide-react';
+import ShareButtons from '@/components/ui/ShareButtons';
+import SubscribeCard from '@/components/ui/SubscribeCard';
 import { readingTime } from '@/lib/utils';
 
 export async function generateStaticParams() {
@@ -16,16 +18,17 @@ export async function generateMetadata({ params }: { params: { 'city-slug': stri
   const entry = getContentBySlug('cities', params['city-slug']);
   if (!entry) return {};
   return {
+    alternates: { canonical: `/cities/${params['city-slug']}` },
     title: entry.meta.seoTitle || `${entry.meta.title} Travel Guide`,
     description: entry.meta.seoDescription || entry.meta.description,
+    keywords: entry.meta.keywords?.join(', '),
     openGraph: {
-      title: `${entry.meta.title} — China Travel Guide`,
+      title: `${entry.meta.title} - China Travel Guide`,
       description: entry.meta.description,
       type: 'article',
     },
   };
 }
-
 export default function CityPage({ params }: { params: { 'city-slug': string } }) {
   const slug = params['city-slug'];
   const entry = getContentBySlug('cities', slug);
@@ -145,6 +148,12 @@ export default function CityPage({ params }: { params: { 'city-slug': string } }
         )}
 
         {/* Comments */}
+        <section className="mt-16 pt-8 border-t border-[var(--border)]">
+          <ShareButtons title={entry.meta.title} description={entry.meta.description} />
+        </section>
+        <section className="mt-8">
+          <SubscribeCard />
+        </section>
         <div className="mt-16 pt-10 border-t border-[var(--border)]">
           <Comments articleSlug={`cities/${slug}`} />
         </div>

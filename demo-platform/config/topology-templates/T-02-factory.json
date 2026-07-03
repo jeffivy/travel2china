@@ -1,0 +1,117 @@
+{
+  "id": "T-02",
+  "name": "制造企业工厂网络",
+  "background": "machine_room",
+  "nodes": [
+    {
+      "id": "n-attacker",
+      "type": "attacker",
+      "label": "攻击者",
+      "position": {
+        "x": 50,
+        "y": 250
+      }
+    },
+    {
+      "id": "n-fw",
+      "type": "firewall-brain",
+      "label": "安全大脑",
+      "position": {
+        "x": 250,
+        "y": 250
+      }
+    },
+    {
+      "id": "n-sw",
+      "type": "switch",
+      "label": "工业交换机",
+      "position": {
+        "x": 450,
+        "y": 250
+      }
+    },
+    {
+      "id": "n-mes",
+      "type": "app-server",
+      "label": "MES服务器",
+      "position": {
+        "x": 650,
+        "y": 100
+      }
+    },
+    {
+      "id": "n-plc",
+      "type": "app-server",
+      "label": "PLC工控机",
+      "position": {
+        "x": 650,
+        "y": 350
+      }
+    },
+    {
+      "id": "n-cam",
+      "type": "camera",
+      "label": "产线摄像头",
+      "position": {
+        "x": 650,
+        "y": 500
+      }
+    },
+    {
+      "id": "n-pc",
+      "type": "pc",
+      "label": "办公PC",
+      "position": {
+        "x": 450,
+        "y": 450
+      }
+    },
+    {
+      "id": "n-edr",
+      "type": "edr-server",
+      "label": "云镜(EDR)",
+      "position": {
+        "x": 850,
+        "y": 250
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source_node_id": "n-attacker",
+      "target_node_id": "n-fw"
+    },
+    {
+      "id": "e2",
+      "source_node_id": "n-fw",
+      "target_node_id": "n-sw"
+    },
+    {
+      "id": "e3",
+      "source_node_id": "n-sw",
+      "target_node_id": "n-mes"
+    },
+    {
+      "id": "e4",
+      "source_node_id": "n-sw",
+      "target_node_id": "n-plc"
+    },
+    {
+      "id": "e5",
+      "source_node_id": "n-sw",
+      "target_node_id": "n-cam"
+    },
+    {
+      "id": "e6",
+      "source_node_id": "n-fw",
+      "target_node_id": "n-pc"
+    },
+    {
+      "id": "e7",
+      "source_node_id": "n-edr",
+      "target_node_id": "n-mes"
+    }
+  ],
+  "defense_config": {}
+}

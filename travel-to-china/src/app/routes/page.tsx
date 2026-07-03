@@ -35,7 +35,7 @@ const ROUTE_STYLES = [
     description:
       'Maximize China\'s 144-hour transit policy. 6-day blitz itineraries in Beijing, Shanghai, Guangzhou, Chengdu, and beyond — no visa required.',
     icon: Clock,
-    href: '/routes/transit-routes',
+    href: '/routes/144-hour-transit',
     color: 'bg-blue-50 dark:bg-blue-900/10 border-blue-200 dark:border-blue-800',
   },
   {
@@ -44,7 +44,7 @@ const ROUTE_STYLES = [
     description:
       'Eat your way across China. Sichuan spice trail, Cantonese dim sum pilgrimage, Xi\'an Silk Road noodles, and a Shanghai-to-Chengdu hot pot odyssey.',
     icon: UtensilsCrossed,
-    href: '/routes/food-routes',
+    href: '/routes/themed/food',
     color: 'bg-red-50 dark:bg-red-900/10 border-red-200 dark:border-red-800',
   },
   {
@@ -53,7 +53,7 @@ const ROUTE_STYLES = [
     description:
       'Walk through 3,000 years of civilization. Follow the Silk Road, explore the Four Great Ancient Capitals, and trace the Ming and Qing dynasties.',
     icon: Landmark,
-    href: '/routes/history-routes',
+    href: '/routes/themed/history',
     color: 'bg-stone-50 dark:bg-stone-900/10 border-stone-200 dark:border-stone-800',
   },
   {
@@ -62,7 +62,7 @@ const ROUTE_STYLES = [
     description:
       'Karst peaks of Guilin, Tiger Leaping Gorge in Yunnan, the grasslands of Inner Mongolia, and the Himalayan borderlands of western Sichuan.',
     icon: TreePine,
-    href: '/routes/nature-routes',
+    href: '/routes/themed/nature',
     color: 'bg-green-50 dark:bg-green-900/10 border-green-200 dark:border-green-800',
   },
   {
@@ -164,12 +164,12 @@ export default function RoutesPage() {
               {
                 q: 'Only have 6 days (no visa)?',
                 a: 'Use the 144-hour transit policy. Fly into Shanghai, Beijing, or Guangzhou, explore for 6 days visa-free, then continue to a third country. Quick, legal, and surprisingly rich.',
-                href: '/routes/transit-routes',
+                href: '/routes/144-hour-transit',
               },
               {
                 q: 'Been to China before?',
                 a: 'Go deeper with themed routes — a Sichuan-Yunnan food journey, a Silk Road history expedition, or a Guilin-Zhangjiajie nature immersion.',
-                href: '/routes/food-routes',
+                href: '/routes/themed/food',
               },
             ].map((item) => (
               <Link key={item.q} href={item.href} className="card p-6 group text-center">
@@ -261,7 +261,7 @@ export default function RoutesPage() {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link href="/routes/golden-route" className="btn-primary">Golden Route</Link>
-            <Link href="/routes/transit-routes" className="btn-outline">144-Hour Transit</Link>
+            <Link href="/routes/144-hour-transit" className="btn-outline">144-Hour Transit</Link>
             <Link href="/cities" className="btn-outline">Browse All Cities</Link>
           </div>
         </div>

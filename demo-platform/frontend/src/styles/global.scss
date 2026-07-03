@@ -1,0 +1,71 @@
+// 全局样式 - 深色科技风
+:root {
+  --bg-primary: #0a1929;
+  --bg-panel: #13283f;
+  --bg-card: #1a3a5c;
+  --bg-hover: #1e4a6e;
+  --text-primary: #e6f0ff;
+  --text-muted: #7e9ec2;
+  --border-color: #264a73;
+  --color-primary: #005bac;
+  --color-primary-light: #1e88e5;
+  --color-danger: #e74c3c;
+  --color-warn: #f39c12;
+  --color-ok: #27ae60;
+  --color-info: #3498db;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+}
+
+// Element Plus 深色主题覆盖
+.el-menu {
+  background: var(--bg-panel) !important;
+  border-right-color: var(--border-color) !important;
+}
+.el-menu-item {
+  color: var(--text-primary) !important;
+}
+.el-menu-item:hover {
+  background: var(--bg-hover) !important;
+}
+.el-card {
+  background: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+}
+.el-button--primary {
+  --el-button-bg-color: var(--color-primary);
+  --el-button-border-color: var(--color-primary-light);
+}
+.el-table {
+  --el-table-bg-color: var(--bg-card);
+  --el-table-tr-bg-color: var(--bg-card);
+  --el-table-header-bg-color: var(--bg-panel);
+  --el-table-border-color: var(--border-color);
+  --el-table-text-color: var(--text-primary);
+  --el-table-header-text-color: var(--text-muted);
+}
+
+// 滚动条
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 3px; }
+
+// 动画
+@keyframes pulse-red {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); }
+  50% { box-shadow: 0 0 0 12px rgba(231, 76, 60, 0); }
+}
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.7); }
+  50% { box-shadow: 0 0 0 12px rgba(39, 174, 96, 0); }
+}
+
+.animate-attack { animation: pulse-red 1.5s ease-in-out infinite; }
+.animate-defense { animation: pulse-green 1.5s ease-in-out infinite; }

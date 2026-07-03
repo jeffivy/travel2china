@@ -1,0 +1,164 @@
+{
+  "$schema": "https://demo-platform/schema/node-type/v1",
+  "version": "1.0.0",
+  "node_types": [
+    {
+      "id": "firewall-brain",
+      "name": "天翼安全大脑(防护版)",
+      "category": "defense",
+      "icon": "shield-fire",
+      "color": "#005bac",
+      "telecom_product": "天翼安全大脑-防护版",
+      "configurable": ["policy", "ips_level", "av_level", "acl_rules"],
+      "defense_capabilities": ["firewall", "ips", "antivirus", "url_filter", "app_control"]
+    },
+    {
+      "id": "audit-brain",
+      "name": "天翼安全大脑(审计版)",
+      "category": "defense",
+      "icon": "document-check",
+      "color": "#1e88e5",
+      "telecom_product": "天翼安全大脑-审计版",
+      "configurable": ["log_retention_days", "url_rules"],
+      "defense_capabilities": ["url_filter", "behavior_audit", "log_retention", "fault_location"]
+    },
+    {
+      "id": "edr-pc",
+      "name": "云脉(PC端)",
+      "category": "defense",
+      "icon": "laptop-shield",
+      "color": "#ff6f00",
+      "telecom_product": "云脉SASE",
+      "configurable": ["policy_mode", "auth_strength", "dlp_mode"],
+      "defense_capabilities": ["zero_trust", "edr", "dlp", "swg", "iam"]
+    },
+    {
+      "id": "edr-server",
+      "name": "云镜(服务端)",
+      "category": "defense",
+      "icon": "server-shield",
+      "color": "#d32f2f",
+      "telecom_product": "云镜",
+      "configurable": ["policy_mode", "microsegment", "rasp_mode"],
+      "defense_capabilities": ["edr", "microsegment", "intrusion_detect", "rasp", "vuln_scan", "container_security", "apt_detect"]
+    },
+    {
+      "id": "waf",
+      "name": "网站安全专家(WAF)",
+      "category": "defense",
+      "icon": "web-shield",
+      "color": "#7b1fa2",
+      "telecom_product": "网站安全专家",
+      "configurable": ["rule_set", "block_mode", "cc_protection", "ai_learning"],
+      "defense_capabilities": ["waf", "cc_protection", "custom_rule", "ai_learning", "ipv6_gateway", "anti_evasion"]
+    },
+    {
+      "id": "soc",
+      "name": "璇玑(SOC)",
+      "category": "defense",
+      "icon": "radar",
+      "color": "#00897b",
+      "telecom_product": "璇玑",
+      "configurable": ["alert_subscriptions", "auto_playbook"],
+      "defense_capabilities": ["siem", "threat_intel", "auto_response", "asset_view", "attack_chain_analysis"]
+    },
+    {
+      "id": "anti-ddos",
+      "name": "抗DDoS(云堤)",
+      "category": "defense",
+      "icon": "shield-cross",
+      "color": "#5e35b1",
+      "telecom_product": "云堤",
+      "configurable": ["clean_threshold", "back_to_source"],
+      "defense_capabilities": ["ddos_clean", "traffic_monitor", "source_trace"]
+    },
+    {
+      "id": "llm-guardrail",
+      "name": "大模型围栏(见微)",
+      "category": "defense",
+      "icon": "ai-shield",
+      "color": "#3949ab",
+      "telecom_product": "见微大模型安全护栏",
+      "configurable": ["sensitive_words", "attack_patterns"],
+      "defense_capabilities": ["llm_input_filter", "llm_output_filter", "sensitive_info_detect", "prompt_injection_defense"]
+    },
+    {
+      "id": "pc",
+      "name": "办公PC",
+      "category": "client",
+      "icon": "laptop",
+      "color": "#455a64",
+      "configurable": ["os", "username", "edr_installed"],
+      "vulnerabilities": ["weak_password", "phishing_susceptible", "outdated_patch"]
+    },
+    {
+      "id": "web-server",
+      "name": "Web服务器",
+      "category": "server",
+      "icon": "web",
+      "color": "#1976d2",
+      "configurable": ["os", "language", "waf_enabled", "https"],
+      "vulnerabilities": ["sqli", "xss", "file_upload", "rce", "csrf"]
+    },
+    {
+      "id": "app-server",
+      "name": "应用服务器(OA/ERP)",
+      "category": "server",
+      "icon": "app",
+      "color": "#0288d1",
+      "configurable": ["app_type", "vulns", "auth_mode"],
+      "vulnerabilities": ["auth_bypass", "logic_flaw", "sqli", "weak_password"]
+    },
+    {
+      "id": "db-server",
+      "name": "数据库",
+      "category": "server",
+      "icon": "database",
+      "color": "#0097a7",
+      "configurable": ["db_type", "version", "weak_pwd", "exposure"],
+      "vulnerabilities": ["weak_password", "sqli_target", "data_leakage"]
+    },
+    {
+      "id": "camera",
+      "name": "摄像头(IPC)",
+      "category": "iot",
+      "icon": "camera",
+      "color": "#5d4037",
+      "configurable": ["brand", "firmware", "expose_external"],
+      "vulnerabilities": ["weak_password", "firmware_backdoor", "rtsp_leak", "unauthorized_access"]
+    },
+    {
+      "id": "wifi-ap",
+      "name": "无线AP",
+      "category": "network",
+      "icon": "wifi",
+      "color": "#0277bd",
+      "configurable": ["ssid", "auth_mode", "isolation"],
+      "vulnerabilities": ["weak_password", "rogue_ap", "evil_twin"]
+    },
+    {
+      "id": "switch",
+      "name": "交换机",
+      "category": "network",
+      "icon": "switch",
+      "color": "#616161",
+      "configurable": ["vlan", "mirror_port"]
+    },
+    {
+      "id": "attacker",
+      "name": "攻击机",
+      "category": "attacker",
+      "icon": "skull",
+      "color": "#b71c1c",
+      "configurable": ["scripts_available"]
+    },
+    {
+      "id": "user",
+      "name": "用户节点",
+      "category": "actor",
+      "icon": "user",
+      "color": "#6a1b9a",
+      "configurable": ["role", "privilege"]
+    }
+  ]
+}

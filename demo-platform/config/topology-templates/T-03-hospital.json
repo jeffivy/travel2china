@@ -1,0 +1,131 @@
+{
+  "id": "T-03",
+  "name": "医院HIS网络",
+  "background": "office",
+  "nodes": [
+    {
+      "id": "n-attacker",
+      "type": "attacker",
+      "label": "攻击者",
+      "position": {
+        "x": 50,
+        "y": 250
+      }
+    },
+    {
+      "id": "n-fw",
+      "type": "firewall-brain",
+      "label": "安全大脑",
+      "position": {
+        "x": 250,
+        "y": 250
+      }
+    },
+    {
+      "id": "n-waf",
+      "type": "waf",
+      "label": "网站安全专家",
+      "position": {
+        "x": 450,
+        "y": 100
+      }
+    },
+    {
+      "id": "n-his",
+      "type": "app-server",
+      "label": "HIS服务器",
+      "position": {
+        "x": 650,
+        "y": 100
+      }
+    },
+    {
+      "id": "n-pacs",
+      "type": "app-server",
+      "label": "PACS影像",
+      "position": {
+        "x": 650,
+        "y": 250
+      }
+    },
+    {
+      "id": "n-db",
+      "type": "db-server",
+      "label": "病历数据库",
+      "position": {
+        "x": 650,
+        "y": 400
+      }
+    },
+    {
+      "id": "n-pc",
+      "type": "pc",
+      "label": "医生工作站",
+      "position": {
+        "x": 450,
+        "y": 450
+      }
+    },
+    {
+      "id": "n-cam",
+      "type": "camera",
+      "label": "病房摄像头",
+      "position": {
+        "x": 850,
+        "y": 250
+      }
+    },
+    {
+      "id": "n-edr",
+      "type": "edr-server",
+      "label": "云镜(EDR)",
+      "position": {
+        "x": 850,
+        "y": 400
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source_node_id": "n-attacker",
+      "target_node_id": "n-fw"
+    },
+    {
+      "id": "e2",
+      "source_node_id": "n-fw",
+      "target_node_id": "n-waf"
+    },
+    {
+      "id": "e3",
+      "source_node_id": "n-waf",
+      "target_node_id": "n-his"
+    },
+    {
+      "id": "e4",
+      "source_node_id": "n-his",
+      "target_node_id": "n-db"
+    },
+    {
+      "id": "e5",
+      "source_node_id": "n-fw",
+      "target_node_id": "n-pacs"
+    },
+    {
+      "id": "e6",
+      "source_node_id": "n-fw",
+      "target_node_id": "n-pc"
+    },
+    {
+      "id": "e7",
+      "source_node_id": "n-fw",
+      "target_node_id": "n-cam"
+    },
+    {
+      "id": "e8",
+      "source_node_id": "n-edr",
+      "target_node_id": "n-his"
+    }
+  ],
+  "defense_config": {}
+}

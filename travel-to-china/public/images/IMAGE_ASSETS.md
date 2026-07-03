@@ -1,6 +1,6 @@
 # 图片资源清单（待提供）
 
-已上传 118 张，尚缺 36 张。
+已上传 122 张，尚缺 60 张（原 26 张 + 补充追踪 34 张）。所有图片需存放于 `public/images/` 目录下。封面图 1200×630px，内嵌插图 800–1600px 宽，JPG 格式。
 
 ---
 
@@ -34,42 +34,75 @@
 | 24 | `routes-golden-map.jpg` | `/routes/golden-route` | 内嵌 | 1200×900 | 金色路线五城连接线路地图 |
 | 25 | `routes-transit.jpg` | `/routes/144-hour-transit` | 封面 | 1200×630 | 机场过境免签盖章与航班登机牌 |
 | 26 | `routes-transit-map.jpg` | `/routes/144-hour-transit` | 内嵌 | 1200×900 | 144小时过境城市覆盖区域地图 |
-| 27 | `routes-food.jpg` | `/routes/themed/food` | 封面 | 1200×630 | 各色中国美食彩色俯拍 |
-| 28 | `routes-food-hero.jpg` | `/routes/themed/food` | 内嵌 | 1200×800 | 四大美食路线代表菜肴拼图 |
-| 29 | `routes-history-timeline.jpg` | `/routes/themed/history` | 内嵌 | 1200×900 | 中国朝代时间轴信息图 |
-| 30 | `routes-by-duration.jpg` | `/routes/by-duration` | 封面 | 1200×630 | 路线时长选择示意图 |
-| 31 | `routes-by-gateway.jpg` | `/routes/by-gateway` | 封面 | 1200×630 | 主要国际机场航站楼 |
-| 32 | `routes-by-gateway-map.jpg` | `/routes/by-gateway` | 内嵌 | 1200×900 | 中国主要入境口岸分布地图 |
-| 33 | `by-travel-style.jpg` | `/by-travel-style` | 封面 | 1200×630 | 五种旅行风格代表场景拼图 |
-| 34 | `by-travel-style-hero.jpg` | `/by-travel-style` | 内嵌 | 1200×800 | 旅行风格选择横幅图 |
-| 35 | `comparison-index.jpg` | `/comparison` | 封面 | 1200×630 | 城市对比仪表盘示意图 |
-| 36 | `comparison-index-hero.jpg` | `/comparison` | 内嵌 | 1200×800 | 多维度城市对比数据可视化 |
+| 27 | `by-travel-style.jpg` | `/by-travel-style` | 封面 | 1200×630 | 旅行风格分类展示——背包客、家庭、商务、银发族与旅居人士 |
+| 28 | `by-travel-style-hero.jpg` | `/by-travel-style` | 内嵌 | 1200×800 | 五种旅行风格代表人物场景拼贴图 |
+| 29 | `comparison-airports.jpg` | `/comparison/airports` | 封面 | 1200×630 | 中国三大国际机场航站楼外观对比 |
+| 30 | `comparison-airports-hero.jpg` | `/comparison/airports` | 内嵌 | 1200×800 | 繁忙机场航站楼内部人流动线 |
+| 31 | `comparison-cities.jpg` | `/comparison/cities` | 封面 | 1200×630 | 中国主要旅游城市天际线对比 |
+| 32 | `comparison-cities-hero.jpg` | `/comparison/cities` | 内嵌 | 1200×800 | 城市多维评分对比信息图 |
+| 33 | `comparison-climate.jpg` | `/comparison/climate` | 封面 | 1200×630 | 四季气候对比展示 |
+| 34 | `comparison-climate-map.jpg` | `/comparison/climate` | 内嵌 | 1200×900 | 中国气候带分区地图 |
+| 35 | `comparison-cost.jpg` | `/comparison/cost` | 封面 | 1200×630 | 旅行费用对比展示——机票、住宿、餐饮、交通 |
+| 36 | `comparison-cost-hero.jpg` | `/comparison/cost` | 内嵌 | 1200×800 | 各城市日均花费对比信息图 |
+| 37 | `comparison-english.jpg` | `/comparison/english-friendly` | 封面 | 1200×630 | 英语友好度对比——中英文标识 |
+| 38 | `comparison-english-hero.jpg` | `/comparison/english-friendly` | 内嵌 | 1200×800 | 地铁站中英文双语标识实景 |
+| 39 | `comparison-index.jpg` | `/comparison` | 封面 | 1200×630 | 对比功能页合集展示 |
+| 40 | `comparison-index-hero.jpg` | `/comparison` | 内嵌 | 1200×800 | 城市对比功能导览信息图 |
+| 41 | `routes-ancient-capitals.jpg` | `/routes/ancient-capitals-route` | 封面 | 1200×630 | 古都线路标志性景观拼图 |
+| 42 | `routes-ancient-capitals-map.jpg` | `/routes/ancient-capitals-route` | 内嵌 | 1200×900 | 古都路线——北京、西安、洛阳、南京高铁连接地图 |
+| 43 | `routes-food.jpg` | `/routes/themed/food` | 封面 | 1200×630 | 中国地域美食合集——川菜火锅、广式点心、西安面食、云南菌菇 |
+| 44 | `routes-food-hero.jpg` | `/routes/themed/food` | 内嵌 | 1200×800 | 中华美食全景俯拍——八大菜系代表菜品组合 |
+| 45 | `routes-silk-road.jpg` | `/routes/silk-road-route` | 封面 | 1200×630 | 丝绸之路标志性景观拼贴 |
+| 46 | `routes-silk-road-map.jpg` | `/routes/silk-road-route` | 内嵌 | 1200×900 | 丝绸之路路线地图——西安至喀什沿途城市 |
+| 47 | `tools-budget-calculator.jpg` | `/tools/budget-calculator` | 封面 | 1200×630 | 预算计算器——旅行费用规划工具界面 |
+| 48 | `tools-budget-hero.jpg` | `/tools/budget-calculator` | 内嵌 | 1200×800 | 预算规划场景——人民币与旅途中记账本 |
+| 49 | `tools-calendar.jpg` | `/tools/calendar` | 封面 | 1200×630 | 中国旅行日历——四季最佳旅行地推荐 |
+| 50 | `tools-calendar-hero.jpg` | `/tools/calendar` | 内嵌 | 1200×800 | 四季风光拼贴——春樱夏荷秋叶冬雪 |
+| 51 | `tools-index.jpg` | `/tools` | 封面 | 1200×630 | 旅行工具合集——规划与准备 |
+| 52 | `tools-index-hero.jpg` | `/tools` | 内嵌 | 1200×800 | 旅行规划场景——笔记本电脑、日历、短语卡片、行李清单 |
+| 53 | `tools-itinerary.jpg` | `/tools/itinerary-planner` | 封面 | 1200×630 | 行程规划器——路线定制工具界面 |
+| 54 | `tools-itinerary-hero.jpg` | `/tools/itinerary-planner` | 内嵌 | 1200×800 | 旅行者在地图上标记中国路线——北京、西安、成都、桂林、上海 |
+| 55 | `tools-packing.jpg` | `/tools/packing-list` | 封面 | 1200×630 | 行李清单——旅行必备物品列表 |
+| 56 | `tools-packing-hero.jpg` | `/tools/packing-list` | 内嵌 | 1200×800 | 旅行物品平铺——护照、手机、充电宝、转换插头、翻译卡 |
+| 57 | `tools-phrases.jpg` | `/tools/phrase-cards` | 封面 | 1200×630 | 中文短语卡片——旅行常用语 |
+| 58 | `tools-phrases-hero.jpg` | `/tools/phrase-cards` | 内嵌 | 1200×800 | 双语短语卡片——英文与中文汉字拼音对照 |
+| 59 | `tools-quiz.jpg` | `/tools/quiz` | 封面 | 1200×630 | 旅行测验——Interactive Quiz界面 |
+| 60 | `tools-quiz-hero.jpg` | `/tools/quiz` | 内嵌 | 1200×800 | 手机端Quiz测试界面预览 |
 
 ---
 
 ## 按页面汇总
 
-| 页面 | 待提供数量 | 文件 |
-|------|----------|------|
-| /by-travel-style | 2 | `by-travel-style.jpg` `by-travel-style-hero.jpg` |
-| /comparison | 2 | `comparison-index.jpg` `comparison-index-hero.jpg` |
-| /country/ethnic-groups | 1 | `ethnic-groups-collage.jpg` |
-| /country/food-culture | 2 | `food-culture.jpg` `eight-cuisines.jpg` |
-| /country/internet-guide | 5 | `internet-guide.jpg` `internet-sim-purchase.jpg` `internet-sim-plans.jpg` `internet-esim-activate.jpg` `internet-wifi-hotspot.jpg` |
-| /country/language-guide | 5 | `language-guide.jpg` `language-pleco.jpg` `language-metro-sign.jpg` `language-metro-map.jpg` `language-didi-setup.jpg` |
-| /country/size-and-regions | 3 | `china-regions.jpg` `china-size-comparison.jpg` `china-seven-regions.jpg` |
-| /country/travel-tips | 3 | `travel-tips.jpg` `pre-trip-checklist.jpg` `china-apps-phone.jpg` |
-| /country/visa-policy | 1 | `visa-guide.jpg` |
-| /country/visa-tourist-guide | 2 | `visa-tourist-guide.jpg` `visa-process.jpg` |
-| /routes/144-hour-transit | 2 | `routes-transit.jpg` `routes-transit-map.jpg` |
-| /routes/by-duration | 1 | `routes-by-duration.jpg` |
-| /routes/by-gateway | 2 | `routes-by-gateway.jpg` `routes-by-gateway-map.jpg` |
-| /routes/golden-route | 2 | `routes-golden-route.jpg` `routes-golden-map.jpg` |
-| /routes/themed/food | 2 | `routes-food.jpg` `routes-food-hero.jpg` |
-| /routes/themed/history | 1 | `routes-history-timeline.jpg` |
+| 页面 | 待提供数量 |
+|------|----------|
+| `/country/size-and-regions` | 3 |
+| `/country/ethnic-groups` | 1 |
+| `/country/food-culture` | 2 |
+| `/country/visa-policy` | 1 |
+| `/country/visa-tourist-guide` | 2 |
+| `/country/travel-tips` | 3 |
+| `/country/internet-guide` | 5 |
+| `/country/language-guide` | 5 |
+| `/routes/golden-route` | 2 |
+| `/routes/144-hour-transit` | 2 |
+| `/by-travel-style` | 2 |
+| `/comparison/airports` | 2 |
+| `/comparison/cities` | 2 |
+| `/comparison/climate` | 2 |
+| `/comparison/cost` | 2 |
+| `/comparison/english-friendly` | 2 |
+| `/comparison` | 2 |
+| `/routes/ancient-capitals-route` | 2 |
+| `/routes/themed/food` | 2 |
+| `/routes/silk-road-route` | 2 |
+| `/tools/budget-calculator` | 2 |
+| `/tools/calendar` | 2 |
+| `/tools` | 2 |
+| `/tools/itinerary-planner` | 2 |
+| `/tools/packing-list` | 2 |
+| `/tools/phrase-cards` | 2 |
+| `/tools/quiz` | 2 |
 
 ---
 
-> **统计：** 已上传 118 张 ✅ | 待提供 36 张 ❌
-
-> **备注：** 6个 comparison 子页（climate/cost/english/airports/cities/head-to-head）和 6个 tools 子页（calendar/quiz/budget/packing/itinerary/phrases）的图片因数量较多，归入上表对应父页面。如已部分上传，请告知具体文件名以更新清单。
+> **统计：** 已上传 122 张 ✅ | 待提供 60 张 ❌
