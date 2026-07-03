@@ -10,9 +10,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const entry = getContentBySlug('routes', params.slug);
   if (!entry) return {};
   return {
-    alternates: { canonical: `/routes/$(p.slug)${params.slug}` },
+    alternates: { canonical: `/routes/${params.slug}` },
     title: entry.meta.seoTitle || entry.meta.title,
-    description: entry.meta.seoDescription || entry.meta.description,,
+    description: entry.meta.seoDescription || entry.meta.description,
     keywords: entry.meta.keywords?.join(', '),
     openGraph: {
       title: entry.meta.seoTitle || entry.meta.title,
