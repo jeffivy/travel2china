@@ -161,6 +161,7 @@ p { margin-bottom: 1rem; }
 
 /* ===== Prose / Article Content ===== */
 .prose { max-width: none !important; }
+.prose h1 { font-size: 1.5rem; font-weight: 700; margin: 1.5rem 0 0.75rem; line-height: 1.3; }
 
 .prose img {
   border-radius: 0.75rem;
