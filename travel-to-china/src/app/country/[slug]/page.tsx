@@ -16,9 +16,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const entry = getContentBySlug('country', params.slug);
   if (!entry) return {};
   return {
-    alternates: { canonical: `/country/$(p.slug)${params.slug}` },
+    alternates: { canonical: `/country/${params.slug}` },
     title: entry.meta.seoTitle || entry.meta.title,
-    description: entry.meta.seoDescription || entry.meta.description,,
+    description: entry.meta.seoDescription || entry.meta.description,
     keywords: entry.meta.keywords?.join(', '),
     openGraph: {
       title: entry.meta.seoTitle || entry.meta.title,
