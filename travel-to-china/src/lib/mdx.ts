@@ -29,6 +29,7 @@ export interface ContentMeta {
   // SEO
   seoTitle?: string;
   seoDescription?: string;
+  keywords?: string[];
 }
 
 export interface ContentEntry {
