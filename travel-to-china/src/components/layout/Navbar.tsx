@@ -150,7 +150,7 @@ export default function Navbar() {
                     )}
                   </Link>
                   {openDropdown === item.label && (
-                    <div className="absolute top-full left-0 mt-2 w-56 bg-[var(--card)] border border-[var(--border)] rounded-xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] py-2 animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div className="absolute top-full left-0 mt-2 w-56 max-h-[70vh] overflow-y-auto bg-[var(--card)] border border-[var(--border)] rounded-xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] py-2 animate-in fade-in slide-in-from-top-2 duration-200">
                       <div className="absolute -top-1.5 left-5 w-3 h-3 bg-[var(--card)] border-t border-l border-[var(--border)] rotate-45" />
                       {item.children.map((child) => (
                         <Link
