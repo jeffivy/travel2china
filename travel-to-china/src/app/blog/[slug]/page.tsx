@@ -26,7 +26,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           <Link href="/" className="inline-flex items-center gap-1 text-sm text-[var(--muted)] hover:text-[var(--primary)] transition-colors mb-6">
             <ArrowLeft className="w-4 h-4" /> Home
           </Link>
-          <h1 className="text-4xl md:text-5xl font-bold mb-3">{entry.meta.title}</h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-3">{entry.meta.title}</h1>
           <p className="text-lg text-[var(--muted)] max-w-3xl">{entry.meta.description}</p>
           {entry.meta.date && <p className="text-sm text-[var(--muted)] mt-3">{entry.meta.date}</p>}
         </div>
