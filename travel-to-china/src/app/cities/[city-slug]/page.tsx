@@ -6,6 +6,7 @@ import MDXContent from '@/components/content/MDXContent';
 import Comments from '@/components/comments/Comments';
 import { ArrowLeft, Clock, Calendar, User, MapPin, Sun, Thermometer } from 'lucide-react';
 import ShareButtons from '@/components/ui/ShareButtons';
+import RecommendCard from '@/components/layout/RecommendCard';
 import SubscribeCard from '@/components/ui/SubscribeCard';
 import { readingTime } from '@/lib/utils';
 
@@ -177,6 +178,16 @@ export default function CityPage({ params }: { params: { 'city-slug': string } }
             </div>
           );
         })()}
+
+        {/* Recommendation Card */}
+        {related.length > 0 && (
+          <RecommendCard
+            title={related[0].meta.title}
+            description={related[0].meta.description}
+            href={`/cities/${related[0].slug}`}
+            label="Explore Next City"
+          />
+        )}
 
         {/* Comments */}
         <section className="mt-16 pt-8 border-t border-[var(--border)]">

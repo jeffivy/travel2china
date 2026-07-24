@@ -5,6 +5,7 @@ import { SessionProvider } from '@/components/layout/SessionProvider';
 import { AnalyticsProvider } from '@/components/layout/AnalyticsProvider';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import ReadingProgress from '@/components/layout/ReadingProgress';
 import { OrganizationSchema, WebsiteSchema } from '@/components/layout/StructuredData';
 
 const displayFont = Marcellus({
@@ -69,6 +70,7 @@ export default function RootLayout({
         <WebsiteSchema />
       </head>
       <body className={`${displayFont.variable} ${bodyFont.variable} antialiased min-h-screen flex flex-col font-body`}>
+        <ReadingProgress />
         <SessionProvider>
           <AnalyticsProvider>
             <Navbar />
