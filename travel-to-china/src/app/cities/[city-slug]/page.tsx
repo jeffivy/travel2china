@@ -147,6 +147,37 @@ export default function CityPage({ params }: { params: { 'city-slug': string } }
           </div>
         )}
 
+        {/* Next / Previous City Navigation */}
+        {(() => {
+          const allCities = getAllContent('cities');
+          const currentIndex = allCities.findIndex(c => c.slug === slug);
+          const prev = currentIndex > 0 ? allCities[currentIndex - 1] : null;
+          const next = currentIndex < allCities.length - 1 ? allCities[currentIndex + 1] : null;
+          if (!prev && !next) return null;
+          return (
+            <div className={`mt-12 grid ${prev && next ? 'grid-cols-2' : 'grid-cols-1'} gap-4`}>
+              {prev && (
+                <Link href={`/cities/${prev.slug}`} className="card p-4 group flex items-center gap-3">
+                  <span className="text-2xl">←</span>
+                  <div>
+                    <span className="text-xs text-[var(--muted)]">Previous City</span>
+                    <p className="font-semibold group-hover:text-[var(--primary)] transition-colors">{prev.meta.title}</p>
+                  </div>
+                </Link>
+              )}
+              {next && (
+                <Link href={`/cities/${next.slug}`} className="card p-4 group flex items-center justify-end gap-3 text-right">
+                  <div>
+                    <span className="text-xs text-[var(--muted)]">Next City</span>
+                    <p className="font-semibold group-hover:text-[var(--primary)] transition-colors">{next.meta.title}</p>
+                  </div>
+                  <span className="text-2xl">→</span>
+                </Link>
+              )}
+            </div>
+          );
+        })()}
+
         {/* Comments */}
         <section className="mt-16 pt-8 border-t border-[var(--border)]">
           <ShareButtons title={entry.meta.title} description={entry.meta.description} />

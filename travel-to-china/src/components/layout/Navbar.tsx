@@ -73,6 +73,9 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [searchSuggestions, setSearchSuggestions] = useState<{ title: string; slug: string; category: string; description?: string }[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const searchTimeout = useRef<NodeJS.Timeout | null>(null);
   const closeTimer = useRef<NodeJS.Timeout | null>(null);
   const pathname = usePathname();
   const { data: session } = useSession();
@@ -90,8 +93,30 @@ export default function Navbar() {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
+    setShowSuggestions(false);
     if (searchQuery.trim()) {
       window.location.href = `/search?q=${encodeURIComponent(searchQuery.trim())}`;
+    }
+  };
+
+  const handleSearchChange = (value: string) => {
+    setSearchQuery(value);
+    if (value.trim().length >= 2) {
+      // Debounce suggestions fetch
+      if (searchTimeout.current) clearTimeout(searchTimeout.current);
+      searchTimeout.current = setTimeout(async () => {
+        try {
+          const res = await fetch(`/api/search/suggestions?q=${encodeURIComponent(value.trim())}`);
+          if (res.ok) {
+            const data = await res.json();
+            setSearchSuggestions(data.suggestions || []);
+            setShowSuggestions(true);
+          }
+        } catch { /* ignore */ }
+      }, 200);
+    } else {
+      setSearchSuggestions([]);
+      setShowSuggestions(false);
     }
   };
 
@@ -191,7 +216,9 @@ export default function Navbar() {
               <input
                 type="text"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => handleSearchChange(e.target.value)}
+                onFocus={() => { if (searchSuggestions.length > 0) setShowSuggestions(true); }}
+                onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
                 placeholder="Search..."
                 className="w-36 pl-9 pr-3 py-2 text-[0.9rem] border border-[var(--border)] rounded-lg
                            bg-[var(--surface)] text-[var(--foreground)] placeholder:text-[var(--muted)]
@@ -199,6 +226,26 @@ export default function Navbar() {
                            focus:w-52 transition-all duration-300"
               />
               <Search className="absolute left-2.5 top-2.5 w-4 h-4 text-[var(--muted)]" />
+              {/* Search Suggestions Dropdown */}
+              {showSuggestions && searchSuggestions.length > 0 && (
+                <div className="absolute top-full left-0 right-0 mt-1 w-72 bg-[var(--card)] border border-[var(--border)] rounded-xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] py-2 z-50">
+                  {searchSuggestions.map((s, i) => {
+                    const href = s.category === 'cities' ? `/cities/${s.slug}` :
+                                 s.category === 'country' ? `/country/${s.slug}` :
+                                 `/search?q=${encodeURIComponent(s.title)}`;
+                    return (
+                      <a
+                        key={i}
+                        href={href}
+                        className="block px-4 py-2 text-sm hover:bg-[var(--card-hover)] transition-colors"
+                      >
+                        <span className="font-medium text-[var(--foreground)]">{s.title}</span>
+                        <span className="ml-2 text-xs text-[var(--muted)] capitalize">{s.category}</span>
+                      </a>
+                    );
+                  })}
+                </div>
+              )}
             </form>
 
             {/* Theme Toggle */}
