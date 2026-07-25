@@ -36,10 +36,10 @@ export default function TravelStyleSlugPage({ params }: { params: { slug: string
             image={entry.meta.image}
             datePublished={entry.meta.date}
             author={entry.meta.author}
-            url={SITE_URL + "/" + rel.replace("/page.tsx", "").replace("\\", "/") + "/" + "params.slug"}
+            url={SITE_URL + "/by-travel-style/" + params.slug}
           />
           <BreadcrumbSchema
-            items={{ name: "Home", url: SITE_URL }, { name: "By-travel-style", url: SITE_URL + "/by-travel-style" }, { name: entry.meta.title, url: SITE_URL + "/by-travel-style/" + params.slug }}
+            items={[{ name: "Home", url: SITE_URL }, { name: "Travel Styles", url: SITE_URL + "/by-travel-style" }, { name: entry.meta.title, url: SITE_URL + "/by-travel-style/" + params.slug }]}
           />
           <p className="text-lg text-[var(--muted)] max-w-3xl">{entry.meta.description}</p>
         </div>
