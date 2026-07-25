@@ -6,6 +6,7 @@ import MDXContent from '@/components/content/MDXContent';
 import Comments from '@/components/comments/Comments';
 import { ArrowLeft, Clock, Calendar, User } from 'lucide-react';
 import { readingTime } from '@/lib/utils';
+import { ArticleSchema } from "@/components/layout/StructuredData"
 
 export async function generateStaticParams() {
   const articles = getAllContent('country');
@@ -57,6 +58,14 @@ export default function CountryArticlePage({ params }: { params: { slug: string 
           <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
             {entry.meta.title}
           </h1>
+          <ArticleSchema
+            title={entry.meta.seoTitle || entry.meta.title}
+            description={entry.meta.seoDescription || entry.meta.description}
+            image={entry.meta.image}
+            datePublished={entry.meta.date}
+            author={entry.meta.author}
+            url={SITE_URL + "/country/" + params.slug}
+          />
           <p className="text-xl text-[var(--muted)] mb-6">{entry.meta.description}</p>
           <div className="flex flex-wrap items-center gap-4 text-sm text-[var(--muted)]">
             {entry.meta.author && (

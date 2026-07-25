@@ -4,6 +4,7 @@ import Link from 'next/link';
 import MDXContent from '@/components/content/MDXContent';
 import { ArrowLeft } from 'lucide-react';
 import { readingTime } from '@/lib/utils';
+import { ArticleSchema, BreadcrumbSchema } from "@/components/layout/StructuredData"
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const entry = getContentBySlug('by-travel-style', params.slug);
@@ -15,6 +16,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     keywords: entry.meta.keywords?.join(', '),
   };
 }
+const SITE_URL = "https://travels2china.com";
+
 export default function TravelStyleSlugPage({ params }: { params: { slug: string } }) {
   const entry = getContentBySlug('by-travel-style', params.slug);
   if (!entry) notFound();
@@ -27,6 +30,17 @@ export default function TravelStyleSlugPage({ params }: { params: { slug: string
             <ArrowLeft className="w-4 h-4" /> All Travel Styles
           </Link>
           <h1 className="text-4xl md:text-5xl font-bold mb-3">{entry.meta.title}</h1>
+          <ArticleSchema
+            title={entry.meta.seoTitle || entry.meta.title}
+            description={entry.meta.seoDescription || entry.meta.description}
+            image={entry.meta.image}
+            datePublished={entry.meta.date}
+            author={entry.meta.author}
+            url={SITE_URL + "/" + rel.replace("/page.tsx", "").replace("\\", "/") + "/" + "params.slug"}
+          />
+          <BreadcrumbSchema
+            items={{ name: "Home", url: SITE_URL }, { name: "By-travel-style", url: SITE_URL + "/by-travel-style" }, { name: entry.meta.title, url: SITE_URL + "/by-travel-style/" + params.slug }}
+          />
           <p className="text-lg text-[var(--muted)] max-w-3xl">{entry.meta.description}</p>
         </div>
       </section>

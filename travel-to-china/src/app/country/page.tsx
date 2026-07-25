@@ -1,14 +1,21 @@
 import { getAllContent } from '@/lib/mdx';
 import Link from 'next/link';
 import { ArrowRight, BookOpen } from 'lucide-react';
+import { ItemListSchema } from "@/components/layout/StructuredData"
 
 export const metadata = {
   title: 'China Overview — Country Guide',
   description: 'Comprehensive guide to China — geography, ethnic groups, food culture, and visa policies.',
 };
 
+const SITE_URL = "https://travels2china.com";
+
 export default function CountryPage() {
   const articles = getAllContent('country');
+<ItemListSchema
+            items={articles.map((item) => ({ name: item.meta.seoTitle || item.meta.title, url: SITE_URL + item.slug.replace("index", ""), description: item.meta.seoDescription || item.meta.description }))}
+            itemType="Article"
+          />
 
   return (
     <>

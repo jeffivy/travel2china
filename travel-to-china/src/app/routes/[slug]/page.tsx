@@ -5,6 +5,7 @@ import MDXContent from '@/components/content/MDXContent';
 import Breadcrumbs from '@/components/layout/Breadcrumbs';
 import { ArrowLeft, Clock, Calendar, MapPin } from 'lucide-react';
 import { readingTime } from '@/lib/utils';
+import { BreadcrumbSchema } from "@/components/layout/StructuredData"
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const entry = getContentBySlug('routes', params.slug);
@@ -21,6 +22,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     },
   };
 }
+const SITE_URL = "https://travels2china.com";
+
 export default function RoutePage({ params }: { params: { slug: string } }) {
   const entry = getContentBySlug('routes', params.slug);
   if (!entry) notFound();
@@ -71,6 +74,7 @@ export default function RoutePage({ params }: { params: { slug: string } }) {
       </section>
 
       <Breadcrumbs crumbs={breadcrumbs} />
+          <BreadcrumbSchema items={breadcrumbs.map((c, i) => ({ ...c, url: SITE_URL + (c.href || c.url) }))} />
 
       <article className="container-content py-10">
         <div className="flex flex-wrap items-center gap-4 text-sm text-[var(--muted)] mb-8">

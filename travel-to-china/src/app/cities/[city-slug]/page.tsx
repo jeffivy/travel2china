@@ -9,6 +9,7 @@ import ShareButtons from '@/components/ui/ShareButtons';
 import RecommendCard from '@/components/layout/RecommendCard';
 import SubscribeCard from '@/components/ui/SubscribeCard';
 import { readingTime } from '@/lib/utils';
+import { TouristAttractionSchema } from "@/components/layout/StructuredData"
 
 export async function generateStaticParams() {
   const cities = getAllContent('cities');
@@ -57,6 +58,15 @@ export default function CityPage({ params }: { params: { 'city-slug': string } }
             />
           )}
           <h1 className="text-4xl md:text-5xl font-bold mb-3">{entry.meta.title}</h1>
+          <TouristAttractionSchema
+            name={entry.meta.seoTitle || entry.meta.title}
+            description={entry.meta.seoDescription || entry.meta.description}
+            image={entry.meta.image}
+            url={SITE_URL + "/cities/" + slug}
+            addressLocality={entry.meta.title}
+            addressRegion={entry.meta.region}
+            addressCountry="CN"
+          />
           <p className="text-lg text-[var(--muted)] max-w-3xl mb-6">{entry.meta.description}</p>
 
           {/* City Stats */}

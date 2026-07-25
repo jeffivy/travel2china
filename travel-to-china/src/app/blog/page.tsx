@@ -2,16 +2,23 @@ import { getAllContent } from '@/lib/mdx';
 import Link from 'next/link';
 import { BookOpen, ArrowRight } from 'lucide-react';
 import { readingTime } from '@/lib/utils';
+import { ItemListSchema } from "@/components/layout/StructuredData"
 
 export const metadata = {
   title: 'China Travel Blog – Tips, Guides & Stories',
   description: 'Read our China travel blog — destination guides, itinerary ideas, food recommendations, visa tips, and firsthand travel stories from across China.',
 };
 
+const SITE_URL = "https://travels2china.com";
+
 export default function BlogIndexPage() {
   const posts = getAllContent('blog').sort(
     (a, b) => new Date(b.meta.date || '').getTime() - new Date(a.meta.date || '').getTime()
   );
+<ItemListSchema
+            items={posts.map((item) => ({ name: item.meta.seoTitle || item.meta.title, url: SITE_URL + item.slug.replace("index", ""), description: item.meta.seoDescription || item.meta.description }))}
+            itemType="Article"
+          />
 
   return (
     <>

@@ -5,6 +5,7 @@ import MDXContent from '@/components/content/MDXContent';
 import Breadcrumbs from '@/components/layout/Breadcrumbs';
 import { ArrowLeft } from 'lucide-react';
 import { readingTime } from '@/lib/utils';
+import { BreadcrumbSchema } from "@/components/layout/StructuredData"
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const entry = getContentBySlug('comparison', params.slug);
@@ -16,6 +17,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     keywords: entry.meta.keywords?.join(', '),
   };
 }
+const SITE_URL = "https://travels2china.com";
+
 export default function ComparisonSlugPage({ params }: { params: { slug: string } }) {
   const entry = getContentBySlug('comparison', params.slug);
   if (!entry) notFound();
@@ -39,6 +42,7 @@ export default function ComparisonSlugPage({ params }: { params: { slug: string 
       </section>
 
       <Breadcrumbs crumbs={breadcrumbs} />
+          <BreadcrumbSchema items={breadcrumbs.map((c, i) => ({ ...c, url: SITE_URL + (c.href || c.url) }))} />
 
       <article className="container-content py-10">
         <div className="flex items-center gap-4 text-sm text-[var(--muted)] mb-8">

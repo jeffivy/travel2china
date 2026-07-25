@@ -1,14 +1,21 @@
 import { getAllContent } from '@/lib/mdx';
 import Link from 'next/link';
 import { MapPin } from 'lucide-react';
+import { ItemListSchema } from "@/components/layout/StructuredData"
 
 export const metadata = {
   title: 'Popular Cities in China',
   description: 'Explore China\'s most popular travel destinations — Beijing, Shanghai, Chengdu, Xi\'an, Guilin, and more.',
 };
 
+const SITE_URL = "https://travels2china.com";
+
 export default function CitiesPage() {
   const cities = getAllContent('cities');
+<ItemListSchema
+            items={cities.map((item) => ({ name: item.meta.seoTitle || item.meta.title, url: SITE_URL + item.slug.replace("index", ""), description: item.meta.seoDescription || item.meta.description }))}
+            itemType="Article"
+          />
 
   return (
     <>
