@@ -81,7 +81,7 @@ export function getContentBySlug(category: string, slug: string): ContentEntry |
 }
 
 // Get all content of a specific category
-export function getAllContent(category: 'country' | 'cities' | 'blog'): ContentEntry[] {
+export function getAllContent(category: string): ContentEntry[] {
   const files = getContentFiles(category);
   return files
     .map((file) => {
@@ -107,7 +107,7 @@ export function getRelatedArticles(currentSlug: string, category: string, limit 
   const current = getContentBySlug(category, currentSlug);
   if (!current) return [];
 
-  const allOthers = getAllContent(category as 'country' | 'cities').filter(
+  const allOthers = getAllContent(category).filter(
     (entry) => entry.slug !== currentSlug
   );
 

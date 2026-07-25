@@ -98,3 +98,103 @@ export function FAQSchema({
     />
   );
 }
+
+
+export function ArticleSchema({
+  title, description, image, datePublished, author, url
+}: {
+  title: string;
+  description: string;
+  image?: string;
+  datePublished?: string;
+  author?: string;
+  url?: string;
+}) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: title,
+    description: description,
+    ...(image && { image: image }),
+    ...(datePublished && { datePublished: datePublished }),
+    ...(author && { author: { "@type": "Person", name: author } }),
+    ...(url && { url: url, mainEntityOfPage: url }),
+    publisher: {
+      "@type": "Organization",
+      name: "Travel to China",
+      logo: { "@type": "ImageObject", url: "https://travels2china.com/images/china-overview.jpg" },
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+export function TouristAttractionSchema({
+  name, description, image, url, addressLocality, addressRegion, addressCountry
+}: {
+  name: string;
+  description: string;
+  image?: string;
+  url?: string;
+  addressLocality?: string;
+  addressRegion?: string;
+  addressCountry?: string;
+}) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "TouristAttraction",
+    name: name,
+    description: description,
+    ...(image && { image: image }),
+    ...(url && { url: url }),
+    ...(addressLocality && {
+      address: {
+        "@type": "PostalAddress",
+        ...(addressLocality && { addressLocality }),
+        ...(addressRegion && { addressRegion }),
+        ...(addressCountry && { addressCountry }),
+      },
+    }),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+export function ItemListSchema({
+  items, itemType
+}: {
+  items: { name: string; url: string; description?: string }[];
+  itemType?: string;
+}) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": itemType || "Thing",
+        name: item.name,
+        ...(item.url && { url: item.url }),
+        ...(item.description && { description: item.description }),
+      },
+    })),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
