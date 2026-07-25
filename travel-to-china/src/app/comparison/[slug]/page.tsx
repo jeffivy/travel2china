@@ -42,7 +42,7 @@ export default function ComparisonSlugPage({ params }: { params: { slug: string 
       </section>
 
       <Breadcrumbs crumbs={breadcrumbs} />
-          <BreadcrumbSchema items={breadcrumbs.map((c, i) => ({ ...c, url: SITE_URL + (c.href || c.url) }))} />
+          <BreadcrumbSchema items={breadcrumbs.map((c) => ({ name: c.label, url: SITE_URL + c.href }))} />
 
       <article className="container-content py-10">
         <div className="flex items-center gap-4 text-sm text-[var(--muted)] mb-8">
