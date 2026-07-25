@@ -10,6 +10,7 @@ import RecommendCard from '@/components/layout/RecommendCard';
 import SubscribeCard from '@/components/ui/SubscribeCard';
 import { readingTime } from '@/lib/utils';
 import { TouristAttractionSchema } from "@/components/layout/StructuredData"
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://travels2china.com';
 
 export async function generateStaticParams() {
   const cities = getAllContent('cities');

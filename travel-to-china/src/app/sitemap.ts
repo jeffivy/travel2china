@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { getAllContent } from '@/lib/mdx';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://travels2china.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://travels2china.com';

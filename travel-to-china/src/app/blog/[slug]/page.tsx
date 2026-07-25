@@ -5,6 +5,7 @@ import MDXContent from '@/components/content/MDXContent';
 import { ArrowLeft } from 'lucide-react';
 import { readingTime } from '@/lib/utils';
 import { ArticleSchema, BreadcrumbSchema } from "@/components/layout/StructuredData"
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://travels2china.com';
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const entry = getContentBySlug('blog', params.slug);

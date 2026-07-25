@@ -7,6 +7,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import ReadingProgress from '@/components/layout/ReadingProgress';
 import { OrganizationSchema, WebsiteSchema } from '@/components/layout/StructuredData';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://travels2china.com';
 
 const displayFont = Marcellus({
   subsets: ['latin'],
