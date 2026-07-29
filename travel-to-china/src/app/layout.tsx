@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   description:
     'Comprehensive travel guide for China — discover cities, food, culture, visa information, and practical tips for your journey.',
   keywords: ['China', 'travel', 'guide', 'tourism', 'Beijing', 'Shanghai', 'Chinese food', 'visa'],
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://travel-to-china.vercel.app'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://travels2china.com'),
   openGraph: {
     title: 'Travel to China — Your Ultimate China Travel Guide',
     description: 'Comprehensive travel guide for China — discover cities, food, culture, visa information, and practical tips.',
