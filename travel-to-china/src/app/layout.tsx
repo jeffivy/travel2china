@@ -34,13 +34,22 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://travel-to-china.vercel.app'),
   openGraph: {
     title: 'Travel to China — Your Ultimate China Travel Guide',
-    description: 'Comprehensive travel guide for China.',
+    description: 'Comprehensive travel guide for China — discover cities, food, culture, visa information, and practical tips.',
     type: 'website',
     locale: 'en_US',
+    siteName: 'Travel to China',
+    images: [{ url: '/images/china-overview.jpg', width: 1200, height: 630, alt: 'Travel to China' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Travel to China — Your Ultimate China Travel Guide',
+    description: 'Comprehensive travel guide for China.',
+    images: ['/images/china-overview.jpg'],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: { index: true, follow: true, 'max-video-preview': -1, 'max-image-preview': 'large', 'max-snippet': -1 },
   },
 };
 

@@ -226,6 +226,15 @@ export default function TermsPage() {
             </p>
           </section>
         </div>
+        <div className="mt-12 pt-8 border-t border-[var(--border)]">
+          <h3 className="text-lg font-bold mb-3">While You're Here</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+            <a href="/cities" className="text-[var(--primary)] hover:underline">City Guides</a>
+            <a href="/country/visa-tourist-guide" className="text-[var(--primary)] hover:underline">Visa Guide</a>
+            <a href="/tools/calendar" className="text-[var(--primary)] hover:underline">Travel Calendar</a>
+            <a href="/about" className="text-[var(--primary)] hover:underline">About Us</a>
+          </div>
+        </div>
       </article>
     </>
   );
