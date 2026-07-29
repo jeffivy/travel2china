@@ -110,12 +110,14 @@ export function ArticleSchema({
   author?: string;
   url?: string;
 }) {
+  const safeImage = image?.startsWith('http') ? image : `https://travels2china.com${image || ''}`;
+  const safeDescription = (description || '').substring(0, 300);
   const schema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: title,
-    description: description,
-    ...(image && { image: image }),
+    description: safeDescription,
+    ...(safeImage && { image: [safeImage] }),
     ...(datePublished && { datePublished: datePublished }),
     ...(author && { author: { "@type": "Person", name: author } }),
     ...(url && { url: url, mainEntityOfPage: url }),
@@ -145,12 +147,14 @@ export function TouristAttractionSchema({
   addressRegion?: string;
   addressCountry?: string;
 }) {
+  const safeImage = image?.startsWith('http') ? image : `https://travels2china.com${image || ''}`;
+  const safeDescription = (description || '').substring(0, 300);
   const schema = {
     "@context": "https://schema.org",
     "@type": "TouristAttraction",
-    name: name,
-    description: description,
-    ...(image && { image: image }),
+    name: name || '',
+    description: safeDescription,
+    ...(safeImage && { image: [safeImage] }),
     ...(url && { url: url }),
     ...(addressLocality && {
       address: {
