@@ -1,4 +1,4 @@
-import { getContentBySlug } from '@/lib/mdx';
+import { getContentBySlug, shouldNoindex } from '@/lib/mdx';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import MDXContent from '@/components/content/MDXContent';
@@ -14,6 +14,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     title: entry.meta.seoTitle || entry.meta.title,
     description: entry.meta.seoDescription || entry.meta.description,
     keywords: entry.meta.keywords?.join(', '),
+    robots: shouldNoindex('by-travel-style', params.slug) ? { index: false } : undefined,
   };
 }
 const SITE_URL = "https://travels2china.com";

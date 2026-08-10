@@ -22,6 +22,12 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
       sessionStorage.setItem('session_id', sessionId);
     }
 
+    // Extract UTM params from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const utmSource = urlParams.get('utm_source');
+    const utmMedium = urlParams.get('utm_medium');
+    const utmCampaign = urlParams.get('utm_campaign');
+
     // Record page view
     fetch('/api/stats/pageview', {
       method: 'POST',
@@ -32,6 +38,9 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
         sessionId,
         referrer: document.referrer,
         userAgent: navigator.userAgent,
+        utmSource,
+        utmMedium,
+        utmCampaign,
       }),
     }).catch(() => {});
 

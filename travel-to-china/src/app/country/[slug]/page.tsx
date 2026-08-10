@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Breadcrumbs from '@/components/layout/Breadcrumbs';
 import MDXContent from '@/components/content/MDXContent';
 import Comments from '@/components/comments/Comments';
+import SubscribeCard from '@/components/ui/SubscribeCard';
 import { ArrowLeft, Clock, Calendar, User } from 'lucide-react';
 import { readingTime } from '@/lib/utils';
 import { ArticleSchema } from "@/components/layout/StructuredData"
@@ -131,6 +132,20 @@ export default function CountryArticlePage({ params }: { params: { slug: string 
                     );
                   })}
               </nav>
+              {/* In-sidebar Subscribe CTA */}
+              <div className="mt-6">
+                <SubscribeCard
+                  variant="compact"
+                  title={params.slug === 'payment-guide-v2'
+                    ? 'Get China payment updates'
+                    : params.slug === 'visa-tourist-guide'
+                    ? 'Get visa policy updates'
+                    : 'Get China travel tips'}
+                  leadMagnet={['payment-guide-v2', 'visa-tourist-guide'].includes(params.slug)
+                    ? 'Free China Travel Checklist'
+                    : undefined}
+                />
+              </div>
             </div>
           </aside>
         </div>
@@ -151,6 +166,26 @@ export default function CountryArticlePage({ params }: { params: { slug: string 
             </div>
           </div>
         )}
+
+        {/* Subscribe CTA */}
+        <section className="mt-12">
+          <SubscribeCard
+            variant="inline"
+            title={params.slug === 'payment-guide-v2'
+              ? 'Get China Payment Updates'
+              : params.slug === 'visa-tourist-guide'
+              ? 'Get China Visa Policy Updates'
+              : 'Get Weekly China Travel Tips'}
+            description={params.slug === 'payment-guide-v2'
+              ? 'Payment rules change fast in China. Get updates on Alipay, WeChat Pay, and new foreigner-friendly features.'
+              : params.slug === 'visa-tourist-guide'
+              ? 'China visa policies evolve frequently. Stay informed about new transit policies and visa-free expansions.'
+              : undefined}
+            leadMagnet={['payment-guide-v2', 'visa-tourist-guide'].includes(params.slug)
+              ? 'Free China Travel Checklist'
+              : undefined}
+          />
+        </section>
 
         {/* Comments Section */}
         <div className="mt-16 pt-10 border-t border-[var(--border)]">

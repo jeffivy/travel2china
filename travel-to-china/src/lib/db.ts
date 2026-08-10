@@ -60,6 +60,7 @@ export async function initializeDatabase(): Promise<void> {
       visitor_id TEXT NOT NULL,
       session_id TEXT NOT NULL,
       event_type TEXT NOT NULL DEFAULT 'pageview',
+      duration INTEGER,
       created_at TEXT DEFAULT (datetime('now'))
     );
 
@@ -97,6 +98,12 @@ export async function initializeDatabase(): Promise<void> {
     CREATE INDEX IF NOT EXISTS idx_search_logs_created ON search_logs(created_at);
     CREATE INDEX IF NOT EXISTS idx_page_events_session ON page_events(session_id);
   `);
+
+  // Safe migrations: add columns that may not exist in older table versions
+  await db.execute(`ALTER TABLE page_events ADD COLUMN duration INTEGER`).catch(() => {});
+  await db.execute(`ALTER TABLE page_views ADD COLUMN utm_source TEXT`).catch(() => {});
+  await db.execute(`ALTER TABLE page_views ADD COLUMN utm_medium TEXT`).catch(() => {});
+  await db.execute(`ALTER TABLE page_views ADD COLUMN utm_campaign TEXT`).catch(() => {});
 }
 
 export async function getAll<T = Record<string, unknown>>(sql: string, args: InValue[] = []): Promise<T[]> {

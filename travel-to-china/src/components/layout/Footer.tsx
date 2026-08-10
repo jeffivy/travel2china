@@ -38,7 +38,7 @@ export default function Footer() {
               <li><Link href="/country/food-culture" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Food Culture</Link></li>
               <li><Link href="/country/visa-policy" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Visa Policy</Link></li>
               <li><Link href="/country/travel-tips" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Travel Tips</Link></li>
-              <li><Link href="/country/payment-guide" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Payment Guide</Link></li>
+              <li><Link href="/country/payment-guide-v2" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Payment Guide</Link></li>
               <li><Link href="/country/internet-guide" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Internet Guide</Link></li>
               <li><Link href="/country/language-guide" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Language Guide</Link></li>
             </ul>

@@ -8,6 +8,7 @@ import {
   getPopularContent,
   getPopularSearches,
   getPageViewsByPath,
+  getAverageSessionDuration,
 } from '@/lib/stats';
 import { getAllComments } from '@/lib/comments';
 import { getAllSubscribers } from '@/lib/subscribe';
@@ -43,6 +44,7 @@ export async function GET(request: NextRequest) {
       pageViews,
       comments,
       subscribers,
+      avgSessionDuration,
     ] = await Promise.all([
       getDashboardSummary(),
       getDailyPageViews(days),
@@ -52,6 +54,7 @@ export async function GET(request: NextRequest) {
       getPageViewsByPath(),
       getAllComments(),
       getAllSubscribers(),
+      getAverageSessionDuration(days),
     ]);
 
     return NextResponse.json({
@@ -63,6 +66,7 @@ export async function GET(request: NextRequest) {
       pageViews,
       comments,
       subscribers,
+      avgSessionDuration,
     });
   } catch (e) {
     console.error('Dashboard error:', e);

@@ -19,7 +19,7 @@ const NAV_ITEMS = [
       { label: 'Food Culture', href: '/country/food-culture' },
       { label: 'Visa Policy', href: '/country/visa-policy' },
       { label: 'Travel Tips', href: '/country/travel-tips' },
-      { label: 'Payment Guide', href: '/country/payment-guide' },
+      { label: 'Payment Guide', href: '/country/payment-guide-v2' },
       { label: 'Tourist Visa Guide', href: '/country/visa-tourist-guide' },
       { label: 'Internet Guide', href: '/country/internet-guide' },
       { label: 'Language Guide', href: '/country/language-guide' },

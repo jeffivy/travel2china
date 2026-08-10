@@ -1,4 +1,4 @@
-import { getContentBySlug } from '@/lib/mdx';
+import { getContentBySlug, shouldNoindex } from '@/lib/mdx';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import MDXContent from '@/components/content/MDXContent';
@@ -11,10 +11,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const entry = getContentBySlug('comparison/head-to-head', params.slug);
   if (!entry) return {};
   return {
-    alternates: { canonical: `/comparison/head-to-head/$(p.slug)${params.slug}` },
+    alternates: { canonical: `/comparison/head-to-head/${params.slug}` },
     title: entry.meta.seoTitle || entry.meta.title,
     description: entry.meta.seoDescription || entry.meta.description,
     keywords: entry.meta.keywords?.join(', '),
+    robots: shouldNoindex('comparison/head-to-head', params.slug) ? { index: false } : undefined,
   };
 }
 const SITE_URL = "https://travels2china.com";

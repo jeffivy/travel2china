@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { getAllContent } from '@/lib/mdx';
-import { Search, MapPin, Compass, Utensils, ArrowRight, TrendingUp, Sparkles } from 'lucide-react';
+import { Search, MapPin, ArrowRight, Sparkles, Wallet, ScrollText, Wifi, MessageCircle, CheckCircle } from 'lucide-react';
 import ScrollReveal from '@/components/layout/ScrollReveal';
 
 export default function HomePage() {
@@ -65,16 +65,16 @@ export default function HomePage() {
               </button>
             </form>
 
-            {/* Quick links */}
+            {/* Quick links — pain-point focus */}
             <div className="flex flex-wrap items-center justify-center gap-3 text-[0.85rem]">
-              <span className="text-[var(--muted)]">Start with:</span>
-              <Link href="/cities/beijing" className="text-[var(--primary)] hover:text-[var(--primary-hover)] underline underline-offset-2 transition-colors">Beijing</Link>
+              <span className="text-[var(--muted)]">Essential guides:</span>
+              <Link href="/country/payment-guide-v2" className="text-[var(--primary)] hover:text-[var(--primary-hover)] underline underline-offset-2 transition-colors">Payment</Link>
               <span className="text-[var(--border)]">·</span>
-              <Link href="/cities/shanghai" className="text-[var(--primary)] hover:text-[var(--primary-hover)] underline underline-offset-2 transition-colors">Shanghai</Link>
+              <Link href="/country/visa-tourist-guide" className="text-[var(--primary)] hover:text-[var(--primary-hover)] underline underline-offset-2 transition-colors">Visa</Link>
               <span className="text-[var(--border)]">·</span>
-              <Link href="/country/visa-policy" className="text-[var(--primary)] hover:text-[var(--primary-hover)] underline underline-offset-2 transition-colors">Visa Guide</Link>
+              <Link href="/country/internet-guide" className="text-[var(--primary)] hover:text-[var(--primary-hover)] underline underline-offset-2 transition-colors">Internet</Link>
               <span className="text-[var(--border)]">·</span>
-              <Link href="/country/payment-guide" className="text-[var(--primary)] hover:text-[var(--primary-hover)] underline underline-offset-2 transition-colors">Payment Tips</Link>
+              <Link href="/country/language-guide" className="text-[var(--primary)] hover:text-[var(--primary-hover)] underline underline-offset-2 transition-colors">Language</Link>
             </div>
           </div>
         </div>
@@ -87,24 +87,31 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Quick Stats — refined, no card grid monotony */}
+      {/* Before You Go — essential practical guides */}
       <section className="container-wide py-16">
-        <ScrollReveal style="fade-in">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-1 rounded-2xl bg-[var(--border)]/20 overflow-hidden">
-            {[
-              { icon: MapPin, value: '34', label: 'Provincial Regions' },
-              { icon: Compass, value: '5,000+', label: 'Years of History' },
-              { icon: Utensils, value: '8', label: 'Major Cuisines' },
-              { icon: TrendingUp, value: '60M+', label: 'Annual Tourists' },
-            ].map((stat, i) => (
-              <div key={stat.label} className="bg-[var(--background)] p-8 text-center" style={{ animationDelay: `${i * 100}ms` }}>
-                <stat.icon className="w-6 h-6 mx-auto mb-3 text-[var(--primary)]/60" />
-                <p className="text-[1.8rem] font-display tracking-wide text-[var(--foreground)]">{stat.value}</p>
-                <p className="text-[0.85rem] text-[var(--muted)] mt-1">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </ScrollReveal>
+        <div className="text-center mb-10">
+          <p className="text-[0.85rem] text-[var(--muted)] uppercase tracking-widest mb-3">Before You Go</p>
+          <h2 className="text-[2.25rem] font-display tracking-wide text-[var(--foreground)] leading-tight">
+            Everything You Need to Know
+          </h2>
+          <p className="text-[var(--muted)] mt-3 max-w-xl mx-auto">
+            From payments to visas — get the practical stuff sorted before you pack
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            { icon: Wallet, title: 'Payment Guide', desc: 'WeChat Pay, Alipay & cash tips', href: '/country/payment-guide-v2' },
+            { icon: ScrollText, title: 'Visa Guide', desc: 'Tourist visa process made simple', href: '/country/visa-tourist-guide' },
+            { icon: Wifi, title: 'Internet & SIM', desc: 'Stay connected in China', href: '/country/internet-guide' },
+            { icon: MessageCircle, title: 'Language Guide', desc: 'Essential phrases & translation tools', href: '/country/language-guide' },
+          ].map((card) => (
+            <Link key={card.href} href={card.href} className="card p-6 group hover:border-[var(--primary)]/20 transition-all">
+              <card.icon className="w-8 h-8 mb-3 text-[var(--primary)] group-hover:scale-110 transition-transform" />
+              <h3 className="font-semibold text-[1.05rem] mb-1 group-hover:text-[var(--primary)] transition-colors">{card.title}</h3>
+              <p className="text-[0.85rem] text-[var(--muted)]">{card.desc}</p>
+            </Link>
+          ))}
+        </div>
       </section>
 
       {/* Popular Cities — editorial grid */}
@@ -117,12 +124,12 @@ export default function HomePage() {
             </h2>
           </div>
           <Link href="/cities" className="hidden sm:inline-flex items-center gap-2 text-[var(--primary)] hover:text-[var(--primary-hover)] font-medium text-[0.95rem] transition-colors group">
-            View all cities <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            View all {cities.length} cities <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </Link>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {cities.map((city) => (
+          {cities.slice(0, 12).map((city) => (
             <Link key={city.slug} href={`/cities/${city.slug}`} className="card group overflow-hidden">
               <div className="aspect-[16/10] bg-[var(--surface)] relative overflow-hidden">
                 {city.meta.image ? (
@@ -173,10 +180,38 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Plan Your Route */}
+      <section className="container-wide py-12">
+        <div className="text-center mb-10">
+          <p className="text-[0.85rem] text-[var(--muted)] uppercase tracking-widest mb-3">Plan Your Trip</p>
+          <h2 className="text-[2.25rem] font-display tracking-wide text-[var(--foreground)] leading-tight">
+            Find Your Perfect Route
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          {[
+            { title: 'Golden Route', desc: "Beijing, Xi'an, Shanghai — the classic triangle for first-timers", href: '/routes/golden-route', label: '10-14 Days' },
+            { title: '144-Hour Transit', desc: 'Visa-free 6-day trips via Beijing, Shanghai, or Guangzhou', href: '/routes/144-hour-transit', label: '6 Days' },
+            { title: 'Food & Culture', desc: 'Eat your way across China with themed culinary routes', href: '/routes/themed/food', label: 'Flexible' },
+          ].map((route) => (
+            <Link key={route.href} href={route.href} className="card p-6 group text-center">
+              <span className="inline-block px-2.5 py-0.5 text-xs font-medium text-[var(--primary)] bg-[var(--primary-light)] rounded-full mb-3">{route.label}</span>
+              <h3 className="font-semibold text-lg mb-2 group-hover:text-[var(--primary)] transition-colors">{route.title}</h3>
+              <p className="text-sm text-[var(--muted)]">{route.desc}</p>
+            </Link>
+          ))}
+        </div>
+        <div className="text-center mt-6">
+          <Link href="/routes" className="text-[var(--primary)] hover:text-[var(--primary-hover)] font-medium inline-flex items-center gap-2">
+            View all routes <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </section>
+
       {/* Country Guide — alternating layout */}
       <section className="bg-[var(--surface)] border-y border-[var(--border)] py-16">
         <div className="container-wide">
-          <p className="text-[0.85rem] text-[var(--muted)] uppercase tracking-widest mb-3">Essential Reading</p>
+          <p className="text-[0.85rem] text-[var(--muted)] uppercase tracking-widest mb-3">Deep Dive</p>
           <h2 className="text-[2.25rem] font-display tracking-wide text-[var(--foreground)] leading-tight mb-10">
             China Travel Guide
           </h2>
@@ -202,7 +237,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Bottom CTA */}
+      {/* Bottom CTA — lead magnet */}
       <section className="container-wide py-16">
         <div className="rounded-2xl bg-[var(--foreground)] p-10 md:p-14 text-center relative overflow-hidden">
           {/* Decorative elements */}
@@ -210,17 +245,18 @@ export default function HomePage() {
           <div className="absolute bottom-0 left-0 w-[250px] h-[250px] rounded-full bg-[var(--gold)]/10 translate-y-1/3 -translate-x-1/4 blur-3xl" />
 
           <div className="relative">
+            <CheckCircle className="w-12 h-12 mx-auto mb-4 text-[var(--gold)]" />
             <h2 className="text-[2rem] md:text-[2.5rem] font-display tracking-wide text-white mb-4">
-              Ready to Explore China?
+              Get the Free China Travel Checklist
             </h2>
             <p className="text-white/60 max-w-lg mx-auto mb-8 text-[1.05rem] leading-relaxed">
-              Get the latest travel tips, destination guides, and insider recommendations delivered to your inbox.
+              A printable pre-trip checklist: visa deadlines, payment setup, packing list, essential apps, and more. Everything you'll forget if you don't write it down.
             </p>
             <Link
               href="/subscribe"
               className="inline-flex items-center gap-2 bg-[var(--gold)] text-[var(--foreground)] px-8 py-3.5 rounded-xl font-medium text-[1rem] hover:bg-[var(--gold)]/90 transition-colors duration-200"
             >
-              Subscribe Now <ArrowRight className="w-5 h-5" />
+              Get the Checklist <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
         </div>

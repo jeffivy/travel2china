@@ -165,6 +165,21 @@ export function getAllTags(): string[] {
   return Array.from(tags).sort();
 }
 
+// Content categories that should be noindex'd by default (thin/low-traffic content)
+const NOINDEX_CATEGORIES = new Set([
+  'comparison',
+  'comparison/head-to-head',
+  'routes/themed',
+  'by-travel-style',
+  'tools',
+]);
+
+export function shouldNoindex(category: string, slug: string): boolean {
+  const normalizedCategory = category.replace(/\\/g, '/');
+  if (NOINDEX_CATEGORIES.has(normalizedCategory)) return true;
+  return false;
+}
+
 // Get breadcrumbs for a page
 export function getBreadcrumbs(category?: string, slug?: string, title?: string) {
   const crumbs: { label: string; href: string }[] = [

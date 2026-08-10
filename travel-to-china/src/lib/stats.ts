@@ -4,11 +4,14 @@ export async function recordPageView(
   pagePath: string,
   visitorId: string,
   referrer?: string,
-  userAgent?: string
+  userAgent?: string,
+  utmSource?: string,
+  utmMedium?: string,
+  utmCampaign?: string
 ): Promise<void> {
   await getDb().execute({
-    sql: `INSERT INTO page_views (page_path, visitor_id, referrer, user_agent) VALUES (?, ?, ?, ?)`,
-    args: [pagePath, visitorId, referrer || '', userAgent || ''],
+    sql: `INSERT INTO page_views (page_path, visitor_id, referrer, user_agent, utm_source, utm_medium, utm_campaign) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+    args: [pagePath, visitorId, referrer || '', userAgent || '', utmSource || '', utmMedium || '', utmCampaign || ''],
   });
 }
 
@@ -16,11 +19,12 @@ export async function recordPageEvent(
   pagePath: string,
   visitorId: string,
   sessionId: string,
-  eventType: string
+  eventType: string,
+  duration?: number
 ): Promise<void> {
   await getDb().execute({
-    sql: `INSERT INTO page_events (page_path, visitor_id, session_id, event_type) VALUES (?, ?, ?, ?)`,
-    args: [pagePath, visitorId, sessionId, eventType],
+    sql: `INSERT INTO page_events (page_path, visitor_id, session_id, event_type, duration) VALUES (?, ?, ?, ?, ?)`,
+    args: [pagePath, visitorId, sessionId, eventType, duration ?? null],
   });
 }
 
@@ -32,19 +36,21 @@ export async function recordSearchQuery(query: string, resultsCount: number, vis
 }
 
 export async function getTotalPageViews(): Promise<number> {
-  const result = await getOne<{ count: number }>('SELECT COUNT(*) as count FROM page_views');
+  const result = await getOne<{ count: number }>(
+    "SELECT COUNT(*) as count FROM page_views WHERE page_path NOT LIKE '/admin%' AND page_path NOT LIKE '/api%'"
+  );
   return result?.count || 0;
 }
 
 export async function getPageViewsByPath(pagePath?: string): Promise<{ page_path: string; count: number }[]> {
   if (pagePath) {
     return getAll(
-      `SELECT page_path, COUNT(*) as count FROM page_views WHERE page_path = ? GROUP BY page_path`,
+      `SELECT page_path, COUNT(*) as count FROM page_views WHERE page_path = ? AND page_path NOT LIKE '/admin%' AND page_path NOT LIKE '/api%' GROUP BY page_path`,
       [pagePath]
     );
   }
   return getAll(
-    `SELECT page_path, COUNT(*) as count FROM page_views GROUP BY page_path ORDER BY count DESC LIMIT 50`
+    `SELECT page_path, COUNT(*) as count FROM page_views WHERE page_path NOT LIKE '/admin%' AND page_path NOT LIKE '/api%' GROUP BY page_path ORDER BY count DESC LIMIT 50`
   );
 }
 
@@ -53,6 +59,7 @@ export async function getDailyPageViews(days: number = 30): Promise<{ date: stri
     `SELECT date(created_at) as date, COUNT(*) as count
      FROM page_views
      WHERE created_at >= datetime('now', ? || ' days')
+       AND page_path NOT LIKE '/admin%' AND page_path NOT LIKE '/api%'
      GROUP BY date(created_at)
      ORDER BY date DESC`,
     [`-${days}`]
@@ -61,7 +68,7 @@ export async function getDailyPageViews(days: number = 30): Promise<{ date: stri
 
 export async function getUniqueVisitors(): Promise<number> {
   const result = await getOne<{ count: number }>(
-    'SELECT COUNT(DISTINCT visitor_id) as count FROM page_views'
+    "SELECT COUNT(DISTINCT visitor_id) as count FROM page_views WHERE page_path NOT LIKE '/admin%' AND page_path NOT LIKE '/api%'"
   );
   return result?.count || 0;
 }
@@ -71,6 +78,7 @@ export async function getDailyUniqueVisitors(days: number = 30): Promise<{ date:
     `SELECT date(created_at) as date, COUNT(DISTINCT visitor_id) as count
      FROM page_views
      WHERE created_at >= datetime('now', ? || ' days')
+       AND page_path NOT LIKE '/admin%' AND page_path NOT LIKE '/api%'
      GROUP BY date(created_at)
      ORDER BY date DESC`,
     [`-${days}`]
@@ -81,6 +89,7 @@ export async function getPopularContent(limit: number = 10): Promise<{ page_path
   return getAll(
     `SELECT page_path, COUNT(*) as views
      FROM page_views
+     WHERE page_path NOT LIKE '/admin%' AND page_path NOT LIKE '/api%'
      GROUP BY page_path
      ORDER BY views DESC
      LIMIT ?`,
@@ -105,7 +114,7 @@ export async function getDashboardSummary() {
   const today = new Date().toISOString().split('T')[0];
 
   const todayPV = await getOne<{ count: number }>(
-    `SELECT COUNT(*) as count FROM page_views WHERE date(created_at) = ?`,
+    `SELECT COUNT(*) as count FROM page_views WHERE date(created_at) = ? AND page_path NOT LIKE '/admin%' AND page_path NOT LIKE '/api%'`,
     [today]
   );
 
@@ -129,4 +138,15 @@ export async function getDashboardSummary() {
     totalSearches: totalSearches?.count || 0,
     totalSubscribers: totalSubscribers?.count || 0,
   };
+}
+
+export async function getAverageSessionDuration(days: number = 30): Promise<number> {
+  const result = await getOne<{ avg_duration: number }>(
+    `SELECT AVG(duration) as avg_duration FROM page_events
+     WHERE event_type = 'leave' AND duration IS NOT NULL
+       AND page_path NOT LIKE '/admin%' AND page_path NOT LIKE '/api%'
+       AND created_at >= datetime('now', ? || ' days')`,
+    [`-${days}`]
+  );
+  return Math.round(result?.avg_duration || 0);
 }

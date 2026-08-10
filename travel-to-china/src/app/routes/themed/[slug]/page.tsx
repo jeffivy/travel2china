@@ -1,4 +1,4 @@
-import { getContentBySlug, getRelatedArticles } from '@/lib/mdx';
+import { getContentBySlug, getRelatedArticles, shouldNoindex } from '@/lib/mdx';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import MDXContent from '@/components/content/MDXContent';
@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: entry.meta.seoTitle || entry.meta.title,
     description: entry.meta.seoDescription || entry.meta.description,
+    robots: shouldNoindex('routes/themed', params.slug) ? { index: false } : undefined,
   };
 }
 

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import {
   BarChart3, Eye, Users, Search, MessageSquare, Mail,
-  Clock, Loader2, ShieldAlert, CheckCircle, XCircle,
+  Clock, Loader2, ShieldAlert, CheckCircle, XCircle, Timer,
 } from 'lucide-react';
 
 interface DashboardData {
@@ -22,6 +22,7 @@ interface DashboardData {
   popularSearches: { query: string; count: number }[];
   comments: any[];
   subscribers: any[];
+  avgSessionDuration: number;
 }
 
 export default function AdminPage() {
@@ -141,11 +142,12 @@ export default function AdminPage() {
       <p className="text-[var(--muted)] mb-8">Analytics, comments, and content management</p>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-10">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4 mb-10">
         {[
           { icon: Eye, label: 'Total PV', value: summary.totalPageViews.toLocaleString(), color: 'text-blue-500' },
           { icon: Users, label: 'Unique Visitors', value: summary.uniqueVisitors.toLocaleString(), color: 'text-green-500' },
           { icon: Clock, label: 'Today PV', value: summary.todayPageViews.toLocaleString(), color: 'text-orange-500' },
+          { icon: Timer, label: 'Avg Session (s)', value: data.avgSessionDuration?.toString() || '0', color: 'text-indigo-500' },
           { icon: MessageSquare, label: 'Comments', value: summary.totalComments.toLocaleString(), color: 'text-purple-500' },
           { icon: Search, label: 'Searches', value: summary.totalSearches.toLocaleString(), color: 'text-pink-500' },
           { icon: Mail, label: 'Subscribers', value: summary.totalSubscribers.toLocaleString(), color: 'text-yellow-500' },
