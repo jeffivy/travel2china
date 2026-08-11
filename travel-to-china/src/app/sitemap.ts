@@ -1,6 +1,5 @@
 import { MetadataRoute } from 'next';
 import { getAllContent } from '@/lib/mdx';
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://travels2china.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://travels2china.com';
@@ -62,60 +61,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: route.meta.date ? new Date(route.meta.date) : new Date(),
     }));
 
-  // Themed route pages
-  const themedRoutes = getAllContent('routes/themed');
-  const themedRoutePages = themedRoutes
-    .filter((r) => r.slug !== 'index')
-    .map((route) => ({
-      url: `/routes/themed/${route.slug}`,
-      priority: 0.7,
-      changeFrequency: 'monthly' as const,
-      lastModified: route.meta.date ? new Date(route.meta.date) : new Date(),
-    }));
+  // Themed route pages — excluded (noindex)
 
-  // Comparison pages
-  const comparisons = getAllContent('comparison');
-  const comparisonPages = comparisons
-    .filter((c) => c.slug !== 'index')
-    .map((page) => ({
-      url: `/comparison/${page.slug}`,
-      priority: 0.7,
-      changeFrequency: 'monthly' as const,
-      lastModified: page.meta.date ? new Date(page.meta.date) : new Date(),
-    }));
-
-  // Head-to-head comparison pages
-  const headToHeads = getAllContent('comparison/head-to-head');
-  const headToHeadPages = headToHeads
-    .filter((c) => c.slug !== 'index')
-    .map((page) => ({
-      url: `/comparison/head-to-head/${page.slug}`,
-      priority: 0.7,
-      changeFrequency: 'monthly' as const,
-      lastModified: page.meta.date ? new Date(page.meta.date) : new Date(),
-    }));
-
-  // Travel style pages
-  const travelStyles = getAllContent('by-travel-style');
-  const travelStylePages = travelStyles
-    .filter((s) => s.slug !== 'index')
-    .map((style) => ({
-      url: `/by-travel-style/${style.slug}`,
-      priority: 0.7,
-      changeFrequency: 'monthly' as const,
-      lastModified: style.meta.date ? new Date(style.meta.date) : new Date(),
-    }));
-
-  // Tool pages
-  const tools = getAllContent('tools');
-  const toolPages = tools
-    .filter((t) => t.slug !== 'index')
-    .map((tool) => ({
-      url: `/tools/${tool.slug}`,
-      priority: 0.6,
-      changeFrequency: 'monthly' as const,
-      lastModified: tool.meta.date ? new Date(tool.meta.date) : new Date(),
-    }));
+  // Comparison pages — list page only (sub-pages are noindex)
+  // Head-to-head comparison pages — excluded (noindex)
+  // Travel style pages — list page only (sub-pages are noindex)
+  // Tool pages — list page only (sub-pages are noindex)
 
   // Combine all entries
   const allEntries = [
@@ -144,36 +95,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: page.priority,
     })),
     ...routePages.map((page) => ({
-      url: `${baseUrl}${page.url}`,
-      lastModified: page.lastModified,
-      changeFrequency: page.changeFrequency,
-      priority: page.priority,
-    })),
-    ...themedRoutePages.map((page) => ({
-      url: `${baseUrl}${page.url}`,
-      lastModified: page.lastModified,
-      changeFrequency: page.changeFrequency,
-      priority: page.priority,
-    })),
-    ...comparisonPages.map((page) => ({
-      url: `${baseUrl}${page.url}`,
-      lastModified: page.lastModified,
-      changeFrequency: page.changeFrequency,
-      priority: page.priority,
-    })),
-    ...headToHeadPages.map((page) => ({
-      url: `${baseUrl}${page.url}`,
-      lastModified: page.lastModified,
-      changeFrequency: page.changeFrequency,
-      priority: page.priority,
-    })),
-    ...travelStylePages.map((page) => ({
-      url: `${baseUrl}${page.url}`,
-      lastModified: page.lastModified,
-      changeFrequency: page.changeFrequency,
-      priority: page.priority,
-    })),
-    ...toolPages.map((page) => ({
       url: `${baseUrl}${page.url}`,
       lastModified: page.lastModified,
       changeFrequency: page.changeFrequency,
