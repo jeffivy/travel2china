@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import MDXContent from '@/components/content/MDXContent';
 import SubscribeCard from '@/components/ui/SubscribeCard';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Calendar, User, Clock, RefreshCw } from 'lucide-react';
 import { readingTime } from '@/lib/utils';
 import { ArticleSchema, BreadcrumbSchema } from "@/components/layout/StructuredData"
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://travels2china.com';
@@ -51,6 +51,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             description={entry.meta.seoDescription || entry.meta.description}
             image={entry.meta.image}
             datePublished={entry.meta.date}
+            dateModified={entry.meta.lastUpdated}
             author={entry.meta.author}
             url={SITE_URL + "/blog/" + params.slug}
           />
@@ -61,10 +62,25 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               { name: entry.meta.title, url: SITE_URL + "/blog/" + params.slug },
             ]}
           />
-          <div className="flex items-center gap-3 text-sm text-[var(--muted)]">
-            {entry.meta.date && <span>{entry.meta.date}</span>}
-            {entry.meta.author && <span>By {entry.meta.author}</span>}
-            <span>{readingTime(entry.content)} min read</span>
+          <div className="flex flex-wrap items-center gap-3 text-sm text-[var(--muted)]">
+            {entry.meta.author && (
+              <span className="flex items-center gap-1">
+                <User className="w-3.5 h-3.5" /> {entry.meta.author}
+              </span>
+            )}
+            {entry.meta.date && (
+              <span className="flex items-center gap-1">
+                <Calendar className="w-3.5 h-3.5" /> {entry.meta.date}
+              </span>
+            )}
+            {entry.meta.lastUpdated && (
+              <span className="flex items-center gap-1 text-[var(--primary)]">
+                <RefreshCw className="w-3 h-3" /> Updated {entry.meta.lastUpdated}
+              </span>
+            )}
+            <span className="flex items-center gap-1">
+              <Clock className="w-3.5 h-3.5" /> {readingTime(entry.content)} min read
+            </span>
           </div>
         </div>
       </section>

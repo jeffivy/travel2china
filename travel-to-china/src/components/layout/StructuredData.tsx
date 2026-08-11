@@ -101,12 +101,13 @@ export function FAQSchema({
 
 
 export function ArticleSchema({
-  title, description, image, datePublished, author, url
+  title, description, image, datePublished, dateModified, author, url
 }: {
   title: string;
   description: string;
   image?: string;
   datePublished?: string;
+  dateModified?: string;
   author?: string;
   url?: string;
 }) {
@@ -119,6 +120,7 @@ export function ArticleSchema({
     description: safeDescription,
     ...(safeImage && { image: [safeImage] }),
     ...(datePublished && { datePublished: datePublished }),
+    ...(dateModified && { dateModified: dateModified }),
     ...(author && { author: { "@type": "Person", name: author } }),
     ...(url && { url: url, mainEntityOfPage: url }),
     publisher: {

@@ -5,7 +5,7 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs';
 import MDXContent from '@/components/content/MDXContent';
 import Comments from '@/components/comments/Comments';
 import SubscribeCard from '@/components/ui/SubscribeCard';
-import { ArrowLeft, Clock, Calendar, User } from 'lucide-react';
+import { ArrowLeft, Clock, Calendar, User, RefreshCw } from 'lucide-react';
 import { readingTime } from '@/lib/utils';
 import { ArticleSchema } from "@/components/layout/StructuredData"
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://travels2china.com';
@@ -65,6 +65,7 @@ export default function CountryArticlePage({ params }: { params: { slug: string 
             description={entry.meta.seoDescription || entry.meta.description}
             image={entry.meta.image}
             datePublished={entry.meta.date}
+            dateModified={entry.meta.lastUpdated}
             author={entry.meta.author}
             url={SITE_URL + "/country/" + params.slug}
           />
@@ -78,6 +79,11 @@ export default function CountryArticlePage({ params }: { params: { slug: string 
             {entry.meta.date && (
               <span className="flex items-center gap-1">
                 <Calendar className="w-4 h-4" /> {entry.meta.date}
+              </span>
+            )}
+            {entry.meta.lastUpdated && (
+              <span className="flex items-center gap-1">
+                <RefreshCw className="w-3.5 h-3.5" /> Updated {entry.meta.lastUpdated}
               </span>
             )}
             <span className="flex items-center gap-1">

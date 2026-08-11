@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Breadcrumbs from '@/components/layout/Breadcrumbs';
 import MDXContent from '@/components/content/MDXContent';
 import Comments from '@/components/comments/Comments';
-import { ArrowLeft, Clock, Calendar, User, MapPin, Sun, Thermometer } from 'lucide-react';
+import { ArrowLeft, Clock, Calendar, User, MapPin, Sun, Thermometer, RefreshCw } from 'lucide-react';
 import ShareButtons from '@/components/ui/ShareButtons';
 import RecommendCard from '@/components/layout/RecommendCard';
 import SubscribeCard from '@/components/ui/SubscribeCard';
@@ -112,6 +112,7 @@ export default function CityPage({ params }: { params: { 'city-slug': string } }
         <div className="flex flex-wrap items-center gap-4 text-sm text-[var(--muted)] mb-8">
           {entry.meta.author && <span className="flex items-center gap-1"><User className="w-4 h-4" /> {entry.meta.author}</span>}
           {entry.meta.date && <span className="flex items-center gap-1"><Calendar className="w-4 h-4" /> {entry.meta.date}</span>}
+          {entry.meta.lastUpdated && <span className="flex items-center gap-1"><RefreshCw className="w-3.5 h-3.5" /> Updated {entry.meta.lastUpdated}</span>}
           <span className="flex items-center gap-1"><Clock className="w-4 h-4" /> {readTime} min read</span>
           {entry.meta.tags && entry.meta.tags.map((tag) => (
             <span key={tag} className="px-2 py-0.5 text-xs bg-[var(--card-hover)] text-[var(--muted)] rounded-full">#{tag}</span>

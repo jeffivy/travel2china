@@ -19,6 +19,7 @@ export interface ContentMeta {
   image?: string;
   author?: string;
   date?: string;
+  lastUpdated?: string;
   order?: number;
   // City-specific fields
   region?: string;
