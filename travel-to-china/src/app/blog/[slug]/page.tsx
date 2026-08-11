@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import MDXContent from '@/components/content/MDXContent';
 import SubscribeCard from '@/components/ui/SubscribeCard';
+import ShareButtons from '@/components/ui/ShareButtons';
 import { ArrowLeft, Calendar, User, Clock, RefreshCw } from 'lucide-react';
 import { readingTime } from '@/lib/utils';
 import { ArticleSchema, BreadcrumbSchema } from "@/components/layout/StructuredData"
@@ -11,11 +12,33 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://travels2china.com'
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const entry = getContentBySlug('blog', params.slug);
   if (!entry) return {};
+  const pageTitle = entry.meta.seoTitle || entry.meta.title;
+  const pageDescription = entry.meta.seoDescription || entry.meta.description;
+  const pageImage = entry.meta.image || '/images/china-overview.jpg';
+  const pageUrl = `${SITE_URL}/blog/${params.slug}`;
   return {
     alternates: { canonical: `/blog/${params.slug}` },
-    title: entry.meta.seoTitle || entry.meta.title,
-    description: entry.meta.seoDescription || entry.meta.description,
+    title: pageTitle,
+    description: pageDescription,
     keywords: entry.meta.keywords?.join(', '),
+    openGraph: {
+      title: pageTitle,
+      description: pageDescription,
+      type: 'article',
+      url: pageUrl,
+      siteName: 'Travel to China',
+      locale: 'en_US',
+      images: [{ url: pageImage, width: 1200, height: 630, alt: pageTitle }],
+      ...(entry.meta.date && { publishedTime: entry.meta.date }),
+      ...(entry.meta.lastUpdated && { modifiedTime: entry.meta.lastUpdated }),
+      ...(entry.meta.author && { authors: [entry.meta.author] }),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: pageTitle,
+      description: pageDescription,
+      images: [pageImage],
+    },
   };
 }
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
@@ -109,8 +132,11 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </div>
         )}
 
-        {/* Subscribe CTA */}
+        {/* Share & Subscribe */}
         <div className="mt-12 pt-8 border-t border-[var(--border)]">
+          <ShareButtons title={entry.meta.title} description={entry.meta.description} />
+        </div>
+        <div className="mt-8 pt-8 border-t border-[var(--border)]">
           <SubscribeCard
             variant="inline"
             title="Get More China Travel Tips"

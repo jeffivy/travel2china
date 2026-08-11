@@ -5,6 +5,7 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs';
 import MDXContent from '@/components/content/MDXContent';
 import Comments from '@/components/comments/Comments';
 import SubscribeCard from '@/components/ui/SubscribeCard';
+import ShareButtons from '@/components/ui/ShareButtons';
 import { ArrowLeft, Clock, Calendar, User, RefreshCw } from 'lucide-react';
 import { readingTime } from '@/lib/utils';
 import { webpUrl } from '@/lib/image-url';
@@ -19,15 +20,32 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const entry = getContentBySlug('country', params.slug);
   if (!entry) return {};
+  const pageTitle = entry.meta.seoTitle || entry.meta.title;
+  const pageDescription = entry.meta.seoDescription || entry.meta.description;
+  const pageImage = entry.meta.image || '/images/china-overview.jpg';
+  const pageUrl = `${SITE_URL}/country/${params.slug}`;
   return {
     alternates: { canonical: `/country/${params.slug}` },
-    title: entry.meta.seoTitle || entry.meta.title,
-    description: entry.meta.seoDescription || entry.meta.description,
+    title: pageTitle,
+    description: pageDescription,
     keywords: entry.meta.keywords?.join(', '),
     openGraph: {
-      title: entry.meta.seoTitle || entry.meta.title,
-      description: entry.meta.seoDescription || entry.meta.description,
+      title: pageTitle,
+      description: pageDescription,
       type: 'article',
+      url: pageUrl,
+      siteName: 'Travel to China',
+      locale: 'en_US',
+      images: [{ url: pageImage, width: 1200, height: 630, alt: pageTitle }],
+      ...(entry.meta.date && { publishedTime: entry.meta.date }),
+      ...(entry.meta.lastUpdated && { modifiedTime: entry.meta.lastUpdated }),
+      ...(entry.meta.author && { authors: [entry.meta.author] }),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: pageTitle,
+      description: pageDescription,
+      images: [pageImage],
     },
   };
 }
@@ -194,8 +212,11 @@ export default function CountryArticlePage({ params }: { params: { slug: string 
           />
         </section>
 
-        {/* Comments Section */}
-        <div className="mt-16 pt-10 border-t border-[var(--border)]">
+        {/* Share & Comments */}
+        <section className="mt-12 pt-8 border-t border-[var(--border)]">
+          <ShareButtons title={entry.meta.title} description={entry.meta.description} />
+        </section>
+        <div className="mt-12 pt-8 border-t border-[var(--border)]">
           <Comments articleSlug={`country/${params.slug}`} />
         </div>
       </article>

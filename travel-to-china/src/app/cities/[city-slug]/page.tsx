@@ -20,15 +20,32 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { 'city-slug': string } }) {
   const entry = getContentBySlug('cities', params['city-slug']);
   if (!entry) return {};
+  const pageTitle = entry.meta.seoTitle || `${entry.meta.title} Travel Guide`;
+  const pageDescription = entry.meta.seoDescription || entry.meta.description;
+  const pageImage = entry.meta.image || '/images/china-overview.jpg';
+  const pageUrl = `${SITE_URL}/cities/${params['city-slug']}`;
   return {
     alternates: { canonical: `/cities/${params['city-slug']}` },
-    title: entry.meta.seoTitle || `${entry.meta.title} Travel Guide`,
-    description: entry.meta.seoDescription || entry.meta.description,
+    title: pageTitle,
+    description: pageDescription,
     keywords: entry.meta.keywords?.join(', '),
     openGraph: {
       title: `${entry.meta.title} - China Travel Guide`,
-      description: entry.meta.description,
+      description: pageDescription,
       type: 'article',
+      url: pageUrl,
+      siteName: 'Travel to China',
+      locale: 'en_US',
+      images: [{ url: pageImage, width: 1200, height: 630, alt: pageTitle }],
+      ...(entry.meta.date && { publishedTime: entry.meta.date }),
+      ...(entry.meta.lastUpdated && { modifiedTime: entry.meta.lastUpdated }),
+      ...(entry.meta.author && { authors: [entry.meta.author] }),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: pageTitle,
+      description: pageDescription,
+      images: [pageImage],
     },
   };
 }
