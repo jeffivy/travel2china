@@ -7,6 +7,7 @@ import Comments from '@/components/comments/Comments';
 import SubscribeCard from '@/components/ui/SubscribeCard';
 import { ArrowLeft, Clock, Calendar, User, RefreshCw } from 'lucide-react';
 import { readingTime } from '@/lib/utils';
+import { webpUrl } from '@/lib/image-url';
 import { ArticleSchema } from "@/components/layout/StructuredData"
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://travels2china.com';
 
@@ -52,7 +53,7 @@ export default function CountryArticlePage({ params }: { params: { slug: string 
           </div>
           {entry.meta.image && (
             <img
-              src={entry.meta.image}
+              src={webpUrl(entry.meta.image)}
               alt={entry.meta.title}
               className="w-full h-48 md:h-64 object-cover rounded-xl mb-6 shadow-lg"
             />

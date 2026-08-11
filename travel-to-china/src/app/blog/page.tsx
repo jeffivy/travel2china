@@ -2,6 +2,7 @@ import { getAllContent } from '@/lib/mdx';
 import Link from 'next/link';
 import { BookOpen, ArrowRight } from 'lucide-react';
 import { readingTime } from '@/lib/utils';
+import { webpUrl } from '@/lib/image-url';
 import { ItemListSchema } from "@/components/layout/StructuredData"
 
 export const metadata = {
@@ -50,7 +51,7 @@ export default function BlogIndexPage() {
                 <div className="flex gap-5 p-5">
                   <div className="w-28 h-28 md:w-36 md:h-36 rounded-xl overflow-hidden flex-shrink-0 bg-gradient-to-br from-[var(--primary)]/20 to-[var(--gold)]/20">
                     {post.meta.image ? (
-                      <img src={post.meta.image} alt={post.meta.title} className="w-full h-full object-cover" />
+                      <img src={webpUrl(post.meta.image)} alt={post.meta.title} className="w-full h-full object-cover" loading="lazy" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
                         <BookOpen className="w-10 h-10 text-[var(--primary)]/40 group-hover:scale-125 transition-transform duration-300" />

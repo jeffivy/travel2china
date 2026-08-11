@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { getAllContent } from '@/lib/mdx';
 import { Search, MapPin, ArrowRight, Sparkles, Wallet, ScrollText, Wifi, MessageCircle, CheckCircle } from 'lucide-react';
 import ScrollReveal from '@/components/layout/ScrollReveal';
+import { webpUrl } from '@/lib/image-url';
 
 export default function HomePage() {
   const cities = getAllContent('cities');
@@ -134,7 +135,7 @@ export default function HomePage() {
               <div className="aspect-[16/10] bg-[var(--surface)] relative overflow-hidden">
                 {city.meta.image ? (
                   <img
-                    src={city.meta.image}
+                    src={webpUrl(city.meta.image)}
                     alt={city.meta.title}
                     className="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-700 ease-out"
                     loading="lazy"

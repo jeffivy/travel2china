@@ -1,6 +1,7 @@
 import { getAllContent } from '@/lib/mdx';
 import Link from 'next/link';
 import { MapPin } from 'lucide-react';
+import { webpUrl } from '@/lib/image-url';
 import { ItemListSchema } from "@/components/layout/StructuredData"
 
 export const metadata = {
@@ -42,7 +43,7 @@ export default function CitiesPage() {
                 <div className="flex gap-6">
                   <div className="w-24 h-24 md:w-32 md:h-32 rounded-xl overflow-hidden flex-shrink-0 bg-gradient-to-br from-[var(--primary)]/20 to-[var(--gold)]/20">
                     {city.meta.image ? (
-                      <img src={city.meta.image} alt={city.meta.title} className="w-full h-full object-cover" />
+                      <img src={webpUrl(city.meta.image)} alt={city.meta.title} className="w-full h-full object-cover" loading="lazy" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
                         <MapPin className="w-10 h-10 text-[var(--primary)]/40 group-hover:scale-125 transition-transform duration-300" />
