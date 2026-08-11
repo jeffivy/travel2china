@@ -105,3 +105,83 @@ npm run db:push  # Push database schema changes
 - **图片展示**：视差滚动、渐进式加载
 - **页面过渡**：平滑的地域色彩渐变过渡
 - **交互反馈**：微妙但有触感
+
+---
+
+## Multi-Agent System
+
+This project uses a 4-agent team for collaborative website operations. Each agent is defined in `.claude/agents/` and can be invoked via the Agent tool or through skills.
+
+### Agent Team
+
+| Agent | File | Role |
+|-------|------|------|
+| **developer** | `.claude/agents/developer.md` | Feature development, bug fixes, SEO tech, builds & deploys |
+| **analyst** | `.claude/agents/analyst.md` | Traffic analysis, SEO metrics, user behavior, growth insights |
+| **researcher** | `.claude/agents/researcher.md` | Content research, keyword discovery, competitive analysis |
+| **reviewer** | `.claude/agents/reviewer.md` | Content quality audit, SEO checklist, EEAT verification |
+
+### Agent Communication via Memory
+
+Agents communicate through the memory system (`C:\Users\huxk\.claude\projects\e--GitPrograms\memory\`):
+
+```
+analyst ──→ [[content-gap-{topic}]] ──→ researcher
+analyst ──→ [[needs-review-{slug}]]  ──→ reviewer
+researcher ──→ [[research-{topic}]]  ──→ reviewer
+reviewer ──→ [[approved-content-{slug}]] ──→ developer
+reviewer ──→ [[revision-needed-{slug}]] ──→ researcher
+analyst ──→ [[bug-found-{issue}]] ──→ developer
+```
+
+### Skills (slash commands)
+
+| Skill | Path | Description |
+|-------|------|-------------|
+| `/traffic-report` | `.claude/skills/traffic-report/` | Generate full Chinese-language traffic analysis report |
+| `/content-pipeline` | `.claude/skills/content-pipeline/` | Full pipeline: researcher → reviewer → developer |
+| `/weekly-report` | `.claude/skills/weekly-report/` | Weekly ops analysis: analyst → action items |
+
+### Common Workflows
+
+**1. Content Production (full pipeline):**
+```
+/content-pipeline "Best Time to Visit Zhangjiajie"
+```
+Triggers: researcher (research) → reviewer (audit) → developer (publish)
+
+**2. Weekly Operations:**
+```
+/weekly-report
+```
+Triggers: analyst (data analysis) → action items
+
+**3. Single-Agent Tasks:**
+```
+Use the developer agent to fix the footer layout
+Use the researcher agent to find topics about Chengdu food
+Use the reviewer agent to audit content/cities/beijing.mdx
+Use the analyst agent to analyze last 30 days traffic
+```
+
+**4. Scheduled Automation:**
+Set up cron jobs for recurring agent tasks:
+- Weekly report every Monday 9am
+- Monthly content audit on the 1st
+
+### Orchestration with Workflows
+
+For complex multi-agent tasks, use the Workflow tool to fan out parallel work:
+
+```
+/ultracode "Find top 5 content gaps, research them, and prepare drafts"
+```
+
+This spawns: 1 analyst agent + 5 parallel researcher agents → 1 reviewer → 1 developer
+
+### Conventions
+
+- Always verify with `npm run build` after code changes
+- Content changes through the pipeline, not direct edits
+- Memory files are the handoff protocol — check them when picking up tasks
+- Each agent writes its results to memory before handing off
