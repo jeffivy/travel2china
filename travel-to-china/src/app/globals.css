@@ -17,7 +17,8 @@
   --background: #faf8f6;
   --foreground: #1c1917;
   --surface: #f5f0eb;
-  --muted: #78716c;
+  --muted: #57534e;
+  --muted-soft: #78716c;   /* ≥16px 辅助文字专用 */
   --border: #e7e0d8;
   --card: #ffffff;
   --card-hover: #faf7f4;
@@ -55,6 +56,7 @@
   --foreground: #e8e0d8;
   --surface: #221d1a;
   --muted: #a89f98;
+  --muted-soft: #b8b0a8;   /* ≥16px 辅助文字专用 */
   --border: #2d2520;
   --card: #221d1a;
   --card-hover: #2d2520;
@@ -140,20 +142,35 @@ body {
 }
 
 /* ===== Typography ===== */
-h1, h2, h3, h4, h5, h6 {
+/* H1/H2 → Marcellus (display), H3-H6 → Source Serif 4 (body) */
+h1, h2 {
+  font-family: var(--font-display), Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  line-height: 1.15;
+  scroll-margin-top: 5rem;
+  color: var(--foreground);
+}
+
+h3, h4, h5, h6 {
   font-family: var(--font-body), Georgia, 'Times New Roman', serif;
   line-height: 1.25;
   scroll-margin-top: 5rem;
   color: var(--foreground);
 }
 
-h1 { font-size: clamp(2.25rem, 4vw, 3.25rem); letter-spacing: -0.01em; font-weight: 600; }
-h2 { font-size: clamp(1.75rem, 3vw, 2.25rem); letter-spacing: -0.005em; font-weight: 600; }
-h3 { font-size: 1.5rem; font-weight: 500; }
-h4 { font-size: 1.25rem; font-weight: 500; }
+h1 { font-size: clamp(2.25rem, 4vw, 3rem); letter-spacing: 0.02em; }
+h2 { font-size: clamp(1.75rem, 3vw, 2rem); letter-spacing: 0.01em; }
+h3 { font-size: 1.25rem; font-weight: 500; }
+h4 { font-size: 1.125rem; font-weight: 500; }
+h5, h6 { font-size: 1rem; font-weight: 600; }
 p { margin-bottom: 1rem; }
 
-/* Display font — use explicitly for decorative/large headings */
+@media (max-width: 768px) {
+  h1 { font-size: 2rem; line-height: 1.2; letter-spacing: 0.01em; }
+  h2 { font-size: 1.5rem; line-height: 1.3; }
+}
+
+/* Display font utility */
 .font-display {
   font-family: var(--font-display), Georgia, serif !important;
   font-weight: 400;
@@ -161,7 +178,11 @@ p { margin-bottom: 1rem; }
 
 /* ===== Prose / Article Content ===== */
 .prose { max-width: none !important; }
-.prose h1 { font-size: 1.5rem; font-weight: 700; margin: 1.5rem 0 0.75rem; line-height: 1.3; }
+
+/* Prose headings — independent of page headings */
+.prose h1 { font-family: var(--font-display), Georgia, serif; font-weight: 400; font-size: 2rem; line-height: 1.3; margin: 2.5em 0 0.8em; }
+.prose h2 { font-family: var(--font-display), Georgia, serif; font-weight: 400; font-size: 1.5rem; line-height: 1.35; margin: 2em 0 0.6em; }
+.prose h3 { font-family: var(--font-body), Georgia, serif; font-weight: 500; font-size: 1.25rem; margin: 1.5em 0 0.5em; }
 
 .prose img {
   border-radius: 0.75rem;
@@ -181,14 +202,18 @@ p { margin-bottom: 1rem; }
 }
 
 .prose thead {
-  background: var(--primary);
-  color: white;
+  background: var(--surface);
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
 }
 
-.prose th {
+.prose thead th {
   padding: 0.75rem 1rem;
   text-align: left;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .prose td {
@@ -265,37 +290,51 @@ p { margin-bottom: 1rem; }
   border: 1px solid var(--border);
 }
 
-/* ===== Content Boxes — ban-compliant: no side border stripes ===== */
+/* ===== Content Boxes ===== */
 .tip-box {
-  background: var(--success-bg);
-  border: 1px solid rgba(91, 140, 90, 0.2);
-  border-radius: 0.75rem;
-  padding: 1rem 1.25rem;
+  background: var(--surface);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.25rem 1rem 3rem;
   margin: 1.5rem 0;
   font-size: 0.95rem;
   line-height: 1.7;
   position: relative;
 }
 .tip-box::before {
-  content: '💡';
-  font-size: 1rem;
-  margin-right: 0.5rem;
+  content: '';
+  position: absolute;
+  left: 0.875rem;
+  top: 1.125rem;
+  width: 20px;
+  height: 20px;
+  background-color: var(--accent);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5'%3E%3C/path%3E%3Cpath d='M9 18h6'%3E%3C/path%3E%3Cpath d='M10 22h4'%3E%3C/path%3E%3C/svg%3E");
+  mask-size: contain;
+  mask-repeat: no-repeat;
 }
 
 .warning-box {
-  background: var(--warning-bg);
-  border: 1px solid rgba(196, 121, 74, 0.25);
-  border-radius: 0.75rem;
-  padding: 1rem 1.25rem;
+  background: var(--surface);
+  border-left: 3px solid var(--primary);
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.25rem 1rem 3rem;
   margin: 1.5rem 0;
   font-size: 0.95rem;
   line-height: 1.7;
   position: relative;
 }
 .warning-box::before {
-  content: '⚠️';
-  font-size: 1rem;
-  margin-right: 0.5rem;
+  content: '';
+  position: absolute;
+  left: 0.875rem;
+  top: 1.125rem;
+  width: 20px;
+  height: 20px;
+  background-color: var(--primary);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cline x1='12' y1='8' x2='12' y2='12'%3E%3C/line%3E%3Cline x1='12' y1='16' x2='12.01' y2='16'%3E%3C/line%3E%3C/svg%3E");
+  mask-size: contain;
+  mask-repeat: no-repeat;
 }
 
 /* Related Routes */

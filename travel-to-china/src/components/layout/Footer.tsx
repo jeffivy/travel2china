@@ -3,8 +3,8 @@ import { Globe, Heart, Mail } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[var(--border)] bg-[var(--surface)] mt-24">
-      <div className="container-wide py-16">
+    <footer className="border-t border-[var(--border)] bg-[var(--surface)] mt-16">
+      <div className="container-wide py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="md:col-span-1">
@@ -55,19 +55,14 @@ export default function Footer() {
               <li><Link href="/cities/chengdu" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Chengdu</Link></li>
               <li><Link href="/cities/xian" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Xi&apos;an</Link></li>
               <li><Link href="/cities/guilin" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Guilin</Link></li>
-              <li><Link href="/cities/chongqing" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Chongqing</Link></li>
               <li><Link href="/cities/guangzhou" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Guangzhou</Link></li>
               <li><Link href="/cities/hangzhou" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Hangzhou</Link></li>
-              <li><Link href="/cities/kunming" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Kunming</Link></li>
-              <li><Link href="/cities/xiamen" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Xiamen</Link></li>
-              <li><Link href="/cities/nanjing" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Nanjing</Link></li>
-             <li><Link href="/cities/suzhou" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Suzhou</Link></li>
-              <li><Link href="/cities/lijiang" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Lijiang</Link></li>
-              <li><Link href="/cities/zhangjiajie" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Zhangjiajie</Link></li>
-              <li><Link href="/cities/luoyang" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Luoyang</Link></li>
-             <li><Link href="/cities/wuhan" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Wuhan</Link></li>
-              <li><Link href="/cities/hongkong" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Hong Kong</Link></li>
-              <li><Link href="/cities/sanya" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Sanya</Link></li>
+              <li><Link href="/cities/chongqing" className="text-[0.9rem] text-[var(--foreground)]/65 hover:text-[var(--primary)] transition-colors">Chongqing</Link></li>
+              <li className="pt-1">
+                <Link href="/cities" className="text-[0.9rem] text-[var(--primary)] hover:text-[var(--primary-hover)] transition-colors font-medium">
+                  View All Cities →
+                </Link>
+              </li>
             </ul>
           </div>
 

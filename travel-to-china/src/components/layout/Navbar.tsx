@@ -133,6 +133,8 @@ export default function Navbar() {
           ? 'bg-[var(--background)] backdrop-blur-xl shadow-[0_1px_3px_rgba(0,0,0,0.04)] border-b border-[var(--border)]'
           : 'bg-[var(--background)] border-b border-transparent'
       }`}
+      role="navigation"
+      aria-label="Main navigation"
     >
       <div className="container-wide">
         <div className="flex items-center justify-between h-[4.25rem]">
@@ -166,6 +168,8 @@ export default function Navbar() {
                         ? 'text-[var(--primary)]'
                         : 'text-[var(--muted)] hover:text-[var(--foreground)]'
                       }`}
+                    aria-expanded={openDropdown === item.label}
+                    aria-haspopup="true"
                   >
                     {item.label}
                     <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${openDropdown === item.label ? 'rotate-180' : ''}`} />
@@ -220,6 +224,8 @@ export default function Navbar() {
                 onFocus={() => { if (searchSuggestions.length > 0) setShowSuggestions(true); }}
                 onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
                 placeholder="Search..."
+                aria-label="Search cities and routes"
+                role="search"
                 className="w-36 pl-9 pr-3 py-2 text-[0.9rem] border border-[var(--border)] rounded-lg
                            bg-[var(--surface)] text-[var(--foreground)] placeholder:text-[var(--muted)]
                            focus:outline-none focus:ring-1 focus:ring-[var(--primary)] focus:border-[var(--primary)]

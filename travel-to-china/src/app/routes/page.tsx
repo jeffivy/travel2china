@@ -27,7 +27,7 @@ const ROUTE_STYLES = [
       'Beijing → Xi\'an → Shanghai. The iconic triangle that covers imperial history, ancient capitals, and futuristic skylines. Perfect for first-time visitors with 10–14 days.',
     icon: Landmark,
     href: '/routes/golden-route',
-    color: 'bg-amber-50 dark:bg-amber-900/10 border-amber-200 dark:border-amber-800',
+    region: 'north' as const,
   },
   {
     title: '144-Hour Transit Routes',
@@ -36,7 +36,7 @@ const ROUTE_STYLES = [
       'Maximize China\'s 144-hour transit policy. 6-day blitz itineraries in Beijing, Shanghai, Guangzhou, Chengdu, and beyond — no visa required.',
     icon: Clock,
     href: '/routes/144-hour-transit',
-    color: 'bg-blue-50 dark:bg-blue-900/10 border-blue-200 dark:border-blue-800',
+    region: 'east' as const,
   },
   {
     title: 'Food Routes',
@@ -45,7 +45,7 @@ const ROUTE_STYLES = [
       'Eat your way across China. Sichuan spice trail, Cantonese dim sum pilgrimage, Xi\'an Silk Road noodles, and a Shanghai-to-Chengdu hot pot odyssey.',
     icon: UtensilsCrossed,
     href: '/routes/themed/food',
-    color: 'bg-red-50 dark:bg-red-900/10 border-red-200 dark:border-red-800',
+    region: 'south' as const,
   },
   {
     title: 'History & Culture Routes',
@@ -54,7 +54,7 @@ const ROUTE_STYLES = [
       'Walk through 3,000 years of civilization. Follow the Silk Road, explore the Four Great Ancient Capitals, and trace the Ming and Qing dynasties.',
     icon: Landmark,
     href: '/routes/themed/history',
-    color: 'bg-stone-50 dark:bg-stone-900/10 border-stone-200 dark:border-stone-800',
+    region: 'northwest' as const,
   },
   {
     title: 'Nature & Adventure Routes',
@@ -63,7 +63,7 @@ const ROUTE_STYLES = [
       'Karst peaks of Guilin, Tiger Leaping Gorge in Yunnan, the grasslands of Inner Mongolia, and the Himalayan borderlands of western Sichuan.',
     icon: TreePine,
     href: '/routes/themed/nature',
-    color: 'bg-green-50 dark:bg-green-900/10 border-green-200 dark:border-green-800',
+    region: 'west' as const,
   },
   {
     title: 'By Duration',
@@ -72,7 +72,7 @@ const ROUTE_STYLES = [
       'Whether you have 3 days, 1 week, 2 weeks, or a month — find itineraries optimized for your available time, with suggested city combinations.',
     icon: Calendar,
     href: '/routes/by-duration',
-    color: 'bg-purple-50 dark:bg-purple-900/10 border-purple-200 dark:border-purple-800',
+    region: 'south' as const,
   },
 ];
 
@@ -108,13 +108,13 @@ export default function RoutesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[var(--primary)] via-red-800 to-red-950 text-white py-20">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[var(--primary)]/10 to-[var(--accent)]/10 py-20 border-b border-[var(--border)]">
         <div className="container-wide text-center relative z-10">
-          <Compass className="w-14 h-14 mx-auto mb-5 opacity-90" />
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
+          <Compass className="w-14 h-14 mx-auto mb-5 text-[var(--primary)]" />
+          <h1 className="text-4xl md:text-6xl mb-4 text-[var(--foreground)]">
             China Travel Routes & Itineraries
           </h1>
-          <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-[var(--muted)] max-w-2xl mx-auto">
             From a 6-day visa-free blitz to a month-long Silk Road odyssey — find the perfect China route for your trip style, timeline, and starting city.
           </p>
         </div>
@@ -130,10 +130,13 @@ export default function RoutesPage() {
             <Link
               key={route.href}
               href={route.href}
-              className={`card p-6 group border-2 transition-all duration-300 hover:shadow-lg ${route.color}`}
+              data-region={route.region}
+              className="card p-6 group border-2 transition-all duration-300 hover:shadow-lg
+                         bg-[var(--region-surface)] border-[var(--region-primary)]/20
+                         hover:border-[var(--region-primary)]/40"
             >
-              <route.icon className="w-10 h-10 mb-4 text-[var(--primary)] group-hover:scale-110 transition-transform" />
-              <h3 className="text-xl font-bold mb-1 group-hover:text-[var(--primary)] transition-colors">
+              <route.icon className="w-10 h-10 mb-4 text-[var(--region-primary)] group-hover:scale-110 transition-transform" />
+              <h3 className="text-xl font-bold mb-1 group-hover:text-[var(--region-primary)] transition-colors">
                 {route.title}
               </h3>
               <p className="text-xs font-semibold text-[var(--muted)] uppercase tracking-wide mb-3">

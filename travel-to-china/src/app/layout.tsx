@@ -80,11 +80,20 @@ export default function RootLayout({
         <WebsiteSchema />
       </head>
       <body className={`${displayFont.variable} ${bodyFont.variable} antialiased min-h-screen flex flex-col font-body`}>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-[100]
+                     focus:px-4 focus:py-2.5 focus:bg-[var(--primary)] focus:text-white focus:rounded-lg
+                     focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary)]
+                     focus:text-sm focus:font-medium"
+        >
+          Skip to content
+        </a>
         <ReadingProgress />
         <SessionProvider>
           <AnalyticsProvider>
             <Navbar />
-            <main className="flex-1">{children}</main>
+            <main id="main-content" className="flex-1">{children}</main>
             <Footer />
           </AnalyticsProvider>
         </SessionProvider>
