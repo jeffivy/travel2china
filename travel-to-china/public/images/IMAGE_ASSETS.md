@@ -113,44 +113,44 @@
 
 | # | 文件名 | 所属页面 | 类型 | 建议尺寸 | 图片内容详细描述 |
 |---|--------|----------|------|---------|----------------|
-| 61 | `hero/home-north.jpg` | / (首页 Hero) | 封面 | 1920x1080 | 北京故宫太和殿正面全景。仰角拍摄，朱红宫墙与金色琉璃瓦在晴天下熠熠生辉。前景留白用于叠加标题文字。冬季拍摄，游客稀少，突出建筑的威严与孤寂感。 |
-| 62 | `hero/home-east.jpg` | / (首页 Hero) | 封面 | 1920x1080 | 杭州西湖清晨全景。从宝石山角度俯瞰西湖，晨雾缭绕，苏堤如线横贯湖面，远处城市天际线若隐若现。柔和粉色晨光，水墨画意境。水面占比 40%，天空占比 30%。 |
-| 63 | `hero/home-south.jpg` | / (首页 Hero) | 封面 | 1920x1080 | 桂林漓江喀斯特峰林。从相公山顶俯瞰，漓江在层叠的绿色峰林间蜿蜒。雨后初晴，云海半掩山峰，阳光穿透云层形成光束。翠绿色调为主，画面如中国山水画。 |
-| 64 | `hero/home-southwest.jpg` | / (首页 Hero) | 封面 | 1920x1080 | 丽江古城全景。从狮子山万古楼俯拍古城全貌，灰瓦屋顶层层叠叠延伸至远方，背景是玉龙雪山雪顶。傍晚暖金色光线，炊烟袅袅。左下角留白用于文字叠加。 |
-| 65 | `hero/home-northwest.jpg` | / (首页 Hero) | 封面 | 1920x1080 | 敦煌鸣沙山与月牙泉。黄昏时刻，金色沙丘曲线起伏，月牙泉如一弯碧玉镶嵌其中。驼队剪影沿沙脊线行走。暖橙与深蓝渐变的天空，占画面上方 40%。广角风光摄影。 |
-| 66 | `hero/home-default.jpg` | / (首页 Hero) | 封面 | 1920x1080 | 中国标志性景观混搭全景。前景为长城烽火台（暖金色阳光），中景过渡至桂林山水（绿色调），远景为上海陆家嘴天际线（蓝灰色调）。从左到右跨越中国三大景观带。合成/拼接风格，底部渐变深色用于叠加白色标题文字。 |
-| 67 | `cities/beijing/hero.jpg` | /cities/beijing | 封面 | 1920x900 | 北京故宫角楼与护城河。秋季拍摄，角楼倒映在平静的护城河水面，岸边银杏金黄。晨光从右侧斜射，建筑细节清晰。画面底部留渐变暗色区域用于叠加白色标题和面包屑导航。 |
-| 68 | `cities/shanghai/hero.jpg` | /cities/shanghai | 封面 | 1920x900 | 上海外滩万国建筑群与陆家嘴天际线。黄昏蓝调时刻（日落后 20 分钟），外滩历史建筑暖黄灯光亮起，对岸东方明珠与上海中心大厦蓝色 LED 交相辉映。黄浦江面有游船光轨。横版宽幅。 |
-| 69 | `cities/chengdu/hero.jpg` | /cities/chengdu | 封面 | 1920x900 | 成都大熊猫基地成年大熊猫特写。大熊猫在翠绿竹林中啃食竹叶，前景清晰、背景虚化。温暖柔和的林间光线。熊猫占画面左侧 40%，右侧留白给文字叠加。 |
-| 70 | `cities/xian/hero.jpg` | /cities/xian | 封面 | 1920x900 | 西安秦始皇兵马俑一号坑全景。从高处俯拍，成排的陶俑延伸至远方，前景 3-5 个陶俑细节清晰可见。暖色灯光照射，泥土色调为主。纵深构图，底部渐暗处理。 |
-| 71 | `cities/guilin/hero.jpg` | /cities/guilin | 封面 | 1920x900 | 桂林阳朔遇龙河竹筏漂流。前景为竹筏和撑船船夫剪影，中景为喀斯特峰林倒映在平静河面，远景为蓝天白云。取低角度贴近水面拍摄，画面宁静如画。 |
-| 72 | `cities/guangzhou/hero.jpg` | /cities/guangzhou | 封面 | 1920x900 | 广州珠江新城夜景。从花城广场南端向北拍摄，广州塔（小蛮腰）居中偏右，两侧超高层写字楼灯光璀璨。雨后地面反光，蓝紫色调为主。横版城市天际线。 |
-| 73 | `cities/hangzhou/hero.jpg` | /cities/hangzhou | 封面 | 1920x900 | 杭州西湖雷峰塔与夕照。从长桥公园角度拍摄，雷峰塔在夕阳下形成剪影，湖面金光粼粼。左侧柳枝作为前景取景框。暖橙色调，旅行杂志封面风格。 |
-| 74 | `cities/chongqing/hero.jpg` | /cities/chongqing | 封面 | 1920x900 | 重庆洪崖洞夜景。从千厮门大桥方向拍摄，洪崖洞吊脚楼层层叠叠灯火通明倒映在嘉陵江面。蓝调夜空下暖黄色灯光形成强烈对比。赛博朋克城市感。 |
-| 75 | `routes/hero-golden-route.jpg` | /routes/golden-route | 封面 | 1200x630 | 黄金路线三大城市标志性景观横版拼贴。从左到右：北京天坛祈年殿（朱红+金）、西安城墙南门（灰砖+红灯笼）、上海外滩陆家嘴（蓝调+金色灯光）。三图接缝处用渐变过渡。暖金色主调。 |
-| 76 | `routes/hero-transit.jpg` | /routes/144-hour-transit | 封面 | 1200x630 | 国际航班抵达场景。透过机场玻璃窗拍摄，一架国际航班正在停靠廊桥，跑道灯光在黄昏中闪烁。前景为一张中国签证页和登机牌。商务旅行风格，深蓝+金色色调。 |
-| 77 | `routes/hero-food.jpg` | /routes/themed/food | 封面 | 1200x630 | 川菜火锅沸腾特写。九宫格铜锅居中，红油沸腾，周围摆满涮菜盘：毛肚、鸭肠、牛肉片、蔬菜拼盘、豆腐。从上向下俯拍，暖红色调，热气升腾。令人食欲大开的美食摄影。 |
-| 78 | `routes/hero-history.jpg` | /routes/themed/history | 封面 | 1200x630 | 中国古代文明符号拼贴。四格布局：左上青铜器纹样、右上甲骨文拓片、左下敦煌飞天壁画局部、右下故宫藻井彩绘。深色背景，金色线条勾勒各区块。博物馆展览风格。 |
-| 79 | `routes/hero-nature.jpg` | /routes/themed/nature | 封面 | 1200x630 | 中国自然奇观全景拼贴。从左到右：黄山云海日出、九寨沟五花海秋色、张掖丹霞彩色丘陵、元阳梯田灌水季镜面。四图无缝拼接为横版长图。色彩鲜明饱和。 |
+| 61 | `home-hero-north.jpg` | / (首页 Hero) | 封面 | 1920x1080 | 北京故宫太和殿正面全景。仰角拍摄，朱红宫墙与金色琉璃瓦在晴天下熠熠生辉。前景留白用于叠加标题文字。冬季拍摄，游客稀少，突出建筑的威严与孤寂感。 |
+| 62 | `home-hero-east.jpg` | / (首页 Hero) | 封面 | 1920x1080 | 杭州西湖清晨全景。从宝石山角度俯瞰西湖，晨雾缭绕，苏堤如线横贯湖面，远处城市天际线若隐若现。柔和粉色晨光，水墨画意境。水面占比 40%，天空占比 30%。 |
+| 63 | `home-hero-south.jpg` | / (首页 Hero) | 封面 | 1920x1080 | 桂林漓江喀斯特峰林。从相公山顶俯瞰，漓江在层叠的绿色峰林间蜿蜒。雨后初晴，云海半掩山峰，阳光穿透云层形成光束。翠绿色调为主，画面如中国山水画。 |
+| 64 | `home-hero-southwest.jpg` | / (首页 Hero) | 封面 | 1920x1080 | 丽江古城全景。从狮子山万古楼俯拍古城全貌，灰瓦屋顶层层叠叠延伸至远方，背景是玉龙雪山雪顶。傍晚暖金色光线，炊烟袅袅。左下角留白用于文字叠加。 |
+| 65 | `home-hero-northwest.jpg` | / (首页 Hero) | 封面 | 1920x1080 | 敦煌鸣沙山与月牙泉。黄昏时刻，金色沙丘曲线起伏，月牙泉如一弯碧玉镶嵌其中。驼队剪影沿沙脊线行走。暖橙与深蓝渐变的天空，占画面上方 40%。广角风光摄影。 |
+| 66 | `home-hero-default.jpg` | / (首页 Hero) | 封面 | 1920x1080 | 中国标志性景观混搭全景。前景为长城烽火台（暖金色阳光），中景过渡至桂林山水（绿色调），远景为上海陆家嘴天际线（蓝灰色调）。从左到右跨越中国三大景观带。合成/拼接风格，底部渐变深色用于叠加白色标题文字。 |
+| 67 | `city-hero-beijing.jpg` | /cities/beijing | 封面 | 1920x900 | 北京故宫角楼与护城河。秋季拍摄，角楼倒映在平静的护城河水面，岸边银杏金黄。晨光从右侧斜射，建筑细节清晰。画面底部留渐变暗色区域用于叠加白色标题和面包屑导航。 |
+| 68 | `city-hero-shanghai.jpg` | /cities/shanghai | 封面 | 1920x900 | 上海外滩万国建筑群与陆家嘴天际线。黄昏蓝调时刻（日落后 20 分钟），外滩历史建筑暖黄灯光亮起，对岸东方明珠与上海中心大厦蓝色 LED 交相辉映。黄浦江面有游船光轨。横版宽幅。 |
+| 69 | `city-hero-chengdu.jpg` | /cities/chengdu | 封面 | 1920x900 | 成都大熊猫基地成年大熊猫特写。大熊猫在翠绿竹林中啃食竹叶，前景清晰、背景虚化。温暖柔和的林间光线。熊猫占画面左侧 40%，右侧留白给文字叠加。 |
+| 70 | `city-hero-xian.jpg` | /cities/xian | 封面 | 1920x900 | 西安秦始皇兵马俑一号坑全景。从高处俯拍，成排的陶俑延伸至远方，前景 3-5 个陶俑细节清晰可见。暖色灯光照射，泥土色调为主。纵深构图，底部渐暗处理。 |
+| 71 | `city-hero-guilin.jpg` | /cities/guilin | 封面 | 1920x900 | 桂林阳朔遇龙河竹筏漂流。前景为竹筏和撑船船夫剪影，中景为喀斯特峰林倒映在平静河面，远景为蓝天白云。取低角度贴近水面拍摄，画面宁静如画。 |
+| 72 | `city-hero-guangzhou.jpg` | /cities/guangzhou | 封面 | 1920x900 | 广州珠江新城夜景。从花城广场南端向北拍摄，广州塔（小蛮腰）居中偏右，两侧超高层写字楼灯光璀璨。雨后地面反光，蓝紫色调为主。横版城市天际线。 |
+| 73 | `city-hero-hangzhou.jpg` | /cities/hangzhou | 封面 | 1920x900 | 杭州西湖雷峰塔与夕照。从长桥公园角度拍摄，雷峰塔在夕阳下形成剪影，湖面金光粼粼。左侧柳枝作为前景取景框。暖橙色调，旅行杂志封面风格。 |
+| 74 | `city-hero-chongqing.jpg` | /cities/chongqing | 封面 | 1920x900 | 重庆洪崖洞夜景。从千厮门大桥方向拍摄，洪崖洞吊脚楼层层叠叠灯火通明倒映在嘉陵江面。蓝调夜空下暖黄色灯光形成强烈对比。赛博朋克城市感。 |
+| 75 | `routes-hero-golden-route.jpg` | /routes/golden-route | 封面 | 1200x630 | 黄金路线三大城市标志性景观横版拼贴。从左到右：北京天坛祈年殿（朱红+金）、西安城墙南门（灰砖+红灯笼）、上海外滩陆家嘴（蓝调+金色灯光）。三图接缝处用渐变过渡。暖金色主调。 |
+| 76 | `routes-hero-transit.jpg` | /routes/144-hour-transit | 封面 | 1200x630 | 国际航班抵达场景。透过机场玻璃窗拍摄，一架国际航班正在停靠廊桥，跑道灯光在黄昏中闪烁。前景为一张中国签证页和登机牌。商务旅行风格，深蓝+金色色调。 |
+| 77 | `routes-hero-food.jpg` | /routes/themed/food | 封面 | 1200x630 | 川菜火锅沸腾特写。九宫格铜锅居中，红油沸腾，周围摆满涮菜盘：毛肚、鸭肠、牛肉片、蔬菜拼盘、豆腐。从上向下俯拍，暖红色调，热气升腾。令人食欲大开的美食摄影。 |
+| 78 | `routes-hero-history.jpg` | /routes/themed/history | 封面 | 1200x630 | 中国古代文明符号拼贴。四格布局：左上青铜器纹样、右上甲骨文拓片、左下敦煌飞天壁画局部、右下故宫藻井彩绘。深色背景，金色线条勾勒各区块。博物馆展览风格。 |
+| 79 | `routes-hero-nature.jpg` | /routes/themed/nature | 封面 | 1200x630 | 中国自然奇观全景拼贴。从左到右：黄山云海日出、九寨沟五花海秋色、张掖丹霞彩色丘陵、元阳梯田灌水季镜面。四图无缝拼接为横版长图。色彩鲜明饱和。 |
 
 ### 新增图片按页面汇总
 
 | 页面 | 文件名 | 数量 | 用途说明 |
 |------|--------|------|---------|
-| / (首页) | `hero/home-*.jpg` | 6 | 首页 Hero 全屏大图，按地域轮换展示。每次访问随机选一张 |
-| /cities/beijing | `cities/beijing/hero.jpg` | 1 | 城市详情页大图 Hero，替换当前 h-48 小图 |
-| /cities/shanghai | `cities/shanghai/hero.jpg` | 1 | 同上，提升视觉沉浸感 |
-| /cities/chengdu | `cities/chengdu/hero.jpg` | 1 | 同上 |
-| /cities/xian | `cities/xian/hero.jpg` | 1 | 同上 |
-| /cities/guilin | `cities/guilin/hero.jpg` | 1 | 同上 |
-| /cities/guangzhou | `cities/guangzhou/hero.jpg` | 1 | 同上 |
-| /cities/hangzhou | `cities/hangzhou/hero.jpg` | 1 | 同上 |
-| /cities/chongqing | `cities/chongqing/hero.jpg` | 1 | 同上 |
-| /routes/golden-route | `routes/hero-golden-route.jpg` | 1 | 路线页 Hero 替代纯渐变背景 |
-| /routes/144-hour-transit | `routes/hero-transit.jpg` | 1 | 同上 |
-| /routes/themed/food | `routes/hero-food.jpg` | 1 | 同上 |
-| /routes/themed/history | `routes/hero-history.jpg` | 1 | 同上 |
-| /routes/themed/nature | `routes/hero-nature.jpg` | 1 | 同上 |
+| / (首页) | `home-hero-*.jpg` | 6 | 首页 Hero 全屏大图，按地域轮换展示 |
+| /cities/beijing | `city-hero-beijing.jpg` | 1 | 城市详情页大图 Hero，替换当前 h-48 小图 |
+| /cities/shanghai | `city-hero-shanghai.jpg` | 1 | 同上 |
+| /cities/chengdu | `city-hero-chengdu.jpg` | 1 | 同上 |
+| /cities/xian | `city-hero-xian.jpg` | 1 | 同上 |
+| /cities/guilin | `city-hero-guilin.jpg` | 1 | 同上 |
+| /cities/guangzhou | `city-hero-guangzhou.jpg` | 1 | 同上 |
+| /cities/hangzhou | `city-hero-hangzhou.jpg` | 1 | 同上 |
+| /cities/chongqing | `city-hero-chongqing.jpg` | 1 | 同上 |
+| /routes/golden-route | `routes-hero-golden-route.jpg` | 1 | 路线页 Hero 替代纯渐变背景 |
+| /routes/144-hour-transit | `routes-hero-transit.jpg` | 1 | 同上 |
+| /routes/themed/food | `routes-hero-food.jpg` | 1 | 同上 |
+| /routes/themed/history | `routes-hero-history.jpg` | 1 | 同上 |
+| /routes/themed/nature | `routes-hero-nature.jpg` | 1 | 同上 |
 
 > **新增统计：** 首页 Hero 6 张 + 城市 Hero 8 张 + 路线 Hero 5 张 = **19 张**
 > **更新总计：** 已上传 124 张 | 待提供 60 + 19 = **79 张**
