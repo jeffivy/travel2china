@@ -10,36 +10,37 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero — magazine editorial style, warm and inviting */}
-      <section className="relative overflow-hidden bg-[var(--surface)]">
-        {/* Subtle texture overlay */}
-        <div className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='1' fill='black'/%3E%3C/svg%3E")`,
-            backgroundSize: '20px 20px',
-          }}
-        />
-        {/* Decorative curve */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[var(--primary)]/3 -translate-y-1/2 translate-x-1/4 blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[var(--gold)]/4 translate-y-1/3 -translate-x-1/4 blur-3xl" />
+      {/* Hero — full-screen background image with dark overlay */}
+      <section className="relative overflow-hidden min-h-[90vh] flex items-center">
+        {/* Background image + overlay */}
+        <div className="absolute inset-0">
+          <img
+            src={webpUrl('/images/home-hero-default.jpg')}
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/50" />
+          <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-b from-transparent to-[var(--background)]" />
+        </div>
 
         <div className="container-wide relative py-24 md:py-32">
           <div className="max-w-3xl mx-auto text-center">
             {/* Eyebrow */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--primary-light)] text-[var(--primary)] text-[0.85rem] font-medium mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-white/90 text-[0.85rem] font-medium mb-8 border border-white/15">
               <Sparkles className="w-3.5 h-3.5" />
               Discover the Middle Kingdom
             </div>
 
             <ScrollReveal style="steady">
-              <h1 className="text-[2.75rem] md:text-[4.5rem] leading-[1.1] mb-5 text-[var(--foreground)] font-display tracking-wide">
+              <h1 className="text-[2.75rem] md:text-[4.5rem] leading-[1.1] mb-5 text-white font-display tracking-wide">
                 Your Journey to<br />
-                <span className="text-[var(--primary)]">China</span> Begins Here
+                <span className="text-white">China</span> Begins Here
               </h1>
             </ScrollReveal>
 
             <ScrollReveal style="gentle" delay={150}>
-              <p className="text-[1.1rem] md:text-[1.2rem] text-[var(--muted)] mb-10 leading-relaxed max-w-xl mx-auto">
+              <p className="text-[1.1rem] md:text-[1.2rem] text-white/85 mb-10 leading-relaxed max-w-xl mx-auto">
                 From ancient imperial capitals to futuristic skylines,<br className="hidden sm:block" />
                 fiery Sichuan cuisine to misty karst mountains — all in one place.
               </p>
@@ -51,16 +52,16 @@ export default function HomePage() {
                 type="text"
                 name="q"
                 placeholder="Search destinations, food, tips..."
-                className="w-full pl-12 pr-24 py-4 text-[1rem] rounded-xl text-[var(--foreground)] bg-[var(--background)] border border-[var(--border)]
-                           shadow-sm placeholder:text-[var(--muted)]/60
-                           focus:outline-none focus:ring-1 focus:ring-[var(--primary)] focus:border-[var(--primary)] focus:shadow-md
+                className="w-full pl-12 pr-24 py-4 text-[1rem] rounded-xl text-white bg-white/10 backdrop-blur-sm border border-white/20
+                           shadow-sm placeholder:text-white/50
+                           focus:outline-none focus:ring-1 focus:ring-white/60 focus:border-white/60 focus:shadow-md
                            transition-all duration-300"
               />
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--muted)]/50" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/50" />
               <button
                 type="submit"
-                className="absolute right-2 top-1/2 -translate-y-1/2 px-6 py-2.5 bg-[var(--primary)] text-white
-                           font-medium rounded-lg hover:bg-[var(--primary-hover)] transition-colors duration-200 text-[0.9rem]"
+                className="absolute right-2 top-1/2 -translate-y-1/2 px-6 py-2.5 bg-white text-[var(--primary)]
+                           font-medium rounded-lg hover:bg-white/90 transition-colors duration-200 text-[0.9rem]"
               >
                 Search
               </button>
@@ -68,23 +69,16 @@ export default function HomePage() {
 
             {/* Quick links — pain-point focus */}
             <div className="flex flex-wrap items-center justify-center gap-3 text-[0.85rem]">
-              <span className="text-[var(--muted)]">Essential guides:</span>
-              <Link href="/country/payment-guide-v2" className="text-[var(--primary)] hover:text-[var(--primary-hover)] underline underline-offset-2 transition-colors">Payment</Link>
-              <span className="text-[var(--border)]">·</span>
-              <Link href="/country/visa-tourist-guide" className="text-[var(--primary)] hover:text-[var(--primary-hover)] underline underline-offset-2 transition-colors">Visa</Link>
-              <span className="text-[var(--border)]">·</span>
-              <Link href="/country/internet-guide" className="text-[var(--primary)] hover:text-[var(--primary-hover)] underline underline-offset-2 transition-colors">Internet</Link>
-              <span className="text-[var(--border)]">·</span>
-              <Link href="/country/language-guide" className="text-[var(--primary)] hover:text-[var(--primary-hover)] underline underline-offset-2 transition-colors">Language</Link>
+              <span className="text-white/70">Essential guides:</span>
+              <Link href="/country/payment-guide-v2" className="text-white hover:text-white/80 underline underline-offset-2 transition-colors">Payment</Link>
+              <span className="text-white/30">·</span>
+              <Link href="/country/visa-tourist-guide" className="text-white hover:text-white/80 underline underline-offset-2 transition-colors">Visa</Link>
+              <span className="text-white/30">·</span>
+              <Link href="/country/internet-guide" className="text-white hover:text-white/80 underline underline-offset-2 transition-colors">Internet</Link>
+              <span className="text-white/30">·</span>
+              <Link href="/country/language-guide" className="text-white hover:text-white/80 underline underline-offset-2 transition-colors">Language</Link>
             </div>
           </div>
-        </div>
-
-        {/* Bottom wave */}
-        <div className="relative h-10 md:h-16">
-          <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="absolute bottom-0 w-full h-full">
-            <path d="M0 40 Q180 65, 360 40 T720 40 T1080 40 T1440 40 L1440 80 L0 80 Z" fill="var(--background)" />
-          </svg>
         </div>
       </section>
 

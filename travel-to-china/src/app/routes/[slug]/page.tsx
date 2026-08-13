@@ -6,6 +6,13 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs';
 import { ArrowLeft, Clock, Calendar, MapPin } from 'lucide-react';
 import { readingTime } from '@/lib/utils';
 import { BreadcrumbSchema } from "@/components/layout/StructuredData"
+import { webpUrl } from '@/lib/image-url';
+
+// Route slugs with a dedicated hero image (routes-hero-{slug}.jpg → .webp)
+const ROUTE_HERO_IMAGES: Record<string, string> = {
+  'golden-route': '/images/routes-hero-golden-route.jpg',
+  '144-hour-transit': '/images/routes-hero-transit.jpg',
+};
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const entry = getContentBySlug('routes', params.slug);
@@ -35,17 +42,22 @@ export default function RoutePage({ params }: { params: { slug: string } }) {
     { label: entry.meta.title, href: `/routes/${params.slug}` },
   ];
   const readTime = readingTime(entry.content);
+  const heroImage = ROUTE_HERO_IMAGES[params.slug] || '/images/china-overview.jpg';
 
   return (
     <>
-      {/* Route Hero */}
-      <section className="relative bg-gradient-to-br from-[var(--primary)]/10 via-[var(--gold)]/5 to-transparent py-12 border-b border-[var(--border)]">
-        <div className="container-wide">
-          <Link href="/routes" className="inline-flex items-center gap-1 text-sm text-[var(--muted)] hover:text-[var(--primary)] transition-colors mb-6">
+      {/* Route Hero — background image with dark overlay */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={webpUrl(heroImage)} alt="" aria-hidden="true" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-[var(--background)]" />
+        </div>
+        <div className="container-wide relative py-16 md:py-20">
+          <Link href="/routes" className="inline-flex items-center gap-1 text-sm text-white/70 hover:text-white transition-colors mb-6">
             <ArrowLeft className="w-4 h-4" /> All Routes
           </Link>
-          <h1 className="text-4xl md:text-5xl font-bold mb-3">{entry.meta.title}</h1>
-          <p className="text-lg text-[var(--muted)] max-w-3xl mb-6">{entry.meta.description}</p>
+          <h1 className="text-4xl md:text-5xl font-bold mb-3 text-white">{entry.meta.title}</h1>
+          <p className="text-lg text-white/80 max-w-3xl mb-6">{entry.meta.description}</p>
 
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             {entry.meta.route && (

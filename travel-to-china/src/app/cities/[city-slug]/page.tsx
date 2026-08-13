@@ -10,7 +10,11 @@ import RecommendCard from '@/components/layout/RecommendCard';
 import SubscribeCard from '@/components/ui/SubscribeCard';
 import { readingTime } from '@/lib/utils';
 import { TouristAttractionSchema } from "@/components/layout/StructuredData"
+import { webpUrl } from '@/lib/image-url';
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://travels2china.com';
+
+// Cities with a dedicated large hero image (city-hero-{slug}.jpg → .webp)
+const CITY_HERO_SLUGS = ['beijing', 'shanghai', 'chengdu', 'xian', 'guilin', 'guangzhou', 'hangzhou', 'chongqing'];
 
 export async function generateStaticParams() {
   const cities = getAllContent('cities');
@@ -57,6 +61,9 @@ export default function CityPage({ params }: { params: { 'city-slug': string } }
   const related = getRelatedArticles(slug, 'cities', 3);
   const breadcrumbs = getBreadcrumbs('cities', slug, entry.meta.title);
   const readTime = readingTime(entry.content);
+  const heroImage = CITY_HERO_SLUGS.includes(slug)
+    ? `/images/city-hero-${slug}.jpg`
+    : (entry.meta.image || '/images/china-overview.jpg');
 
   return (
     <>
@@ -70,9 +77,9 @@ export default function CityPage({ params }: { params: { 'city-slug': string } }
           </Link>
           {entry.meta.image && (
             <img
-              src={entry.meta.image}
+              src={webpUrl(heroImage)}
               alt={entry.meta.title}
-              className="w-full h-48 md:h-64 object-cover rounded-xl mb-6 shadow-lg"
+              className="w-full h-96 md:h-[500px] object-cover rounded-xl mb-6 shadow-lg"
             />
           )}
           <h1 className="text-4xl md:text-5xl font-bold mb-3">{entry.meta.title}</h1>
