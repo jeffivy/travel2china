@@ -14,22 +14,40 @@ const ROUTE_HERO_IMAGES: Record<string, string> = {
   '144-hour-transit': '/images/routes-hero-transit.jpg',
 };
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://travels2china.com';
+
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const entry = getContentBySlug('routes', params.slug);
   if (!entry) return {};
+  const pageTitle = entry.meta.seoTitle || entry.meta.title;
+  const pageDescription = entry.meta.seoDescription || entry.meta.description;
+  const pageImage = ROUTE_HERO_IMAGES[params.slug] || entry.meta.image || '/images/china-overview.jpg';
+  const pageUrl = `${SITE_URL}/routes/${params.slug}`;
   return {
     alternates: { canonical: `/routes/${params.slug}` },
-    title: entry.meta.seoTitle || entry.meta.title,
-    description: entry.meta.seoDescription || entry.meta.description,
+    title: pageTitle,
+    description: pageDescription,
     keywords: entry.meta.keywords?.join(', '),
     openGraph: {
-      title: entry.meta.seoTitle || entry.meta.title,
-      description: entry.meta.seoDescription || entry.meta.description,
+      title: pageTitle,
+      description: pageDescription,
       type: 'article',
+      url: pageUrl,
+      siteName: 'Travel to China',
+      locale: 'en_US',
+      images: [{ url: pageImage, width: 1200, height: 630, alt: pageTitle }],
+      ...(entry.meta.date && { publishedTime: entry.meta.date }),
+      ...(entry.meta.lastUpdated && { modifiedTime: entry.meta.lastUpdated }),
+      ...(entry.meta.author && { authors: [entry.meta.author] }),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: pageTitle,
+      description: pageDescription,
+      images: [pageImage],
     },
   };
 }
-const SITE_URL = "https://travels2china.com";
 
 export default function RoutePage({ params }: { params: { slug: string } }) {
   const entry = getContentBySlug('routes', params.slug);
