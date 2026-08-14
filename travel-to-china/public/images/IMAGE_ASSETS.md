@@ -1,17 +1,17 @@
-# 图片资源清单（待提供）
+# 图片资源清单
 
-已上传 **179 张**，尚缺 **28 张**。所有图片需存放于 `public/images/` 目录下。
+已上传 **207 张**，尚缺 **0 张** ✅。所有图片需存放于 `public/images/` 目录下。
 - **封面图（Hero）**：1200x630px，横版，用于页面的 Open Graph 和顶部展示
 - **内嵌图（Inline）**：800-1600px 宽，JPG 格式，居中展示
+- **手机/App 界面截图**：作内嵌图用竖版（800x1200）；作封面（OG）时用手机样机 mockup 场景化的横版构图（1200x630），不要直接放竖版截图
 
-> ✅ **v2.0 设计优化 19 张 Hero 图已全部到位**（`home-hero-*` 6 张、`city-hero-*` 8 张、`routes-hero-*` 5 张）。
-> ✅ **country 与 routes 页面所需 14 张图已全部到位**，无需再提供。
+> ✅ **全部图片已到位**，无需再提供。下表保留作为图片规格参考（若日后需重新生成）。
 
 ---
 
-## 待提供图片详细描述（按页面分组）
+## 图片规格参考（按页面分组）
 
-> 以下 28 张均为 **noindex 页面** 图片（不影响 Google 收录），按需补充。
+> 全部已到位，规格留作参考。
 
 ### 主题路线 /routes/themed — 3 张
 
@@ -49,32 +49,13 @@
 | 20 | `tools-index-hero.jpg` | /tools | 内嵌 | 1200x800 | 旅行规划场景俯拍。笔记本电脑（显示地图）、翻开的旅行笔记、手机、护照、墨镜、咖啡、钢笔。侧上方阳光洒入。温暖规划氛围。 |
 | 21 | `tools-itinerary.jpg` | /tools/itinerary-planner | 封面 | 1200x630 | 行程规划器界面。屏幕显示行程 UI：左侧城市搜索框，中间路线时间轴（Day 1-5），每天标注景点和活动。右上角天数+总花费估算，右下角地图缩略图。 |
 | 22 | `tools-itinerary-hero.jpg` | /tools/itinerary-planner | 内嵌 | 1200x800 | 旅行者在地图上标记路线。俯拍展开的中国地图或平板，红色标记笔圈出 5 城（北京→西安→成都→桂林→上海），箭头标注路线方向。旁放笔记本和茶。 |
-| 23 | `tools-packing.jpg` | /tools/packing-list | 封面 | 1200x630 | 行李清单 App 界面。手机显示按分类清单：证件类、衣物类、电子类、药品类、其他。每项前有 checkbox 勾选，部分已勾。蓝/绿主题色，干净 UI。 |
+| 23 | `tools-packing.jpg` | /tools/packing-list | 封面 | 1200x630 | 行李清单 App 界面（横版场景构图）。手机样机（mockup）置于旅行背景（行李箱/护照/咖啡）中，屏幕显示按分类清单：证件类、衣物类、电子类、药品类、其他，每项前有 checkbox。蓝/绿主题色，四周留白用于文字叠加。 |
 | 24 | `tools-packing-hero.jpg` | /tools/packing-list | 内嵌 | 1200x800 | 旅行物品平铺排列。浅色床单俯拍：证件类（护照/签证/酒店单）、电子类（手机/充电宝/转换头/数据线）、衣物（T 恤/牛仔裤/运动鞋）、洗漱包/药包、墨镜/帽子/旅行枕。自然光。 |
-| 25 | `tools-phrases.jpg` | /tools/phrase-cards | 封面 | 1200x630 | 短语卡片 App 界面。手机显示翻转卡片：正面中文+拼音+英文（请问... Excuse me... Qing wen），底部上一页/随机/下一页按钮。柔和背景色。 |
+| 25 | `tools-phrases.jpg` | /tools/phrase-cards | 封面 | 1200x630 | 短语卡片 App 界面（横版场景构图）。手机样机（mockup）置于柔和旅行背景中，屏幕显示翻转卡片：正面中文+拼音+英文（请问... Excuse me... Qing wen），底部上一页/随机/下一页按钮。四周留白用于文字叠加。 |
 | 26 | `tools-phrases-hero.jpg` | /tools/phrase-cards | 内嵌 | 1200x800 | 双语短语卡片实体展示。6-8 张卡片散落桌面，彩色编码：蓝问候、红餐饮、绿交通、黄紧急。卡片标注拼音和英文。旁放一支笔。学习辅助氛围。 |
-| 27 | `tools-quiz.jpg` | /tools/quiz | 封面 | 1200x630 | 旅行知识测验封面。手机/浏览器显示 Quiz 首屏：中国地图背景，中央半透明卡片标题 China Travel Quiz，Start Quiz 按钮，底部 20 questions 5 min。暖色调。 |
-| 28 | `tools-quiz-hero.jpg` | /tools/quiz | 内嵌 | 1200x800 | Quiz 测验题目预览。手机显示选择题示例：上半部图片（桂林山水），下半部四选一 Which city is known for its karst landscape? 选项 A-D。已选显示正误反馈。 |
+| 27 | `tools-quiz.jpg` | /tools/quiz | 封面 | 1200x630 | 旅行知识测验封面（横版场景构图）。手机样机（mockup）置于中国地图背景前，屏幕显示 Quiz 首屏：中央半透明卡片标题 China Travel Quiz，Start Quiz 按钮，底部 20 questions 5 min。暖色调，四周留白。 |
+| 28 | `tools-quiz-hero.jpg` | /tools/quiz | 内嵌 | 800x1200 | Quiz 测验题目预览（竖版截图）。手机屏幕显示选择题示例：上半部图片（桂林山水），下半部四选一 Which city is known for its karst landscape? 选项 A-D。已选显示正误反馈。 |
 
 ---
 
-## 按页面汇总
-
-| 页面 | 尚缺数量 | 用途说明 |
-|------|---------|---------|
-| /routes/themed/food | 2 | 美食合集 + 全景 |
-| /routes/themed/history | 1 | 朝代时间轴 |
-| /comparison | 2 | 对比导览图 |
-| /comparison/head-to-head/* | 5 | 4 组城市对比封面/内嵌 |
-| /comparison/climate | 1 | 气候分区地图 |
-| /comparison/cost | 2 | 花费对比 |
-| /comparison/english-friendly | 2 | 双语标识 |
-| /tools | 2 | 图标合集 + 规划场景 |
-| /tools/budget-calculator | 2 | 工具界面 + 记账场景 |
-| /tools/calendar | 1 | 四季风光拼贴 |
-| /tools/itinerary-planner | 2 | 行程规划器 |
-| /tools/packing-list | 2 | 行李清单 |
-| /tools/phrase-cards | 2 | 短语卡片 |
-| /tools/quiz | 2 | 测验界面 |
-
-> **统计：** 已上传 179 张 | 尚缺 28 张（均为 noindex 页面）
+> **统计：** 已上传 207 张 | 尚缺 0 张 ✅
