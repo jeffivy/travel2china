@@ -49,16 +49,24 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
 
     const handleLeave = () => {
       const duration = Math.floor((Date.now() - startTime) / 1000);
-      navigator.sendBeacon(
-        '/api/stats/pageview',
-        JSON.stringify({
-          pagePath: pathname,
-          visitorId,
-          sessionId,
-          eventType: 'leave',
-          duration,
-        })
+      // sendBeacon must include userAgent — the server's bot filter treats a
+      // missing UA as a bot and silently drops the event. Use a Blob so the
+      // Content-Type is application/json (a plain string is sent as text/plain).
+      const payload = new Blob(
+        [
+          JSON.stringify({
+            pagePath: pathname,
+            visitorId,
+            sessionId,
+            eventType: 'leave',
+            duration,
+            userAgent: navigator.userAgent,
+            referrer: document.referrer,
+          }),
+        ],
+        { type: 'application/json' }
       );
+      navigator.sendBeacon('/api/stats/pageview', payload);
     };
 
     window.addEventListener('beforeunload', handleLeave);

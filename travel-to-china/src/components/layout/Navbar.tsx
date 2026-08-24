@@ -68,10 +68,19 @@ const NAV_ITEMS = [
   { label: 'About', href: '/about' },
 ];
 
+// Highest-intent practical guides — surfaced prominently in the mobile menu
+const ESSENTIAL_GUIDES = [
+  { label: 'Payment', href: '/country/payment-guide-v2' },
+  { label: 'Visa', href: '/country/visa-tourist-guide' },
+  { label: 'Internet', href: '/country/internet-guide' },
+  { label: 'Language', href: '/country/language-guide' },
+];
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [openMobileGroup, setOpenMobileGroup] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchSuggestions, setSearchSuggestions] = useState<{ title: string; slug: string; category: string; description?: string }[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -89,6 +98,7 @@ export default function Navbar() {
   useEffect(() => {
     setIsOpen(false);
     setOpenDropdown(null);
+    setOpenMobileGroup(null);
   }, [pathname]);
 
   const handleSearch = (e: React.FormEvent) => {
@@ -322,28 +332,60 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="lg:hidden border-t border-[var(--border)] py-4 animate-in slide-in-from-top-2 duration-200">
+            {/* Essential guides — highest-intent destinations up front */}
+            <div className="px-2 mb-3">
+              <p className="px-4 py-1 text-[0.7rem] uppercase tracking-widest text-[var(--muted)]">
+                Essential Guides
+              </p>
+              <div className="grid grid-cols-2 gap-2 px-2 mt-2">
+                {ESSENTIAL_GUIDES.map((g) => (
+                  <Link
+                    key={g.href}
+                    href={g.href}
+                    className="text-center px-3 py-2.5 text-[0.85rem] font-medium rounded-lg bg-[var(--primary-light)] text-[var(--primary)] hover:brightness-95 transition-all"
+                  >
+                    {g.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
             {NAV_ITEMS.map((item) =>
               item.children ? (
-                <div key={item.href} className="mb-3">
-                  <Link
-                    href={item.href}
-                    className="block px-4 py-2 text-[0.9rem] font-medium text-[var(--muted)]"
-                  >
-                    {item.label} →
-                  </Link>
-                  {item.children.map((child) => (
+                <div key={item.href} className="mb-1">
+                  <div className="flex items-center">
                     <Link
-                      key={child.href}
-                      href={child.href}
-                      className={`block px-6 py-2.5 text-[0.9rem] mx-2 rounded-lg ${
-                        pathname === child.href
-                          ? 'text-[var(--primary)] font-medium bg-[var(--primary-light)]'
-                          : 'text-[var(--muted)] hover:bg-[var(--card-hover)]'
-                      }`}
+                      href={item.href}
+                      className="flex-1 block px-4 py-2.5 text-[0.9rem] font-medium text-[var(--muted)]"
                     >
-                      {child.label}
+                      {item.label}
                     </Link>
-                  ))}
+                    <button
+                      onClick={() => setOpenMobileGroup(openMobileGroup === item.label ? null : item.label)}
+                      className="p-3 text-[var(--muted)]"
+                      aria-label={`Toggle ${item.label} menu`}
+                      aria-expanded={openMobileGroup === item.label}
+                    >
+                      <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${openMobileGroup === item.label ? 'rotate-180' : ''}`} />
+                    </button>
+                  </div>
+                  {openMobileGroup === item.label && (
+                    <div className="mb-2 animate-in fade-in duration-200">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          className={`block px-6 py-2.5 text-[0.9rem] mx-2 rounded-lg ${
+                            pathname === child.href
+                              ? 'text-[var(--primary)] font-medium bg-[var(--primary-light)]'
+                              : 'text-[var(--muted)] hover:bg-[var(--card-hover)]'
+                          }`}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ) : (
                 <Link
