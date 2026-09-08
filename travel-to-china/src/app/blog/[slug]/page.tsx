@@ -4,6 +4,7 @@ import Link from 'next/link';
 import MDXContent from '@/components/content/MDXContent';
 import SubscribeCard from '@/components/ui/SubscribeCard';
 import ShareButtons from '@/components/ui/ShareButtons';
+import PrevNextNav from '@/components/layout/PrevNextNav';
 import { ArrowLeft, Calendar, User, Clock, RefreshCw } from 'lucide-react';
 import { readingTime } from '@/lib/utils';
 import { ArticleSchema, BreadcrumbSchema } from "@/components/layout/StructuredData"
@@ -44,6 +45,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const entry = getContentBySlug('blog', params.slug);
   if (!entry) notFound();
+
+  // Ordered posts (oldest → newest) for prev/next navigation
+  const orderedPosts = [...getAllContent('blog')].sort((a, b) =>
+    (a.meta.date || '').localeCompare(b.meta.date || '')
+  );
 
   // Get related blog posts by shared tags
   const allPosts = getAllContent('blog').filter(p => p.slug !== params.slug);
@@ -115,7 +121,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         {/* Related Articles */}
         {displayedRelated.length > 0 && (
           <div className="mt-12 pt-8 border-t border-[var(--border)]">
-            <h3 className="text-xl font-bold mb-4">Related Articles</h3>
+            <h3 className="text-xl font-bold mb-4">Continue Reading</h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {displayedRelated.map((rel) => (
                 <Link key={rel.slug} href={`/blog/${rel.slug}`} className="card p-4 group">
@@ -131,6 +137,14 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             </div>
           </div>
         )}
+
+        <PrevNextNav
+          items={orderedPosts.map((p) => ({ slug: p.slug, title: p.meta.title }))}
+          currentSlug={params.slug}
+          basePath="/blog"
+          prevLabel="Older Post"
+          nextLabel="Newer Post"
+        />
 
         {/* Share & Subscribe */}
         <div className="mt-12 pt-8 border-t border-[var(--border)]">

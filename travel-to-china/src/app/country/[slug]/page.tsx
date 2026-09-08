@@ -2,6 +2,7 @@ import { getContentBySlug, getAllContent, getRelatedArticles, getBreadcrumbs } f
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/layout/Breadcrumbs';
+import PrevNextNav from '@/components/layout/PrevNextNav';
 import MDXContent from '@/components/content/MDXContent';
 import Comments from '@/components/comments/Comments';
 import SubscribeCard from '@/components/ui/SubscribeCard';
@@ -54,6 +55,7 @@ export default function CountryArticlePage({ params }: { params: { slug: string 
   if (!entry) notFound();
 
   const related = getRelatedArticles(params.slug, 'country', 3);
+  const allCountry = getAllContent('country');
   const breadcrumbs = getBreadcrumbs('country', params.slug, entry.meta.title);
   const readTime = readingTime(entry.content);
 
@@ -178,7 +180,7 @@ export default function CountryArticlePage({ params }: { params: { slug: string 
         {/* Related Articles */}
         {related.length > 0 && (
           <div className="mt-16 pt-10 border-t border-[var(--border)]">
-            <h3 className="text-2xl font-bold mb-6">Related Articles</h3>
+            <h3 className="text-2xl font-bold mb-6">Continue Reading</h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {related.map((rel) => (
                 <Link key={rel.slug} href={`/country/${rel.slug}`} className="card p-5 group">
@@ -191,6 +193,14 @@ export default function CountryArticlePage({ params }: { params: { slug: string 
             </div>
           </div>
         )}
+
+        <PrevNextNav
+          items={allCountry.map((c) => ({ slug: c.slug, title: c.meta.title }))}
+          currentSlug={params.slug}
+          basePath="/country"
+          prevLabel="Previous Guide"
+          nextLabel="Next Guide"
+        />
 
         {/* Subscribe CTA */}
         <section className="mt-12">
