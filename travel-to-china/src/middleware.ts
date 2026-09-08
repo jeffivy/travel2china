@@ -10,7 +10,16 @@ const REDIRECTS: Record<string, string> = {
 };
 
 export function middleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname;
+  const url = request.nextUrl;
+
+  // Canonicalize www -> apex to avoid duplicate content and split link equity
+  if (url.hostname === 'www.travels2china.com') {
+    url.hostname = 'travels2china.com';
+    url.protocol = 'https:';
+    return NextResponse.redirect(url, 301);
+  }
+
+  const pathname = url.pathname;
 
   const exactTarget = REDIRECTS[pathname];
   if (exactTarget) {
