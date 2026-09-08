@@ -17,7 +17,6 @@ const NAV_ITEMS = [
       { label: 'Size & Regions', href: '/country/size-and-regions' },
       { label: 'Ethnic Groups', href: '/country/ethnic-groups' },
       { label: 'Food Culture', href: '/country/food-culture' },
-      { label: 'Visa Policy', href: '/country/visa-policy' },
       { label: 'Travel Tips', href: '/country/travel-tips' },
       { label: 'Payment Guide', href: '/country/payment-guide-v2' },
       { label: 'Tourist Visa Guide', href: '/country/visa-tourist-guide' },

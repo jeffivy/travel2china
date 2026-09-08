@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const REDIRECTS: Record<string, string> = {
   '/country/payment-guide': '/country/payment-guide-v2',
+  // Legacy visa page consolidated into the tourist visa guide
+  '/country/visa-policy': '/country/visa-tourist-guide',
   // Legacy .html URLs from the pre-rewrite static site (found in analytics)
   '/china-food/chinese-foods-that-symbolize-luck-and-prosperity.html': '/country/food-culture',
   '/china-tours/the-city-of-dongtan.html': '/cities/shanghai',
