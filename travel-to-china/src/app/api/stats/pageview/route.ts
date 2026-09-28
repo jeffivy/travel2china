@@ -11,8 +11,14 @@ const BOT_UA_PATTERNS = [
   /applebot/i, /linkedinbot/i,
 ];
 
-// Headless Chrome / SEO rendering service signature
-const HEADLESS_CHROME_PATTERN = /Linux.*Chrome\/14[0-9]/;
+// Desktop Linux Chrome is the classic headless/automation signature — real
+// desktop visitors are on Windows/macOS, and scrapers overwhelmingly run
+// headless Chrome on Linux x86_64. Scoped to x86_64 so it does NOT match
+// Android WebViews (their UA is "Linux; Android ...").
+const HEADLESS_CHROME_PATTERN = /Linux x86_64.*Chrome\//i;
+
+// Cap "time on page": over 2h means a tab was left open, not real engagement.
+const MAX_PAGE_DURATION_S = 2 * 60 * 60;
 
 function isBot(userAgent: string | undefined): boolean {
   if (!userAgent) return true;
@@ -41,7 +47,16 @@ export async function POST(request: NextRequest) {
     }
 
     if (eventType === 'leave') {
-      await recordPageEvent(pagePath, visitorId, sessionId || 'unknown', 'leave', duration);
+      // Ignore implausible durations (tab left open) so they don't skew the
+      // session-duration average.
+      const validDuration =
+        typeof duration === 'number' &&
+        Number.isFinite(duration) &&
+        duration >= 0 &&
+        duration <= MAX_PAGE_DURATION_S
+          ? duration
+          : undefined;
+      await recordPageEvent(pagePath, visitorId, sessionId || 'unknown', 'leave', validDuration);
     } else {
       await recordPageView(pagePath, visitorId, referrer, userAgent, utmSource, utmMedium, utmCampaign);
       if (sessionId) {
