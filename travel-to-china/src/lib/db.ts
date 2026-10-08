@@ -104,6 +104,7 @@ export async function initializeDatabase(): Promise<void> {
   await db.execute(`ALTER TABLE page_views ADD COLUMN utm_source TEXT`).catch(() => {});
   await db.execute(`ALTER TABLE page_views ADD COLUMN utm_medium TEXT`).catch(() => {});
   await db.execute(`ALTER TABLE page_views ADD COLUMN utm_campaign TEXT`).catch(() => {});
+  await db.execute(`ALTER TABLE page_views ADD COLUMN ip TEXT`).catch(() => {});
 }
 
 export async function getAll<T = Record<string, unknown>>(sql: string, args: InValue[] = []): Promise<T[]> {

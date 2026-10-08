@@ -7,12 +7,26 @@ export async function recordPageView(
   userAgent?: string,
   utmSource?: string,
   utmMedium?: string,
-  utmCampaign?: string
+  utmCampaign?: string,
+  ip?: string
 ): Promise<void> {
   await getDb().execute({
-    sql: `INSERT INTO page_views (page_path, visitor_id, referrer, user_agent, utm_source, utm_medium, utm_campaign) VALUES (?, ?, ?, ?, ?, ?, ?)`,
-    args: [pagePath, visitorId, referrer || '', userAgent || '', utmSource || '', utmMedium || '', utmCampaign || ''],
+    sql: `INSERT INTO page_views (page_path, visitor_id, referrer, user_agent, utm_source, utm_medium, utm_campaign, ip) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    args: [pagePath, visitorId, referrer || '', userAgent || '', utmSource || '', utmMedium || '', utmCampaign || '', ip || ''],
   });
+}
+
+// Number of distinct visitor_ids an IP produced recently. A real visitor
+// persists one visitor_id (localStorage) and browses several pages; a
+// cookie-less scraper mints a new visitor_id on every request (PV/UV ≈ 1),
+// so a high distinct count from one IP is the scraper's signature.
+export async function getDistinctVisitorsForIp(ip: string, hours: number = 24): Promise<number> {
+  const result = await getOne<{ count: number }>(
+    `SELECT COUNT(DISTINCT visitor_id) as count FROM page_views
+     WHERE ip = ? AND created_at >= datetime('now', ?)`,
+    [ip, `-${hours} hours`]
+  );
+  return result?.count || 0;
 }
 
 export async function recordPageEvent(
