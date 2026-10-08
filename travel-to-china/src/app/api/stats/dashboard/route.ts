@@ -9,6 +9,8 @@ import {
   getPopularSearches,
   getPageViewsByPath,
   getAverageSessionDuration,
+  getBlockedIps,
+  getSuspiciousIps,
 } from '@/lib/stats';
 import { getAllComments } from '@/lib/comments';
 import { getAllSubscribers } from '@/lib/subscribe';
@@ -45,6 +47,8 @@ export async function GET(request: NextRequest) {
       comments,
       subscribers,
       avgSessionDuration,
+      blockedIps,
+      suspiciousIps,
     ] = await Promise.all([
       getDashboardSummary(),
       getDailyPageViews(days),
@@ -55,6 +59,8 @@ export async function GET(request: NextRequest) {
       getAllComments(),
       getAllSubscribers(),
       getAverageSessionDuration(days),
+      getBlockedIps(),
+      getSuspiciousIps(),
     ]);
 
     return NextResponse.json({
@@ -67,6 +73,8 @@ export async function GET(request: NextRequest) {
       comments,
       subscribers,
       avgSessionDuration,
+      blockedIps,
+      suspiciousIps,
     });
   } catch (e) {
     console.error('Dashboard error:', e);

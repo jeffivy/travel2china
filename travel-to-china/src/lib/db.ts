@@ -91,12 +91,20 @@ export async function initializeDatabase(): Promise<void> {
       UNIQUE(article_slug, user_email)
     );
 
+    CREATE TABLE IF NOT EXISTS blocked_requests (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      ip TEXT NOT NULL,
+      reason TEXT NOT NULL,
+      created_at TEXT DEFAULT (datetime('now'))
+    );
+
     CREATE INDEX IF NOT EXISTS idx_comments_article ON comments(article_slug);
     CREATE INDEX IF NOT EXISTS idx_comments_parent ON comments(parent_id);
     CREATE INDEX IF NOT EXISTS idx_page_views_path ON page_views(page_path);
     CREATE INDEX IF NOT EXISTS idx_page_views_created ON page_views(created_at);
     CREATE INDEX IF NOT EXISTS idx_search_logs_created ON search_logs(created_at);
     CREATE INDEX IF NOT EXISTS idx_page_events_session ON page_events(session_id);
+    CREATE INDEX IF NOT EXISTS idx_blocked_requests_ip ON blocked_requests(ip);
   `);
 
   // Safe migrations: add columns that may not exist in older table versions

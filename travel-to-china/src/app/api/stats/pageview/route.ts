@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { initializeDatabase } from '@/lib/db';
-import { recordPageView, recordPageEvent, getDistinctVisitorsForIp } from '@/lib/stats';
+import { recordPageView, recordPageEvent, getDistinctVisitorsForIp, recordBlockedRequest } from '@/lib/stats';
 
 const BOT_UA_PATTERNS = [
   /googlebot/i, /bingbot/i, /baiduspider/i, /yandexbot/i,
@@ -63,6 +63,7 @@ export async function POST(request: NextRequest) {
     // cookie-less crawler, not a human browsing session.
     const ip = getClientIp(request);
     if (ip && (await getDistinctVisitorsForIp(ip)) >= MAX_DISTINCT_VISITORS_PER_IP) {
+      await recordBlockedRequest(ip, 'distinct-visitors');
       return NextResponse.json({ success: true, skipped: true });
     }
 

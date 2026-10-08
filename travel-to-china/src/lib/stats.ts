@@ -29,6 +29,41 @@ export async function getDistinctVisitorsForIp(ip: string, hours: number = 24): 
   return result?.count || 0;
 }
 
+export async function recordBlockedRequest(ip: string, reason: string): Promise<void> {
+  await getDb().execute({
+    sql: `INSERT INTO blocked_requests (ip, reason) VALUES (?, ?)`,
+    args: [ip, reason],
+  });
+}
+
+// IPs blocked by the slow-scraper guard, with counts and last block time.
+export async function getBlockedIps(hours: number = 24): Promise<{ ip: string; blocked: number; last_blocked: string }[]> {
+  return getAll(
+    `SELECT ip, COUNT(*) as blocked, MAX(created_at) as last_blocked
+     FROM blocked_requests
+     WHERE created_at >= datetime('now', ?)
+     GROUP BY ip
+     ORDER BY blocked DESC
+     LIMIT 20`,
+    [`-${hours} hours`]
+  );
+}
+
+// IPs currently near/over the distinct-visitor threshold (the signal the guard
+// uses). Distinct visitors ≈ page views is the cookie-less scraper fingerprint.
+export async function getSuspiciousIps(hours: number = 24): Promise<{ ip: string; pv: number; distinct_visitors: number }[]> {
+  return getAll(
+    `SELECT ip, COUNT(*) as pv, COUNT(DISTINCT visitor_id) as distinct_visitors
+     FROM page_views
+     WHERE ip IS NOT NULL AND ip != '' AND created_at >= datetime('now', ?)
+     GROUP BY ip
+     HAVING distinct_visitors >= 8
+     ORDER BY distinct_visitors DESC
+     LIMIT 20`,
+    [`-${hours} hours`]
+  );
+}
+
 export async function recordPageEvent(
   pagePath: string,
   visitorId: string,

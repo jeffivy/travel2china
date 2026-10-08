@@ -23,6 +23,8 @@ interface DashboardData {
   comments: any[];
   subscribers: any[];
   avgSessionDuration: number;
+  blockedIps: { ip: string; blocked: number; last_blocked: string }[];
+  suspiciousIps: { ip: string; pv: number; distinct_visitors: number }[];
 }
 
 export default function AdminPage() {
@@ -244,6 +246,56 @@ export default function AdminPage() {
                 </span>
               ))}
             </div>
+          </div>
+
+          {/* Suspicious / Blocked IPs */}
+          <div className="card p-6">
+            <h3 className="font-bold mb-1">Suspicious / Blocked IPs (last 24h)</h3>
+            <p className="text-xs text-[var(--muted)] mb-4">
+              The scraper guard drops an IP once it produces 10+ distinct visitors in 24h. Data accrues after deployment.
+            </p>
+            {data.blockedIps.length === 0 && data.suspiciousIps.length === 0 ? (
+              <p className="text-center text-[var(--muted)] py-6">Nothing yet.</p>
+            ) : (
+              <div className="space-y-6">
+                {data.blockedIps.length > 0 && (
+                  <div>
+                    <h4 className="text-sm font-semibold mb-2 text-red-500">Blocked by guard</h4>
+                    <div className="space-y-2">
+                      {data.blockedIps.map((b) => (
+                        <div key={b.ip} className="flex items-center justify-between text-sm py-2 border-b border-[var(--border)]/50">
+                          <span className="font-mono text-xs">{b.ip}</span>
+                          <span className="text-[var(--muted)] text-xs">blocked {b.blocked}× · last {b.last_blocked}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {data.suspiciousIps.length > 0 && (
+                  <div>
+                    <h4 className="text-sm font-semibold mb-2">Nearing threshold</h4>
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="text-left border-b border-[var(--border)]">
+                          <th className="py-2 pr-4 font-medium">IP</th>
+                          <th className="py-2 pr-4 font-medium">Distinct visitors</th>
+                          <th className="py-2 font-medium">Page views</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {data.suspiciousIps.map((s) => (
+                          <tr key={s.ip} className="border-b border-[var(--border)]/50">
+                            <td className="py-2 pr-4 font-mono text-xs">{s.ip}</td>
+                            <td className="py-2 pr-4">{s.distinct_visitors}</td>
+                            <td className="py-2">{s.pv}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       )}
